@@ -293,6 +293,6 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
 - **Database:** on the instance, or a Lightsail managed DB (~$15/month). Remus decides.
 - **Backups:** Lightsail automatic daily instance snapshots, plus a nightly DB dump to a Lightsail bucket.
 - **HTTPS:** Let's Encrypt. Secrets: `.env` on the server, never in git.
-- **Deploy:** checkout on the server, install only the api + web workspaces (no Expo/RN), build, restart the API. nginx web roots point only at `dist` folders.
+- **Deploy (revised, user's call):** **no repo on the server.** `deploy.sh` on the Mac builds site + web + API (API bundled to one file) and uploads only the outputs over SSH into `releases/<date>`, then switches `current` and restarts. Rollback = previous release.
 - The API is written portably (Hono + a thin DB layer).
 - **Questions for Remus:** instance size (smallest to start), DB choice, staging from day one, region (Frankfurt), support@letterlyn.com + privacy policy URL.

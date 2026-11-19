@@ -25,15 +25,15 @@ The API code, its deploy script and service files arrive with milestone M2. This
 ## 4. Software
 - nginx
 - Node.js 24 LTS
-- git
 - MariaDB 11, bound to localhost only
 - certbot (Let's Encrypt) with automatic renewal
 - unattended-upgrades for security patches
 
 ## 5. Users and folders
 - **Deploy user:** `letterlyn`, non-root, owns everything below.
-- **Repo:** `/srv/letterlyn/app`, cloned with a **read-only GitHub deploy key** on `SmartDevSolutionsLimited/letterlyn`.
-- **Web roots:** `/srv/letterlyn/www/site` and `/srv/letterlyn/www/play`. They receive only the built files (copied by the deploy script), never source or `.git`.
+- **No repo, no git, no source code on the server.** A deploy script on Doru's Mac builds everything and uploads only the finished files over SSH (Doru's public key on the `letterlyn` user).
+- **Web roots:** `/srv/letterlyn/www/site` and `/srv/letterlyn/www/play`. They receive only built files.
+- **API:** `/srv/letterlyn/api/releases/<date>` (bundled API + production packages), with `current` pointing at the live one. Rollback = point `current` at the previous release.
 
 ## 6. nginx sites (HTTPS everywhere, HTTP → HTTPS)
 - **letterlyn.com** → `/srv/letterlyn/www/site`
