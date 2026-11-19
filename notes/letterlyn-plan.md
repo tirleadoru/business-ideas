@@ -332,3 +332,29 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
   - A player missing the schedule (offline >30 days) plays an **unranked** daily (streak/stats still count).
   - The server validates scores with the same schedule.
 - **Milestones:** M2 = API (leaderboards, cloud save) + content feed + daily schedule. M4 (content) = filling the feed.
+
+## 15. Offline rules, told to players (agreed 2026-11-19, built in M2)
+**Rules (also the "Playing offline" section of How to play):**
+1. Everything works offline, the daily included.
+2. Progress is saved on this phone right away, then synced when online.
+3. Your streak always counts, online or offline.
+4. Daily leaderboard: an offline result joins that day's ranking if you're online within **48 hours**.
+5. Hints use coins (work offline); ad rewards need internet.
+6. Two devices: progress is combined on sync, best results kept, coins = higher balance.
+7. Until you sync or sign in, progress lives only on this phone; deleting the app before that loses it.
+
+**Where they're shown (EN / RO):**
+| Moment | Text |
+|---|---|
+| Header offline | "Offline · progress saved on this phone" / "Offline · progresul e salvat pe acest telefon" |
+| Header pending | "3 results waiting to sync" / "3 rezultate așteaptă sincronizarea" |
+| Daily card offline | "Play now. Your result joins today's ranking if you're online within 48 hours." / "Joacă acum. Rezultatul intră în clasamentul zilei dacă revii online în 48 de ore." |
+| Results offline | "Saved. We'll send it when you're back online." / "Salvat. Îl trimitem când revii online." |
+| After 48 h | "Played offline: counts for your streak, not that day's ranking." / "Jucat offline: contează pentru serie, nu pentru clasamentul zilei." |
+| Unranked daily | "Unranked" + "Connect once to get the latest daily puzzles." / "Neclasat" + "Conectează-te o dată pentru careurile zilei la zi." |
+| Leaderboard offline | "Connect to see today's leaderboard." / "Conectează-te ca să vezi clasamentul de azi." |
+| Not signed in (after a few days) | "Keep your progress safe: sign in to sync it and move it to a new phone." / "Păstrează-ți progresul: conectează-te ca să-l sincronizezi și să-l muți pe un telefon nou." |
+
+- Store listings: "Plays fully offline."
+- Messages appear only at the moment they matter; no startup text walls.
+- All strings go into `packages/content` i18n (same text on web + mobile).
