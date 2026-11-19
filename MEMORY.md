@@ -588,6 +588,11 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** The user approved Relax/Challenge, the coin economy, and EN + RO first.
+  - They pushed back on backend phasing: how do we get data in one place and shared leaderboards across web and mobile without a backend? **They're right:** platform services are silos.
+  - Revised: **small own backend from launch** (Cloudflare Workers + D1, $5/month paid plan), anonymous player ID + generated nickname, transfer code instead of logins, server-checked scores, one leaderboard per day/language everywhere.
+  - Constraints: Poki blocks external requests unless approved, and allows no personal data. CrazyGames allows backends and has its own leaderboards; it forbids Google/email logins inside games.
+  - Also revised: **launch Android together with the portals**, since mobile players may not visit portals.
 - **2026-11-19:** User feedback on M0: works well, but needs more packs, a how-to-play and settings menu (backwards words were not obvious), monetization, long-term replayability/competition, and a backend question.
   - **Product plan v1 written:** `notes/letterlyn-plan.md`.
   - Contents: onboarding with direction cards; fair-ads placement and a soft coin economy; Daily Puzzle + streak; Relax vs Challenge (timer, score, combo); share and friend codes; Quick Play; XP and achievements.

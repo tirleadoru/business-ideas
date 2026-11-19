@@ -69,38 +69,51 @@ Content alone can't solve this. The game needs **loops that never run out**:
 6. **Weekly themed event:** one special pack for the week (holidays, sports events, local celebrations), with a limited-time stamp. Built from content we already have, so cheap to run.
 7. **Content pipeline:** about 30 packs per language at launch, then **2–4 new packs per month**. This is the "one week a month" maintenance work. Packs are drafted with AI at build time, then human-reviewed (the user reviews RO).
 
-## 4. Backend: needed, but not on day one
-**Recommendation:** grow it in phases and borrow the platforms' free services before writing our own.
+## 4. Backend: revised after the user's pushback (2026-11-19)
+**The user is right.** Platform services are **separate silos**: an Android leaderboard can't see iOS players, and neither can see web players. One shared leaderboard everywhere, and analytics in one place, need **our own small backend from launch**.
 
-| Phase | What | Backend? | Cost |
-|---|---|---|---|
-| **A: launch** | Local progress, personal bests, daily puzzle, streaks, share text, friend challenge codes | **None** | €0 |
-| **B: platform services** | **Google Play Games** (leaderboards, achievements, cloud save, sign-in) and **Apple Game Center** (same). CrazyGames has user accounts and a cloud-save data module; its leaderboard support needs checking | **None**, the platforms host it | €0 |
-| **C: own backend, only if data justifies it** | One global, cross-platform **daily leaderboard** per language, friends lists | Small serverless API: Cloudflare Workers + D1, or Supabase | Free tier at first; $5–25/month once large, funded by revenue by then |
+**Key insight: a cross-platform leaderboard does *not* need a login system.** A leaderboard only needs a shared server that every platform sends scores to. Login is only needed when *one person* wants *their own* progress on *several devices*. That's a separate, later feature.
 
-**Why not build accounts and login ourselves**
-- Passwords, GDPR data handling, account recovery and support emails are exactly the ongoing work we want to avoid.
-- Players already have a platform identity (Google Play Games, Game Center, CrazyGames account). We use those.
+### Identity (no passwords, no emails, ever)
+| Where | Player identity |
+|---|---|
+| Everywhere (default) | Anonymous **player ID** created on first launch, plus an **auto-generated nickname** like "CalmOtter42". Generated names mean no nickname moderation work. Players can re-roll, but not type free text |
+| CrazyGames | Link our player ID to the CrazyGames account through their User module (allowed; Google/email logins inside the game are **not** allowed there) |
+| Android / iOS | Link to Google Play Games / Game Center (and maybe Sign in with Apple/Google later). No passwords on our side |
+| Moving to a new device | A **transfer code** ("LYN-7KQ2-9MXD"): enter it on the new device to pull your progress. Works on every platform, with no personal data |
 
-**Cheating on leaderboards**
-- Any client-side game can be faked. For the daily leaderboard (phase C), the server re-checks the submission: puzzle seed, the found-word sequence with timestamps, and minimum human times. It also caps scores.
-- Platform leaderboards (phase B) are accepted as "good enough" for a casual game.
+### What the backend does
+- **Scores:** daily-puzzle results and Challenge scores → **one global leaderboard per day and per language**, the same on web, Android and iOS. Also a friends view through challenge codes.
+- **Anti-cheat:** the server knows the puzzle seed, re-checks the submitted found-word sequence and timestamps, rejects impossible times, and rate-limits.
+- **Cloud save:** progress keyed by player ID (this powers the transfer code).
+- **Analytics in one place:** a few anonymous events (puzzle started/completed, session length, ad shown) sent to our backend or to GameAnalytics. Portal dashboards stay as a second view.
 
-## 5. Revised milestones
+### Stack and cost
+- **Cloudflare Workers + D1 (SQLite).**
+  - Free plan: 100K requests/day, 100K rows written/day, 5M rows read/day, 5 GB.
+  - Since 1 Sep 2026, D1 free-plan queries fail when a daily limit is exceeded, so **switch to Workers Paid ($5/month) before launch** to avoid outages.
+  - Rough capacity: about 10–20K daily players stay within the free limits. The $5 plan covers far more, and at that scale ads pay for it many times over.
+  - No servers to patch, nothing to maintain beyond the code.
+
+### Platform rules that affect this
+- **Poki** blocks all external requests by default. Our backend URL and any analytics must be **approved by Poki** (send the exact URLs plus a privacy policy). No personal data (e.g. email) is allowed, and Google Analytics is blocked. → Our design fits: anonymous ID and generated nickname. **Fallback if not approved:** the Poki build runs offline with local bests only.
+- **CrazyGames** has its own Leaderboards and Data (cloud save) modules, and supports server-side score submission. We can **mirror** our scores to their leaderboard too, for on-site visibility.
+- **GDPR:** an anonymous ID plus gameplay data is still personal data. We need a privacy policy (hosted on letterlyn.com), a delete-my-data option in settings, and minimal data kept.
+
+## 5. Revised milestones (v2: backend from launch, Android alongside the portals)
 | # | Milestone | Contents |
 |---|---|---|
 | M0 ✅ | Engine prototype | Done 2026-11-19 |
-| **M1** | **Complete core loop (no backend)** | Tutorial and direction cards, ⚙️ menu, coins and hint economy, Daily Puzzle + streak + calendar, Relax/Challenge with score and combo, personal bests, share text and friend codes, Quick Play, XP/achievements/album, sound and haptics, large print and contrast |
-| **M2** | **Content for launch** | 30 packs EN + 30 RO (universal + local), banned-word lists, first weekly-event packs |
-| **M3** | **Ads integration** | A single `ads` interface with adapters for Poki, CrazyGames and a dev mock, all following the fair-ads rules |
-| **M4** | **Portal launch** | CrazyGames + Poki submissions; analytics (retention, session length, ad views per session) |
-| **M5** | **Measure → go/no-go** | Gates: avg session ≥ ~15 min, good day-1/day-7 retention versus portal benchmarks. Fix, then re-test |
-| **M6** | **Mobile** | Capacitor Android/iOS, AdMob, remove-ads purchase, Play Games + Game Center (leaderboards, achievements, cloud save) |
-| **M7** | **Own backend (optional)** | Cross-platform daily leaderboard, only if M5/M6 data shows competition drives retention |
-| **M8+** | **Growth** | More languages (TR, PL, PT-BR, DE…), learning mode, custom puzzles |
+| **M1** | **Complete core loop** | Tutorial and direction cards, ⚙️ menu, coins and hints, Daily Puzzle + streak + calendar, Relax/Challenge with score and combo, personal bests, share text and friend codes, Quick Play, XP/achievements/album, sound and haptics, large print and contrast |
+| **M2** | **Backend v1** | Cloudflare Workers + D1: player ID and generated nicknames, daily and Challenge leaderboards (per day, per language), anti-cheat checks, cloud save and transfer code, anonymous analytics events, privacy policy and data deletion |
+| **M3** | **Content for launch** | 30 packs EN + 30 RO, banned-word lists, first weekly-event packs |
+| **M4** | **Ads + platform adapters** | One `ads`/`platform` interface: Poki, CrazyGames (+ user/leaderboard mirror), Capacitor/AdMob, dev mock |
+| **M5** | **Launch wave 1** | CrazyGames + Poki (request backend approval) **+ Android on Google Play** (the company account skips the 12-tester rule) + the web version on letterlyn.com |
+| **M6** | **Measure → decide** | Compare web vs Android retention, session length and revenue per player. Fix, then re-test |
+| **M7** | **iOS + growth** | iOS app (Game Center link, Sign in with Apple if needed), more languages (TR, PL, PT-BR, DE…), learning mode, custom puzzles |
 
-## 6. Open decisions for the user
-1. **Competition style:** OK with "Relax by default, Challenge optional", so the game stays calm but competitive for those who want it?
-2. **Coins/hints economy:** OK with "play to earn, ads as a shortcut, never a wall"?
-3. **Backend phasing:** OK with A → B → C, with no own login system?
-4. **Launch scope:** launch on portals with EN + RO only, then add languages after the data?
+## 6. Decisions
+1. ✅ Relax by default, Challenge optional (user, 2026-11-19).
+2. ✅ Coin/hint economy: play to earn, ads as a shortcut, never a wall (user, 2026-11-19).
+3. 🔄 Backend: the user questioned phasing → revised to **backend from launch** (§4). Waiting for the user's OK.
+4. ✅ EN + RO first (user, 2026-11-19). The user is sceptical about judging only by the portals → revised plan launches **Android in the same wave** (M5).
