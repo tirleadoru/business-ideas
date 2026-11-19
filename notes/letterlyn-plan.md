@@ -252,3 +252,19 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
 3. Press "Reset stats", do 10 drags, read the on-screen numbers.
 4. Objective lag test: record a fast drag in iPhone **slow-mo (240 fps)** and compare finger vs line.
 5. Found-word animation feel.
+
+## 11. Direction after the spike (2026-11-19)
+**User:** stop testing. Build each platform "as it's meant to be built", with no web-in-app and no app-in-web. Two codebases are acceptable.
+
+**Claude's proposal: native mobile + real web, one shared engine.**
+| Target | Built with | Why |
+|---|---|---|
+| iOS + Android | **Expo / React Native**: real native views, gestures and animation on the UI thread | Won the spike on mobile (startup, frame stability, no blank screen). The user already knows it (EAS workflow) |
+| Web (portals + play.letterlyn.com) | **Plain TypeScript web** (the M0 approach) | Won the spike on web (7 KB, ready in ~0.5 s) |
+| API | TypeScript on Cloudflare Workers | — |
+| Shared | `packages/engine` (generator, scoring, validation), `packages/content`, i18n strings, design tokens | **The same puzzle code everywhere** → identical daily puzzles on every platform, and server-side score checks always match |
+
+**Why not Swift + Kotlin + web (three fully separate native codebases)?**
+- Three UIs, plus the engine rewritten in Swift and Kotlin.
+- **The cross-language determinism risk:** the daily puzzle and the leaderboard checks need *bit-identical* puzzles. Different RNG, float maths and Unicode uppercasing between languages would produce different grids.
+- For a 2D word game, React Native already renders real native views, so the extra gain is marginal and the cost is about 3× the work.

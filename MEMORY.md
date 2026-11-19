@@ -588,6 +588,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** User: no more tests; build each platform natively, two codebases OK. Claude proposes **Expo/RN for iOS+Android + plain TS web for portals/site**, sharing one TS engine (needed for identical daily puzzles and server checks). Swift+Kotlin advised against: 3 UIs + an engine ported twice + cross-language determinism risk. Waiting for the user's decision.
 - **2026-11-19:** **Stack spike run** (branch spike/stack-comparison, company repo). Same 12×12 screen in Capacitor vs Expo.
   - Web: both 60 fps; Capacitor ready in ~0.5 s vs Expo ~2.4 s (both OK for portals).
   - Mobile (emulator/simulator): Expo starts faster (0.84 vs 1.18 s median on Android), has steadier frames (worst 33 vs 67 ms), and shows the board within 1 s on iOS. Capacitor showed a blank WebView for 6+ s on first iOS launch.
