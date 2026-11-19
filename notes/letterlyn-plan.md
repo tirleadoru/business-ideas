@@ -284,3 +284,12 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
   - Where is DNS managed (moving it to Cloudflare is easiest)?
   - Domain email (support@letterlyn.com) for the store listings.
   - Privacy policy URL (Apple requires one).
+
+### 12b. Decision (user, 2026-11-19): use the company's existing AWS setup (Lightsail, Remus maintains)
+- The user doesn't mind extra maintenance if speed is the same. Gameplay is local, so the API location barely matters.
+- Follow the **red-assistance-api ops playbook**: `deploy/deploy.sh staging|prod` run on the server, MariaDB (RDS), secrets from AWS Parameter Store, nightly dumps to S3 (30 days), health URL, restore drill.
+- **Hosts:** letterlyn.com (site) and play.letterlyn.com (web game) as nginx static sites; api.letterlyn.com + staging-api as a **Node** service (systemd + nginx).
+- **One difference from red-assistance:** the API is Node/TypeScript, not PHP, because it must run the shared engine to verify scores.
+- **Monorepo on the server:** same as red-assistance (checkout + deploy script), but install only the api and web workspaces (no Expo/RN). nginx web roots point only at `dist` folders; never source or `.git`.
+- The API is still written portably (Hono + a thin DB layer), so it can move to Cloudflare later if wanted.
+- **Questions for Remus:** separate small instance? RDS or on-box MariaDB? staging from day one? region (Frankfurt)? Node OK? support@ email + privacy policy URL.
