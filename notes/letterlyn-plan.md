@@ -285,11 +285,14 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
   - Domain email (support@letterlyn.com) for the store listings.
   - Privacy policy URL (Apple requires one).
 
-### 12b. Decision (user, 2026-11-19): use the company's existing AWS setup (Lightsail, Remus maintains)
-- The user doesn't mind extra maintenance if speed is the same. Gameplay is local, so the API location barely matters.
-- Follow the **red-assistance-api ops playbook**: `deploy/deploy.sh staging|prod` run on the server, MariaDB (RDS), secrets from AWS Parameter Store, nightly dumps to S3 (30 days), health URL, restore drill.
-- **Hosts:** letterlyn.com (site) and play.letterlyn.com (web game) as nginx static sites; api.letterlyn.com + staging-api as a **Node** service (systemd + nginx).
-- **One difference from red-assistance:** the API is Node/TypeScript, not PHP, because it must run the shared engine to verify scores.
-- **Monorepo on the server:** same as red-assistance (checkout + deploy script), but install only the api and web workspaces (no Expo/RN). nginx web roots point only at `dist` folders; never source or `.git`.
-- The API is still written portably (Hono + a thin DB layer), so it can move to Cloudflare later if wanted.
-- **Questions for Remus:** separate small instance? RDS or on-box MariaDB? staging from day one? region (Frankfurt)? Node OK? support@ email + privacy policy URL.
+### 12b. Decision (user, 2026-11-19): Letterlyn gets its own setup on the company's AWS **Lightsail** (Remus administers)
+- Letterlyn is a **separate business** from red-assistance (which runs on its own EC2 servers). Don't copy red-assistance's infrastructure.
+- **One Lightsail instance:**
+  - nginx serves letterlyn.com (site) and play.letterlyn.com (web game) as static `dist` folders.
+  - api.letterlyn.com (+ staging-api) is a **Node/TS** service (systemd + nginx), because it must run the shared engine to verify scores.
+- **Database:** on the instance, or a Lightsail managed DB (~$15/month). Remus decides.
+- **Backups:** Lightsail automatic daily instance snapshots, plus a nightly DB dump to a Lightsail bucket.
+- **HTTPS:** Let's Encrypt. Secrets: `.env` on the server, never in git.
+- **Deploy:** checkout on the server, install only the api + web workspaces (no Expo/RN), build, restart the API. nginx web roots point only at `dist` folders.
+- The API is written portably (Hono + a thin DB layer).
+- **Questions for Remus:** instance size (smallest to start), DB choice, staging from day one, region (Frankfurt), support@letterlyn.com + privacy policy URL.

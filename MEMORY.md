@@ -588,7 +588,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
-- **2026-11-19:** Hosting decided: the **company's AWS** (Lightsail; Remus is the user's business partner and server admin), following the red-assistance-api playbook (deploy.sh on server, MariaDB/RDS, Parameter Store, S3 nightly backups, staging + prod). The API is Node/TS (needs the shared engine). Install only the api/web workspaces on the server. Details and questions for Remus: plan §12b.
+- **2026-11-19:** Hosting decided: **Letterlyn gets its own setup on the company's AWS Lightsail** (Remus is the user's business partner and server admin). It's a separate business from red-assistance (EC2); don't compare or copy its infrastructure. One instance: nginx for site + web game, Node API (+ staging), DB on-box or Lightsail managed, Lightsail snapshots + bucket backups. Details: plan §12b.
 - **2026-11-19:** **letterlyn.com bought.** Remus is preparing a server. Deployment explained: only build outputs go out (site → letterlyn.com, web game → play.letterlyn.com, API → api.letterlyn.com, mobile → stores). Claude recommends Cloudflare Pages + Workers instead of a self-managed server. Questions for Remus are in plan §12.
 - **2026-11-19:** **Letterlyn M1 built** on branch `m1` (company repo, commit 1905eb5).
   - Layout: monorepo with `packages/engine` (all game rules: session, scoring/combos, daily+streaks, coins/XP/levels, achievements, save migration, share texts, friend codes), `packages/content` (packs + EN/RO strings), `apps/web` (plain TS, ~20 KB gz), `apps/mobile` (Expo SDK 58, Expo Router, Gesture Handler + Reanimated, haptics, expo-audio).
