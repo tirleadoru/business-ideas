@@ -82,6 +82,26 @@ Content alone can't solve this. The game needs **loops that never run out**:
 | Android / iOS | Link to Google Play Games / Game Center (and maybe Sign in with Apple/Google later). No passwords on our side |
 | Moving to a new device | A **transfer code** ("LYN-7KQ2-9MXD"): enter it on the new device to pull your progress. Works on every platform, with no personal data |
 
+### Same player everywhere (v3, after the user's question, 2026-11-19)
+- **One Letterlyn player record on our backend, with several identities attached:** device IDs, a Google account, an Apple account, a CrazyGames account.
+- **Play anonymously by default.** A **"Save your progress"** button offers sign-in. It's optional and never required to play.
+- **"Sign in with Google" / "Sign in with Apple" are not our own login system.**
+  - Google or Apple handles the password. Our backend only verifies their signed token (free) and stores "provider + id → player".
+  - Apple rule: if an iOS app offers Google sign-in, it must also offer Sign in with Apple. → Offer both everywhere.
+- **Per platform:**
+  | Platform | How you "stay you" |
+  |---|---|
+  | letterlyn.com (web) | Sign in with Google or Apple → same progress as the phone automatically |
+  | Android | Google sign-in (Play Games), or Apple |
+  | iOS | Sign in with Apple (or Google) + Game Center |
+  | CrazyGames | Their rules forbid Google/email login inside the game → the CrazyGames account is the identity. Link it to your Letterlyn player once with a **link code** shown on your phone |
+  | Poki | No personal data or logins allowed → **link code** only (if the backend is approved), otherwise local only |
+- **Merging two existing progress records when linking:**
+  - Union of completed puzzles; best stars and best scores kept.
+  - Longest streak kept.
+  - Coins = the higher balance, not the sum (prevents a duplication exploit).
+- **No email or password storage, no password-reset support.**
+
 ### What the backend does
 - **Scores:** daily-puzzle results and Challenge scores → **one global leaderboard per day and per language**, the same on web, Android and iOS. Also a friends view through challenge codes.
 - **Anti-cheat:** the server knows the puzzle seed, re-checks the submitted found-word sequence and timestamps, rejects impossible times, and rate-limits.
@@ -100,20 +120,35 @@ Content alone can't solve this. The game needs **loops that never run out**:
 - **CrazyGames** has its own Leaderboards and Data (cloud save) modules, and supports server-side score submission. We can **mirror** our scores to their leaderboard too, for on-site visibility.
 - **GDPR:** an anonymous ID plus gameplay data is still personal data. We need a privacy policy (hosted on letterlyn.com), a delete-my-data option in settings, and minimal data kept.
 
-## 5. Revised milestones (v2: backend from launch, Android alongside the portals)
+## 5. Revised milestones (v3: backend from launch, all platforms in one wave, content last)
 | # | Milestone | Contents |
 |---|---|---|
 | M0 ✅ | Engine prototype | Done 2026-11-19 |
 | **M1** | **Complete core loop** | Tutorial and direction cards, ⚙️ menu, coins and hints, Daily Puzzle + streak + calendar, Relax/Challenge with score and combo, personal bests, share text and friend codes, Quick Play, XP/achievements/album, sound and haptics, large print and contrast |
-| **M2** | **Backend v1** | Cloudflare Workers + D1: player ID and generated nicknames, daily and Challenge leaderboards (per day, per language), anti-cheat checks, cloud save and transfer code, anonymous analytics events, privacy policy and data deletion |
-| **M3** | **Content for launch** | 30 packs EN + 30 RO, banned-word lists, first weekly-event packs |
-| **M4** | **Ads + platform adapters** | One `ads`/`platform` interface: Poki, CrazyGames (+ user/leaderboard mirror), Capacitor/AdMob, dev mock |
-| **M5** | **Launch wave 1** | CrazyGames + Poki (request backend approval) **+ Android on Google Play** (the company account skips the 12-tester rule) + the web version on letterlyn.com |
-| **M6** | **Measure → decide** | Compare web vs Android retention, session length and revenue per player. Fix, then re-test |
-| **M7** | **iOS + growth** | iOS app (Game Center link, Sign in with Apple if needed), more languages (TR, PL, PT-BR, DE…), learning mode, custom puzzles |
+| **M2** | **Backend v1** | Cloudflare Workers + D1: player ID and generated nicknames, Google/Apple sign-in linking, link codes for portals, daily and Challenge leaderboards (per day, per language), anti-cheat checks, cloud save and transfer code, anonymous analytics events, privacy policy and data deletion |
+| **M3** | **Ads + platform adapters** | One `ads`/`platform` interface: Poki, CrazyGames (+ user/leaderboard mirror), Android and iOS (AdMob, purchases, Play Games/Game Center), dev mock |
+| **M4** | **Content for launch (last, by user's decision)** | How many packs and under what rules: to be decided together at that point. Plus banned-word lists and weekly-event packs |
+| **M5** | **Launch wave 1** | CrazyGames + Poki (request backend approval) + **Android + iOS** (the company has both store accounts; Android skips the 12-tester rule) + the web version on letterlyn.com |
+| **M6** | **Measure → decide** | Compare web vs Android vs iOS retention, session length and revenue per player. Fix, then re-test |
+| **M7** | **Growth** | More languages (TR, PL, PT-BR, DE…), learning mode, custom puzzles |
 
 ## 6. Decisions
 1. ✅ Relax by default, Challenge optional (user, 2026-11-19).
 2. ✅ Coin/hint economy: play to earn, ads as a shortcut, never a wall (user, 2026-11-19).
-3. 🔄 Backend: the user questioned phasing → revised to **backend from launch** (§4). Waiting for the user's OK.
+3. ✅ Backend from launch: the user is "almost fine" with it. Cross-device identity added (§4 v3).
+5. ✅ Content (packs) moves to the end (M4); count and rules to be decided then (user, 2026-11-19).
+6. ✅ iOS in the launch wave (user, 2026-11-19).
+7. 🔄 Tech stack: the user suggests React Native; Claude proposes web core + Capacitor (see §7). Waiting for the user's decision.
 4. ✅ EN + RO first (user, 2026-11-19). The user is sceptical about judging only by the portals → revised plan launches **Android in the same wave** (M5).
+
+## 7. Tech stack decision (open)
+**Requirement:** the **web build is first-class**. Portals need a small, fast HTML5 bundle (M0 is about 7 KB gzipped). The same game must also ship as Android and iOS apps.
+
+| Option | Web (portals, site) | Android/iOS | Notes |
+|---|---|---|---|
+| **A. Web core + Capacitor** (Claude's recommendation) | Native target, tiny bundle | Same code in a native shell; plugins for AdMob, purchases, Play Games/Game Center, haptics | One codebase, three targets. UI can be plain TS (as now) or **React/Preact** if the user prefers React |
+| B. React Native (Expo) + react-native-web | Possible, but web becomes the second-class target: heavier bundle (React + RN-web runtime), gesture libraries are weaker on web, less common on portals | Real native UI, best native feel | Good if mobile were the main target. Here the portals are half the launch |
+| C. Two codebases (web + RN) | Best web | Best native | Double the work and the maintenance. Rejected |
+
+- **The engine (generator, selection, scoring, content) is pure TypeScript** and works unchanged in any of these.
+- A word search grid is light, so a WebView's performance is more than enough. Apple accepts Capacitor games that have real native features (ads, purchases, Game Center); thin website wrappers are what get rejected (guideline 4.2).

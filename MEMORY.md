@@ -588,6 +588,11 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** User decisions:
+  - Content packs move to the **end** (decided together then).
+  - **iOS joins the launch wave.**
+  - They asked about React Native and about cross-device progress. Claude proposes **web core + Capacitor** (portals need a tiny web build; React/Preact UI OK) instead of RN + RN-web.
+  - Cross-device: one player record with several identities attached (device, Google, Apple, CrazyGames). Optional "Save your progress" via Sign in with Google/Apple (no passwords stored). Link codes for CrazyGames/Poki. Defined merge rules.
 - **2026-11-19:** The user approved Relax/Challenge, the coin economy, and EN + RO first.
   - They pushed back on backend phasing: how do we get data in one place and shared leaderboards across web and mobile without a backend? **They're right:** platform services are silos.
   - Revised: **small own backend from launch** (Cloudflare Workers + D1, $5/month paid plan), anonymous player ID + generated nickname, transfer code instead of logins, server-checked scores, one leaderboard per day/language everywhere.
