@@ -34,6 +34,17 @@ One brand name everywhere: stores, portals, domain, social. Store titles add the
 | Letter Still | free | free | calm, a bit flat |
 | Word Sanctum | free | free | "a quiet place for words", a bit heavy |
 
+**Trademark/collision check (2026-11-19):**
+- ❌ **Letter Moss** (the user's first pick) is **dropped**.
+  - Another developer, Blackline Studio Art, already has **"LetterMoss: Филворд"**. It's a word search game ("Филворд" = Russian for word search) in a Google Play closed test, with a privacy policy dated 17 Oct 2026 (github.com/blackline-studio-art/lettermoss).
+  - Same name, same genre, earlier use → too risky.
+  - Also, Polyarc holds a live US mark **MOSS** for games in classes 9 and 41 (Reg. 5846030).
+- ✅ **Letterlyn**: no web, GitHub or store hits. It's a coined word, the **strongest type of trademark**.
+- ✅ **Letter Hush**: no web, GitHub or store hits.
+  - Plain "HUSH" marks exist in classes 9 and 41 (HUSHTech, Hush Communications…), but none is confirmed for games.
+  - "Letter Hush" as a whole is distinct. Risk is low but not zero.
+- ⚠️ The TMview/EUIPO API blocks automated queries → **the user must run a 5-minute manual search** at tmdn.org/tmview (offices EM, RO, US, GB, WO) and on the USPTO Trademark Search, before registering the domain.
+
 **Rejected:**
 - Domain taken: Wordfield, Wordhaven, Wordnest, Wordgrove, Wordloom and about 25 others.
 - Too close to an existing app:
