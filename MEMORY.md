@@ -588,6 +588,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** **letterlyn.com bought.** Remus is preparing a server. Deployment explained: only build outputs go out (site → letterlyn.com, web game → play.letterlyn.com, API → api.letterlyn.com, mobile → stores). Claude recommends Cloudflare Pages + Workers instead of a self-managed server. Questions for Remus are in plan §12.
 - **2026-11-19:** **Letterlyn M1 built** on branch `m1` (company repo, commit 1905eb5).
   - Layout: monorepo with `packages/engine` (all game rules: session, scoring/combos, daily+streaks, coins/XP/levels, achievements, save migration, share texts, friend codes), `packages/content` (packs + EN/RO strings), `apps/web` (plain TS, ~20 KB gz), `apps/mobile` (Expo SDK 58, Expo Router, Gesture Handler + Reanimated, haptics, expo-audio).
   - Tooling: Lefthook per-folder hooks, path-filtered GitHub checks (source only), red-assistance-style `scripts/build.sh`.

@@ -268,3 +268,19 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
 - Three UIs, plus the engine rewritten in Swift and Kotlin.
 - **The cross-language determinism risk:** the daily puzzle and the leaderboard checks need *bit-identical* puzzles. Different RNG, float maths and Unicode uppercasing between languages would produce different grids.
 - For a 2D word game, React Native already renders real native views, so the extra gain is marginal and the cost is about 3× the work.
+
+## 12. Deployment (discussed 2026-11-19; letterlyn.com bought, Remus preparing a server)
+- **Never put the repo on a server.** Only build outputs are deployed, each to its own place:
+  - **letterlyn.com:** `apps/site` static build (marketing, privacy policy).
+  - **play.letterlyn.com:** `apps/web/dist` (about 20 KB). The same dist is zipped and uploaded by hand to CrazyGames/Poki.
+  - **api.letterlyn.com:** `apps/api` (M2): a Cloudflare Worker per the plan, or a Node service on Remus's server.
+  - **Mobile:** EAS → App Store / Google Play. Nothing on any server.
+  - `packages/*` are compiled into each build; never deployed alone.
+- **Claude's recommendation:** Cloudflare Pages (free; builds only the named folder from GitHub) for site + web game, and Workers for the API. No server upkeep.
+  - Use Remus's server only if he wants to maintain it long-term.
+  - If his server is used: `/var/www/letterlyn.com`, `/var/www/play.letterlyn.com`, DNS per subdomain; never expose `.git` or source.
+- **Open questions for Remus:**
+  - What kind of server, and who maintains it?
+  - Where is DNS managed (moving it to Cloudflare is easiest)?
+  - Domain email (support@letterlyn.com) for the store listings.
+  - Privacy policy URL (Apple requires one).
