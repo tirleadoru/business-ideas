@@ -577,8 +577,10 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
 - ⚠️ The global git config and the default `github.com` SSH key belong to the **business** account (DoruTirleaSD / smartdevsolutions). Never use them here.
 
 - **Layout (2026-11-19):**
-  - The root repo holds only shared notes (`MEMORY.md`, `CLAUDE.md`, `notes/`).
-  - Each business is a top-level folder with its own git repo on the company account; these are ignored by the root `.gitignore`.
+  - **Restructured (2026-11-19):** `~/Business Ideas/` is a plain folder.
+  - The notes repo lives in `business-ideas/` (personal): `MEMORY.md`, `CLAUDE.md`, `notes/`.
+  - Each product is a **sibling** folder with its own repo on the company account (e.g. `letterlyn/`). No repo-in-repo.
+  - A root `CLAUDE.md` (untracked) imports `business-ideas/CLAUDE.md`.
   - Identity per business repo is confirmed before its first commit.
   - **Decided:** business repos go on the company account **DoruTirleaSD** (smartdevsolutions). The company publishes everything, and it already has App Store accounts and a D-U-N-S number.
   - No AI co-author lines in commits, ever.

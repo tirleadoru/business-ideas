@@ -1,12 +1,3 @@
-# This repo (personal account) tracks only the shared notes.
-# Each business lives in its own top-level folder with its OWN git repo
-# (on the account chosen for that business). Those folders are ignored here.
-
-# Ignore every top-level folder...
-/*/
-# ...except the shared notes folder
-!/notes/
-
 # OS / editor noise
 .DS_Store
 Thumbs.db
