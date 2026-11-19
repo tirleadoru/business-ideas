@@ -43,6 +43,15 @@ One brand name everywhere: stores, portals, domain, social. Store titles add the
 - ✅ **Letter Hush**: no web, GitHub or store hits.
   - Plain "HUSH" marks exist in classes 9 and 41 (HUSHTech, Hush Communications…), but none is confirmed for games.
   - "Letter Hush" as a whole is distinct. Risk is low but not zero.
+- ✅ **Final check for Letterlyn (2026-11-19):**
+  - The user's TMview search "contains Letterlyn" → **no rows**.
+  - USPTO searched by the user (screenshot cropped, result to confirm).
+  - Domains letterlyn.com / .net / .io / .game are all free.
+  - Similar US marks:
+    - **LETTERLY**: Letterly Corp, gift boxes, class 45. Unrelated.
+    - **LETTERLY**: A. Lebedev, AI voice-to-text / note-taking app, classes 9 and 42, reg. Jun 2026. Same class 9 but unrelated goods.
+    - **LETTERLYS**: Moonbot, class 9. Dead.
+  - → Low risk. Optional later: file an EU trademark at EUIPO (~€850 for 1 class, +€50 for a 2nd class) once the game shows traction.
 - ⚠️ The TMview/EUIPO API blocks automated queries → **the user must run a 5-minute manual search** at tmdn.org/tmview (offices EM, RO, US, GB, WO) and on the USPTO Trademark Search, before registering the domain.
 
 **Rejected:**
