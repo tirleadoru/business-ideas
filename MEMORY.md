@@ -588,6 +588,11 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** User feedback on M0: works well, but needs more packs, a how-to-play and settings menu (backwards words were not obvious), monetization, long-term replayability/competition, and a backend question.
+  - **Product plan v1 written:** `notes/letterlyn-plan.md`.
+  - Contents: onboarding with direction cards; fair-ads placement and a soft coin economy; Daily Puzzle + streak; Relax vs Challenge (timer, score, combo); share and friend codes; Quick Play; XP and achievements.
+  - Backend phases: none → Play Games/Game Center/CrazyGames → own serverless backend only if justified. No own login system.
+  - Waiting for the user's decisions (plan §6). No coding until agreed.
 - **2026-11-19:** **Letterlyn M0 prototype done** and pushed to SmartDevSolutionsLimited/letterlyn (`936f426`).
   - Vite + TypeScript, no framework, about 7 KB gzipped.
   - Seeded generator, EN + RO, 6 packs × 12 puzzles, hints, stars, saved progress.
