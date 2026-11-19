@@ -588,6 +588,9 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** Stack decided: **one codebase, web + Capacitor, React UI** (user OK).
+  - The user referenced the red-assistance multi-repo split (mobile/admin/web/api).
+  - Claude proposes a **monorepo** (packages/engine + content shared by game and API; apps/game, api, site, admin later). The shared engine is needed for server-side score checks. Waiting for the user's decision.
 - **2026-11-19:** User decisions:
   - Content packs move to the **end** (decided together then).
   - **iOS joins the launch wave.**

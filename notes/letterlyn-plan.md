@@ -138,7 +138,8 @@ Content alone can't solve this. The game needs **loops that never run out**:
 3. ✅ Backend from launch: the user is "almost fine" with it. Cross-device identity added (§4 v3).
 5. ✅ Content (packs) moves to the end (M4); count and rules to be decided then (user, 2026-11-19).
 6. ✅ iOS in the launch wave (user, 2026-11-19).
-7. 🔄 Tech stack: the user suggests React Native; Claude proposes web core + Capacitor (see §7). Waiting for the user's decision.
+7. ✅ Tech stack: **one codebase, web core + Capacitor** (user OK, 2026-11-19: "if it works with the same code fine by me"). UI: React.
+8. 🔄 Repo structure: the user's reference is the red-assistance split (mobile / admin / web / api repos). Claude proposes a monorepo (see §8). Waiting for the user's decision.
 4. ✅ EN + RO first (user, 2026-11-19). The user is sceptical about judging only by the portals → revised plan launches **Android in the same wave** (M5).
 
 ## 7. Tech stack decision (open)
@@ -152,3 +153,28 @@ Content alone can't solve this. The game needs **loops that never run out**:
 
 - **The engine (generator, selection, scoring, content) is pure TypeScript** and works unchanged in any of these.
 - A word search grid is light, so a WebView's performance is more than enough. Apple accepts Capacitor games that have real native features (ads, purchases, Game Center); thin website wrappers are what get rejected (guideline 4.2).
+
+## 8. Repo structure (open)
+**User's reference:** `~/Work/red-assistance*` uses separate repos for mobile apps, admin, marketing web and API.
+
+**What's different here:** web and mobile are the **same app** (Capacitor), so they belong in one codebase. And the **server must run the same puzzle engine** as the game to check scores. If the game and API ever run different engine versions, the server rejects valid scores.
+
+**Claude's proposal: one monorepo (`letterlyn`) with workspaces.** Each app still has its own tests, builds and deploys.
+```
+letterlyn/
+├── packages/engine/   ← generator, scoring, validation (shared: game + api)
+├── packages/content/  ← word packs (shared: game + api for daily-puzzle validation)
+├── apps/game/         ← web build (portals, play.letterlyn.com) + android/ + ios/ (Capacitor)
+├── apps/api/          ← Cloudflare Worker + D1
+├── apps/site/         ← marketing site letterlyn.com, privacy policy, support
+└── apps/admin/        ← later: stats, leaderboard moderation, content tools
+```
+- A scoring change updates the game and the API in **one commit**.
+- CI runs only what changed: per-app path filters.
+- Testing per target:
+  - Engine: unit tests.
+  - Web: Playwright end-to-end tests.
+  - Mobile: Capacitor builds on emulators and simulators, plus Maestro smoke tests for native parts (ads, purchases, sign-in).
+  - API: Worker tests with a local D1.
+
+**Alternative (the red-assistance style):** separate repos `letterlyn` (game web+mobile), `letterlyn-api`, `letterlyn-web`, `letterlyn-admin`, with the engine published as a private package (GitHub Packages). Workable, but version drift between the game and API is a real risk for a solo developer.
