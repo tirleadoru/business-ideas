@@ -21,10 +21,41 @@ A calm, fair word search that feels *made in your language*. It uses native them
 - **Open portal slot.** Poki and CrazyGames run one 2020 word search (4.1★ on Poki, 8.5 on CrazyGames) with a timer, no levels and no hints.
 - **Caveat.** "No ads / large print" alone does not win (2026 indie apps with those pitches have tiny installs). Distribution comes from **portals + local store keywords + content quality**.
 
-## 3. Working name
-To be decided. It must be checkable for trademarks and store collisions.
-- Candidates: **"Wordfield"**, **"Letter Lanes"**, **"Hidden Words: Home"**.
-- Per-language store titles carry the keyword, e.g. RO "Careu de cuvinte – …", DE "Wortsuche – …", TR "Kelime Avı – …", PL "Wykreślanka – …", PT-BR "Caça-palavras – …".
+## 3. Name (checked 2026-11-19, user to pick)
+One brand name everywhere: stores, portals, domain, social. Store titles add the local keyword:
+`<Brand>: Word Search` / RO `<Brand>: Careu de cuvinte` / DE `<Brand>: Wortsuche` / TR `<Brand>: Kelime Avı` / PL `<Brand>: Wykreślanka` / PT-BR `<Brand>: Caça-palavras`.
+
+**Shortlist** (.com free per whois; no app with the same or a near name on Google Play or the App Store):
+| Name | .com | .game / .io / .net | Feel |
+|---|---|---|---|
+| **Letter Moss** | free | free | cozy, nature, calm |
+| **Letter Hush** | free | free | quiet, "the calm one" (matches the fair-ads pitch) |
+| **Letterlyn** / **Wordlyn** | free | not checked | short, brandable, sounds like a name |
+| Letter Still | free | free | calm, a bit flat |
+| Word Sanctum | free | free | "a quiet place for words", a bit heavy |
+
+**Rejected:**
+- Domain taken: Wordfield, Wordhaven, Wordnest, Wordgrove, Wordloom and about 25 others.
+- Too close to an existing app:
+  - Letter Lanes (*Word Lanes*).
+  - Letter Breeze (*Word Breeze*).
+  - Letter Pebble (*Word Pebbles*, *Pebble Word Puzzle*).
+  - Letter Sprig (*Sprig: Queens Logic Puzzles*).
+  - Letter Mosaic (*Word Mosaic* by Fugo).
+
+**Before locking the name:**
+1. Trademark search in EUIPO/TMview and USPTO, classes 9 and 41.
+2. Check CrazyGames/Poki and social handles.
+3. Register the .com under the company.
+4. Reserve the Play package ID (e.g. `com.smartdevsolutions.<brand>`) and the App Store name.
+
+Note: whois reported .app as taken for every name, which is probably a parsing issue, so check .app manually at a registrar.
+
+## 3b. Languages (decided 2026-11-19)
+- **English is the main, default language.** It's the biggest audience and the highest-paying ads (US/UK eCPM). We accept the crowding.
+- **Romanian is the first extra language,** and it's in the app at launch. The app follows the device language, with an in-game language switch (a common complaint: "how do I change the language?").
+- Store listings are localized per language, so the RO listing still ranks for "careu de cuvinte", where no native competitor exists.
+- After launch: TR, PL, PT-BR, DE… The local theme packs stay the edge in each language.
 
 ## 4. Core loop (one puzzle = 1–4 minutes)
 1. Pick a **theme pack**, e.g. "Romanian dishes", "Carpathian animals", "Football: Liga 1", "In the kitchen".
@@ -103,8 +134,8 @@ Shown on the store page as a selling point.
 ## 9. Milestones
 | # | Milestone | Output | Rough time |
 |---|---|---|---|
-| M0 | **Engine prototype** | Grid generator, drag selection, word validation, 3 test packs in RO, playable in the browser | 1–2 wks |
-| M1 | **RO content + polish** | 30 RO packs, daily puzzle, stars/stamps, sound/haptics, settings (size, contrast, diacritics) | 2–3 wks |
+| M0 | **Engine prototype** | Grid generator, drag selection, word validation, 3 test packs in EN + RO, playable in the browser | 1–2 wks |
+| M1 | **EN + RO content + polish** | 30 packs per language, daily puzzle, stars/stamps, sound/haptics, settings (size, contrast, diacritics) | 2–3 wks |
 | M2 | **Portal launch** | Submit to CrazyGames (+ Poki) with the EN + RO + 2–3 languages | 1 wk + review time |
 | M3 | **Measure** | Retention and playtime from the portal data; fix the curve | 2–4 wks |
 | M4 | **Mobile** | Capacitor Android (+ iOS), AdMob, remove-ads purchase, store listings per language | 2–3 wks |

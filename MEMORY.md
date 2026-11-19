@@ -580,8 +580,11 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - The root repo holds only shared notes (`MEMORY.md`, `CLAUDE.md`, `notes/`).
   - Each business is a top-level folder with its own git repo on the company account; these are ignored by the root `.gitignore`.
   - Identity per business repo is confirmed before its first commit.
+  - **Decided:** business repos go on the company account **DoruTirleaSD** (smartdevsolutions). The company publishes everything, and it already has App Store accounts and a D-U-N-S number.
+  - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** Word search: **English is the main language, Romanian is the first extra** (in-app switch, localized store listings). Name shortlist checked (see design doc §3): Letter Moss, Letter Hush, Letterlyn/Wordlyn, Letter Still, Word Sanctum. Waiting for the user's pick, then a trademark check.
 - **2026-11-19:** Game design v0.1 written: `notes/word-search-game-design.md`.
 - **2026-11-19:** Researched word search, offline-only brands/diaspora, and dropshipping.
   - Claude recommends **word search as the first product**: local-first, Romanian quality test, with a bilingual vocabulary mode; web portals first, then mobile.
