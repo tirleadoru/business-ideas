@@ -588,6 +588,11 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** **Letterlyn M0 prototype done** and pushed to SmartDevSolutionsLimited/letterlyn (`936f426`).
+  - Vite + TypeScript, no framework, about 7 KB gzipped.
+  - Seeded generator, EN + RO, 6 packs × 12 puzzles, hints, stars, saved progress.
+  - 19 tests pass. Played end to end in headless Chrome in both languages.
+  - Next: M1 (daily puzzle, 30 packs per language, sound/haptics, large print, banned-word lists).
 - **2026-11-19:** The user picked Letter Moss. **The check killed it:** "LetterMoss: Филворд", a Russian word search game, is already in a Play closed test (Oct 2026), and there is a US "MOSS" game mark (Polyarc). Remaining clean options: **Letterlyn** (coined, strongest) and **Letter Hush**. Waiting for the user's choice and a manual TMview/USPTO check.
 - **2026-11-19:** Word search: **English is the main language, Romanian is the first extra** (in-app switch, localized store listings). Name shortlist checked (see design doc §3): Letter Moss, Letter Hush, Letterlyn/Wordlyn, Letter Still, Word Sanctum. Waiting for the user's pick, then a trademark check.
 - **2026-11-19:** Game design v0.1 written: `notes/word-search-game-design.md`.

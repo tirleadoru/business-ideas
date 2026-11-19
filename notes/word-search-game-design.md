@@ -154,7 +154,7 @@ Shown on the store page as a selling point.
 ## 9. Milestones
 | # | Milestone | Output | Rough time |
 |---|---|---|---|
-| M0 | **Engine prototype** | Grid generator, drag selection, word validation, 3 test packs in EN + RO, playable in the browser | 1–2 wks |
+| M0 ✅ | **Engine prototype** (done 2026-11-19) | Grid generator, drag selection, word validation, 3 test packs in EN + RO, playable in the browser | 1–2 wks |
 | M1 | **EN + RO content + polish** | 30 packs per language, daily puzzle, stars/stamps, sound/haptics, settings (size, contrast, diacritics) | 2–3 wks |
 | M2 | **Portal launch** | Submit to CrazyGames (+ Poki) with the EN + RO + 2–3 languages | 1 wk + review time |
 | M3 | **Measure** | Retention and playtime from the portal data; fix the curve | 2–4 wks |
