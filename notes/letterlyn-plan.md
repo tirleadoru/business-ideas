@@ -306,3 +306,12 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
 - **Engine changes** deploy API + web together, API first.
 - **Mobile apps are never built in CI**; only site/web/API (seconds).
 - **Lightsail has no IAM-role/SSM route like EC2**, so deploys use SSH: a GitHub secret key for a restricted `letterlyn` user plus a sudo rule limited to the two service restarts. A Mac fallback script runs the same steps.
+
+## 13. Offline-first (agreed 2026-11-19)
+- **The game never needs the server to play.**
+  - Puzzles are generated on the device: packs, Quick Play, friend codes and the **daily puzzle** (built from the date).
+  - Progress is saved locally first.
+- **Online only:** leaderboards (view/submit), cloud save + Google/Apple sign-in, ads (offline = no ads; hints still work with earned coins).
+- **Sync:** each finished puzzle is saved locally and added to an **outbox queue**, sent on app open / foreground / puzzle end when online. Multi-device conflicts use the agreed merge rules.
+- **Daily leaderboard fairness:** a late (offline) result counts for that day if it arrives within ~48 h and passes the server check (seed + plausible timings). After that it counts for streaks and stats only.
+- **Costs:** the API is a fixed-cost Lightsail service, not per-usage. Server downtime only delays leaderboard updates.
