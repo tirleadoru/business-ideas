@@ -186,5 +186,13 @@ letterlyn/
   - `packages/engine/**` → engine tests **and** the game and API checks, because both depend on it.
   - Pre-commit stays fast (staged files only); pre-push runs the affected test suites.
 - **CI (GitHub Actions):** path filters plus **Turborepo** "affected" runs, so only changed workspaces **and their dependents** are checked.
-  - Heavy native builds (Gradle, Xcode) run in CI or on release, not on every commit.
-  - Note: GitHub's macOS runners use free minutes ~10× faster on private repos, so run iOS builds only on release/tag.
+  - **Correction (user, 2026-11-19):** CI checks **source code only** (types, lint, tests). **No app builds in CI.**
+
+### Native builds and releases (Capacitor)
+- **Native projects:** `apps/game/android/` and `ios/` are committed (native settings, icons, signing config). Build output is git-ignored: `build/`, `Pods/`, the copied web `public/`, generated plugin folders.
+- **Builds run locally:** Gradle → `.aab`, Xcode → archive. **fastlane** handles one-command build + upload:
+  - `npm run release:android`
+  - `npm run release:ios`
+  - `npm run release:web` (portal zips + deploy play.letterlyn.com)
+- **Optional cloud builds later:** Capawesome Cloud (from about $9/month; Ionic's recommended replacement for Appflow, which sunsets 31 Dec 2027) or Codemagic.
+- **Optional updates without store review:** Capawesome Live Updates / Capgo.

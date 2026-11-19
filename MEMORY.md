@@ -588,6 +588,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** CI = source checks only; **no app builds in CI** (user). Native Capacitor projects are committed, with build output ignored. Builds are local, with fastlane one-command release scripts; cloud builds optional later (Capawesome/Codemagic; Ionic Appflow sunsets 31 Dec 2027).
 - **2026-11-19:** **Monorepo agreed.** Per-folder checks: Lefthook hooks (glob/root per workspace; engine changes trigger game + API checks) and CI with path filters + Turborepo affected runs. Native builds run on CI/release. **The Letterlyn plan is complete**, ready for M1 on the user's go.
 - **2026-11-19:** Stack decided: **one codebase, web + Capacitor, React UI** (user OK).
   - The user referenced the red-assistance multi-repo split (mobile/admin/web/api).
