@@ -588,6 +588,16 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** **Letterlyn M1 built** on branch `m1` (company repo, commit 1905eb5).
+  - Layout: monorepo with `packages/engine` (all game rules: session, scoring/combos, daily+streaks, coins/XP/levels, achievements, save migration, share texts, friend codes), `packages/content` (packs + EN/RO strings), `apps/web` (plain TS, ~20 KB gz), `apps/mobile` (Expo SDK 58, Expo Router, Gesture Handler + Reanimated, haptics, expo-audio).
+  - Tooling: Lefthook per-folder hooks, path-filtered GitHub checks (source only), red-assistance-style `scripts/build.sh`.
+  - Verified:
+    - 50 engine tests + 3 mobile tests; expo-doctor 20/20.
+    - Web end-to-end in Chrome.
+    - Android release build played end to end on the emulator (same daily, rewards and achievements as web).
+    - iOS release build launches with light/dark mode (simulator touch not automated).
+  - Open: real icon/splash art, `eas init` with the company account, user device testing, merge m1 → main.
+- **2026-11-19:** Disk nearly full (2.4 GB free). With the user's OK, cleared the npm, Xcode DerivedData, Gradle and CocoaPods caches plus unavailable simulators → 46 GB free. Rule: delete Letterlyn's generated ios/android folders after each native test build.
 - **2026-11-19:** User: no more tests; build each platform natively, two codebases OK. Claude proposes **Expo/RN for iOS+Android + plain TS web for portals/site**, sharing one TS engine (needed for identical daily puzzles and server checks). Swift+Kotlin advised against: 3 UIs + an engine ported twice + cross-language determinism risk. Waiting for the user's decision.
 - **2026-11-19:** **Stack spike run** (branch spike/stack-comparison, company repo). Same 12×12 screen in Capacitor vs Expo.
   - Web: both 60 fps; Capacitor ready in ~0.5 s vs Expo ~2.4 s (both OK for portals).
