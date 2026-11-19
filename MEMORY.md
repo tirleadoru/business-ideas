@@ -604,6 +604,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** Content via a versioned feed on our server (no app release for new packs). Daily puzzle generated from the date, plus a 30-day schedule in the feed; packs are append-only; an offline fallback daily is unranked. Plan §13–14.
 - **2026-11-19:** Studied the Vaultaire case (crowded category + web SEO with one agent-written guide/day + lifetime pricing). Proposed for Letterlyn: a daily playable/printable puzzle page loop on letterlyn.com and a lifetime "Plus" IAP. Updated the idea filter (see §4 case study). To discuss when the user is back.
 - **2026-11-19:** Deploys: GitHub Actions on push (staging/main), like the user's red-assistance site/admin. Three path-filtered workflows (site, web, API). SSH to Lightsail (no SSM), auto-rollback on a failed health check, no repo on the server. Plan §12c; checklist artifact updated.
 - **2026-11-19:** **No repo on the Letterlyn server** (user's preference). A deploy script on the Mac builds and uploads only outputs (site, web game, bundled API) over SSH. Releases folder + `current` link for rollback. Server checklist artifact: https://claude.ai/artifact/3RZVW5eDurcLFqf1Rdh33u

@@ -315,3 +315,20 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
 - **Sync:** each finished puzzle is saved locally and added to an **outbox queue**, sent on app open / foreground / puzzle end when online. Multi-device conflicts use the agreed merge rules.
 - **Daily leaderboard fairness:** a late (offline) result counts for that day if it arrives within ~48 h and passes the server check (seed + plausible timings). After that it counts for streaks and stats only.
 - **Costs:** the API is a fixed-cost Lightsail service, not per-usage. Server downtime only delays leaderboard updates.
+
+## 14. Content delivery and the daily puzzle (agreed 2026-11-19)
+- **Daily puzzle = generated from the date** (theme pack + words + grid, seeded). No stock to prepare and it never runs out; tests already cover a full year in both languages.
+  - The limit is **variety**: the theme repeats every N days, where N = number of packs (6 now, target ~50 per language).
+- **Content feed** (versioned JSON on Lightsail, e.g. `letterlyn.com/content/…`):
+  - The app ships with all packs existing at release (fully offline).
+  - When online, it downloads new packs and caches them. Allowed by Apple/Google (data, not code).
+  - The web game reads the same feed (needs Poki approval).
+  - **Monthly content = add packs to the feed; no app release.** App releases only for features and fixes.
+  - EAS Update not used for content: its cost scales with users.
+- **Fair daily rule:**
+  - Packs are append-only and versioned (never edited after publish).
+  - The feed carries a **daily schedule ~30 days ahead** (date → pack + version, plus special days like holidays and events).
+  - Dates outside the schedule fall back to the built-in date rotation.
+  - A player missing the schedule (offline >30 days) plays an **unranked** daily (streak/stats still count).
+  - The server validates scores with the same schedule.
+- **Milestones:** M2 = API (leaderboards, cloud save) + content feed + daily schedule. M4 (content) = filling the feed.
