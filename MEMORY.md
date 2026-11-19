@@ -581,6 +581,8 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - The notes repo lives in `business-ideas/` (personal): `MEMORY.md`, `CLAUDE.md`, `notes/`.
   - Each product is a **sibling** folder with its own repo on the company account (e.g. `letterlyn/`). No repo-in-repo.
   - A root `CLAUDE.md` (untracked) imports `business-ideas/CLAUDE.md`.
+  - **letterlyn/** (2026-11-19): repo `git@github.com:SmartDevSolutionsLimited/letterlyn.git` (the default github.com SSH key = DoruTirleaSD). The local identity is pinned to `DoruTirlea <doru@smartdevsolutions.net>`.
+  - The domain letterlyn.com is being registered by Remus (pending).
   - Identity per business repo is confirmed before its first commit.
   - **Decided:** business repos go on the company account **DoruTirleaSD** (smartdevsolutions). The company publishes everything, and it already has App Store accounts and a D-U-N-S number.
   - No AI co-author lines in commits, ever.
