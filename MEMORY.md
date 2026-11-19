@@ -588,6 +588,10 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** The user demanded a premium feel ("we do not do shit stuffs in this company").
+  - Research: WebViews are weakest for games/gestures/animation and on budget Android; no top-chart Capacitor games found. Claude corrected its earlier overconfident "plenty fast" claim.
+  - Portal limits: CrazyGames ≤50 MB (≤20 MB for mobile homepage), Poki ~8 MB (unverified), so an Expo web build fits.
+  - **Stack reopened:** proposed a 1–2 day device spike (Capacitor vs Expo universal, on iPhone + mid + budget Android), measuring fps, latency, cold start and web load. Expo (option B) expected to win; option C (Expo mobile + tiny web UI) is the fallback.
 - **2026-11-19:** CI = source checks only; **no app builds in CI** (user). Native Capacitor projects are committed, with build output ignored. Builds are local, with fastlane one-command release scripts; cloud builds optional later (Capawesome/Codemagic; Ionic Appflow sunsets 31 Dec 2027).
 - **2026-11-19:** **Monorepo agreed.** Per-folder checks: Lefthook hooks (glob/root per workspace; engine changes trigger game + API checks) and CI with path filters + Turborepo affected runs. Native builds run on CI/release. **The Letterlyn plan is complete**, ready for M1 on the user's go.
 - **2026-11-19:** Stack decided: **one codebase, web + Capacitor, React UI** (user OK).

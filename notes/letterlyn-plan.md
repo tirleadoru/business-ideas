@@ -138,7 +138,7 @@ Content alone can't solve this. The game needs **loops that never run out**:
 3. ✅ Backend from launch: the user is "almost fine" with it. Cross-device identity added (§4 v3).
 5. ✅ Content (packs) moves to the end (M4); count and rules to be decided then (user, 2026-11-19).
 6. ✅ iOS in the launch wave (user, 2026-11-19).
-7. ✅ Tech stack: **one codebase, web core + Capacitor** (user OK, 2026-11-19: "if it works with the same code fine by me"). UI: React.
+7. 🔄 Tech stack: **reopened** after the user's "premium only" challenge and research (see §9). A device spike decides: Capacitor vs Expo.
 8. ✅ Repo structure: **monorepo** (user OK, 2026-11-19), with per-folder checks on commit/push and in CI (see §8).
 4. ✅ EN + RO first (user, 2026-11-19). The user is sceptical about judging only by the portals → revised plan launches **Android in the same wave** (M5).
 
@@ -196,3 +196,33 @@ letterlyn/
   - `npm run release:web` (portal zips + deploy play.letterlyn.com)
 - **Optional cloud builds later:** Capawesome Cloud (from about $9/month; Ionic's recommended replacement for Appflow, which sunsets 31 Dec 2027) or Codemagic.
 - **Optional updates without store review:** Capawesome Live Updates / Capgo.
+
+## 9. Tech stack re-check: "premium only" (2026-11-19)
+**The user's challenge:** web-in-app usually feels slow. Everything must feel premium.
+
+**Research findings (honest):**
+- No rigorous independent benchmark exists. The 2026 comparisons agree that WebViews handle simple and moderate UI at 60fps, but **games, gesture-heavy UI and complex animation are exactly where they fall short**.
+- **Android is the weak point:** the system WebView differs by device, and budget phones struggle.
+- WebViews add about 150–500ms of cold start and extra memory.
+- **No evidence found of top-chart mobile games built with Capacitor/Cordova.** Only tutorials and small titles.
+- → Claude's earlier claim that a WebView is "plenty fast" was **stated with more confidence than the evidence supports**. Corrected.
+
+**Portal size limits** (relevant for a React Native web build):
+- CrazyGames: initial download ≤ **50 MB**, and ≤ **20 MB** to qualify for the mobile homepage.
+- Poki: ~**8 MB** target (third-party guides; verify), and players leave if loading takes over 10s.
+- → An Expo web build (low single-digit MB) **fits**. Bundle size alone does not rule out Expo.
+
+**Revised options:**
+| Option | Mobile | Web/portals | Fit |
+|---|---|---|---|
+| A. Capacitor (M0 code) | WebView: risk of non-premium feel on mid/low Android | Best (7 KB) | Cheapest, but risks the premium bar |
+| **B. Expo universal** (one RN codebase: iOS + Android + web) | **Truly native** UI; gestures on the UI thread (Gesture Handler + Reanimated) | react-native-web: bigger bundle, gestures run in JS on web, needs measuring | Matches the user's skills and EAS workflow; native folders git-ignored (CNG) |
+| C. Expo for mobile + tiny web UI | Native | Best | Two UIs (both small) sharing `packages/engine`. Fallback if B's web build is poor |
+
+**Decision method: a device spike (1–2 days) instead of opinions.**
+1. Build the same puzzle screen in Expo (iOS/Android/web) and wrap M0 in Capacitor.
+2. Test release builds on the user's iPhone, a mid-range Android and a **budget Android** (~€100–150, worth buying as a permanent test device).
+3. Measure: drag smoothness/fps, touch latency, haptics timing, cold start, web bundle size and portal load time.
+4. Pick the one that meets the premium bar.
+
+**Claude's expectation going in:** B (Expo) is likely the winner for mobile feel and fits the user's existing workflow; its web build must prove itself, with C as the fallback.
