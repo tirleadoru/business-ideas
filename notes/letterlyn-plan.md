@@ -139,7 +139,7 @@ Content alone can't solve this. The game needs **loops that never run out**:
 5. ✅ Content (packs) moves to the end (M4); count and rules to be decided then (user, 2026-11-19).
 6. ✅ iOS in the launch wave (user, 2026-11-19).
 7. ✅ Tech stack: **one codebase, web core + Capacitor** (user OK, 2026-11-19: "if it works with the same code fine by me"). UI: React.
-8. 🔄 Repo structure: the user's reference is the red-assistance split (mobile / admin / web / api repos). Claude proposes a monorepo (see §8). Waiting for the user's decision.
+8. ✅ Repo structure: **monorepo** (user OK, 2026-11-19), with per-folder checks on commit/push and in CI (see §8).
 4. ✅ EN + RO first (user, 2026-11-19). The user is sceptical about judging only by the portals → revised plan launches **Android in the same wave** (M5).
 
 ## 7. Tech stack decision (open)
@@ -178,3 +178,13 @@ letterlyn/
   - API: Worker tests with a local D1.
 
 **Alternative (the red-assistance style):** separate repos `letterlyn` (game web+mobile), `letterlyn-api`, `letterlyn-web`, `letterlyn-admin`, with the engine published as a private package (GitHub Packages). Workable, but version drift between the game and API is a real risk for a solo developer.
+
+### Per-folder checks (agreed 2026-11-19)
+- **Local git hooks (Lefthook):** each command has a `glob`/`root`, so it only runs when staged files in that folder changed.
+  - `apps/game/**` → typecheck + lint + unit tests (+ `npx cap doctor` when native config changed).
+  - `apps/api/**` → Worker typecheck + tests.
+  - `packages/engine/**` → engine tests **and** the game and API checks, because both depend on it.
+  - Pre-commit stays fast (staged files only); pre-push runs the affected test suites.
+- **CI (GitHub Actions):** path filters plus **Turborepo** "affected" runs, so only changed workspaces **and their dependents** are checked.
+  - Heavy native builds (Gradle, Xcode) run in CI or on release, not on every commit.
+  - Note: GitHub's macOS runners use free minutes ~10× faster on private repos, so run iOS builds only on release/tag.
