@@ -31,7 +31,9 @@ The API code, its deploy script and service files arrive with milestone M2. This
 
 ## 5. Users and folders
 - **Deploy user:** `letterlyn`, non-root, owns everything below.
-- **No repo, no git, no source code on the server.** A deploy script on Doru's Mac builds everything and uploads only the finished files over SSH (Doru's public key on the `letterlyn` user).
+- **No repo, no git, no source code on the server.** GitHub Actions builds on every push (`staging` branch → staging, `main` → production) and uploads only the finished files over SSH. The same steps also run as a script from Doru's Mac.
+- **SSH keys on `letterlyn`:** the GitHub Actions deploy key (sent with M2) and Doru's key.
+- **Sudo rule:** `letterlyn` may only restart `letterlyn-api` and `letterlyn-api-staging` (no password), nothing else.
 - **Web roots:** `/srv/letterlyn/www/site` and `/srv/letterlyn/www/play`. They receive only built files.
 - **API:** `/srv/letterlyn/api/releases/<date>` (bundled API + production packages), with `current` pointing at the live one. Rollback = point `current` at the previous release.
 

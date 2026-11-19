@@ -588,6 +588,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** Deploys: GitHub Actions on push (staging/main), like the user's red-assistance site/admin. Three path-filtered workflows (site, web, API). SSH to Lightsail (no SSM), auto-rollback on a failed health check, no repo on the server. Plan §12c; checklist artifact updated.
 - **2026-11-19:** **No repo on the Letterlyn server** (user's preference). A deploy script on the Mac builds and uploads only outputs (site, web game, bundled API) over SSH. Releases folder + `current` link for rollback. Server checklist artifact: https://claude.ai/artifact/3RZVW5eDurcLFqf1Rdh33u
 - **2026-11-19:** Remus does whatever we specify, so we hand him a decided spec instead of questions: `notes/letterlyn-server-setup.md` (Ubuntu 24.04, Frankfurt, 2 GB plan, nginx + Node 24 + MariaDB local, staging + prod API on ports 3001/3000, Lightsail snapshots + bucket DB dumps, support@/privacy@ email, monitoring).
 - **2026-11-19:** Hosting decided: **Letterlyn gets its own setup on the company's AWS Lightsail** (Remus is the user's business partner and server admin). It's a separate business from red-assistance (EC2); don't compare or copy its infrastructure. One instance: nginx for site + web game, Node API (+ staging), DB on-box or Lightsail managed, Lightsail snapshots + bucket backups. Details: plan §12b.

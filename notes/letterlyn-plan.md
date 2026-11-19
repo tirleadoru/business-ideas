@@ -296,3 +296,13 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
 - **Deploy (revised, user's call):** **no repo on the server.** `deploy.sh` on the Mac builds site + web + API (API bundled to one file) and uploads only the outputs over SSH into `releases/<date>`, then switches `current` and restarts. Rollback = previous release.
 - The API is written portably (Hono + a thin DB layer).
 - **Questions for Remus:** instance size (smallest to start), DB choice, staging from day one, region (Frankfurt), support@letterlyn.com + privacy policy URL.
+
+### 12c. Deploy workflows (agreed 2026-11-19, same idea as the user's red-assistance site/admin deploys)
+- **Three path-filtered GitHub Actions deploys in the monorepo:**
+  - `deploy-site`: `apps/site/**`, `packages/content/**`.
+  - `deploy-web`: `apps/web/**`, `packages/**`.
+  - `deploy-api`: `apps/api/**`, `packages/**`. Bundle → upload release → migrations → switch `current` → restart → `/health` check → automatic rollback on failure.
+- **Branches:** `staging` → staging, `main` → production.
+- **Engine changes** deploy API + web together, API first.
+- **Mobile apps are never built in CI**; only site/web/API (seconds).
+- **Lightsail has no IAM-role/SSM route like EC2**, so deploys use SSH: a GitHub secret key for a restricted `letterlyn` user plus a sudo rule limited to the two service restarts. A Mac fallback script runs the same steps.
