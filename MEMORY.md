@@ -566,6 +566,22 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
 
 **Claude's view:** dropshipping proper is out. The affiliate "taste of home / where to buy abroad" site plus diaspora POD is a cheap side test. It merges with the diaspora research above (affiliate = option 3 there).
 
+### 📈 Case study: Vaultaire (from a Starter Story video, 2026-11-19, self-reported)
+- **The app:** an encrypted photo/file vault for iPhone by Rasty Turek (ex-Google, security background).
+  - Built in ~3 weeks with coding agents.
+  - $66 in month 1 → **$41K/month** after ~6 months, now ~$2–3K/day, 60K downloads. No ads, no TikTok.
+- **Why it works:**
+  - A proven, crowded category with 15-year-old incumbents that dominate App Store search but **ignore the web**.
+  - He owns web search: a marketing site plus **one AI-written guide per day**. An agent runs each morning, checks Keyword Planner and Search Console for searches where the site shows up but gets no clicks, writes that guide and adds internal links.
+  - The web is now most of his traffic, with ~10% web→download conversion.
+  - **Pricing:** $1.99/week, $19.99/year, **$39.99 lifetime**. Lifetime is ~60% of purchases and >80% of revenue. Most users convert around **day 60**, not day 1.
+  - No servers; founder credibility in security.
+- **Lessons for us:**
+  1. Update the filter: a crowded proven category is OK when the leaders ignore a channel we can own (web SEO, other languages), the app works offline (no usage costs), and a lifetime purchase is normal.
+  2. **Letterlyn:** grow letterlyn.com with one quality topic page per day: a real playable plus printable puzzle per theme and language (e.g. "printable word search animals", "word search for seniors", "careu de cuvinte"), with a CTA to the app. Run the same daily keyword loop with an agent. This is quality, not scaled spam.
+  3. **Letterlyn monetization:** add a "Letterlyn Plus" lifetime IAP (~€9.99: no ads + extra packs/themes) next to ads. Expect late conversion from daily players.
+  4. **Next idea scan:** paid offline utility categories where the leaders' websites are thin.
+
 ## 5. Open questions for the user
 - ~~Which country/language market?~~ → Answered: global, multilingual.
 - Any personal hobbies/domain knowledge (cars, cooking, gaming, sports, finance…)? An insider edge makes idea A much stronger.
@@ -588,6 +604,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-19:** Studied the Vaultaire case (crowded category + web SEO with one agent-written guide/day + lifetime pricing). Proposed for Letterlyn: a daily playable/printable puzzle page loop on letterlyn.com and a lifetime "Plus" IAP. Updated the idea filter (see §4 case study). To discuss when the user is back.
 - **2026-11-19:** Deploys: GitHub Actions on push (staging/main), like the user's red-assistance site/admin. Three path-filtered workflows (site, web, API). SSH to Lightsail (no SSM), auto-rollback on a failed health check, no repo on the server. Plan §12c; checklist artifact updated.
 - **2026-11-19:** **No repo on the Letterlyn server** (user's preference). A deploy script on the Mac builds and uploads only outputs (site, web game, bundled API) over SSH. Releases folder + `current` link for rollback. Server checklist artifact: https://claude.ai/artifact/3RZVW5eDurcLFqf1Rdh33u
 - **2026-11-19:** Remus does whatever we specify, so we hand him a decided spec instead of questions: `notes/letterlyn-server-setup.md` (Ubuntu 24.04, Frankfurt, 2 GB plan, nginx + Node 24 + MariaDB local, staging + prod API on ports 3001/3000, Lightsail snapshots + bucket DB dumps, support@/privacy@ email, monitoring).
