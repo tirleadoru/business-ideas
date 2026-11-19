@@ -226,3 +226,29 @@ letterlyn/
 4. Pick the one that meets the premium bar.
 
 **Claude's expectation going in:** B (Expo) is likely the winner for mobile feel and fits the user's existing workflow; its web build must prove itself, with C as the fallback.
+
+## 10. Spike results (2026-11-19, branch `spike/stack-comparison` in SmartDevSolutionsLimited/letterlyn)
+The same 12×12 RO puzzle screen in both stacks, measured identically.
+
+| Test | Capacitor (WebView) | Expo (React Native) |
+|---|---|---|
+| Web bundle (gzip) | **~7 KB** | ~359 KB (1.56 MB raw) |
+| Web: ready to play, slow 4G, CPU ×1/×4/×6 | **0.48 / 0.55 / 0.60 s** | 2.16 / 2.42 / 2.64 s |
+| Web: drag smoothness (CPU ×6) | 60 fps, 0 dropped | 60 fps, 0 dropped |
+| Android emulator cold start (`am start -W`, 5 runs) | 2.50/1.74/1.18/0.94/1.15 s (median 1.18) | **0.90/0.95/0.84/0.75/0.73 s (median 0.84)** |
+| Android emulator drag (12 long swipes) | 59 fps, 0.7% dropped, worst **67 ms** | **60 fps, 0.3% dropped, worst 33 ms** |
+| iOS simulator, first launch | **blank white screen ≥6 s** (WebKit start-up), board by ~9 s | board within 1 s |
+| iOS simulator, relaunch (screenshot at 1 s) | blank on 1 of 2 runs | **board on 2 of 2 runs** |
+| Android APK (universal, all ABIs) | 3 MB | 81 MB (the Play AAB per-device download is much smaller) |
+
+**Reading so far:**
+- **Web:** both are perfectly smooth. Capacitor/plain web loads about 4× faster, but Expo's 2.2–2.6 s is acceptable for portals (well under Poki's 10 s drop-off).
+- **Mobile:** Expo starts faster, shows content immediately, and has steadier frames. Capacitor shows the classic **blank-WebView-on-launch** symptom. A native splash screen can hide it, but not remove it.
+- **Caveat:** the emulator and simulator use Mac hardware. **The final verdict needs the user's devices:** iPhone 13, iPhone 16, Samsung S20 Ultra (120 Hz), plus a budget Samsung A15/A16 (to buy).
+
+**Device test protocol (user):**
+1. Cold start: force-close, launch, watch for a white flash or blank screen.
+2. Drag feel: slow drags, fast zig-zags. Does the line stick to the finger? Is there a haptic tick per letter?
+3. Press "Reset stats", do 10 drags, read the on-screen numbers.
+4. Objective lag test: record a fast drag in iPhone **slow-mo (240 fps)** and compare finger vs line.
+5. Found-word animation feel.
