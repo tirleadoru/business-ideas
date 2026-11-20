@@ -604,6 +604,11 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-20:** **Letterlyn M2 built** on branch `m2` (company repo, 3 commits on top of m1, pushed). Details: plan §16.
+  - API (`apps/api`): Node + Hono + MariaDB, bundled to one 1.5 MB file. Anonymous players + generated names, cloud save (fast-forward or merge), daily + friend-code leaderboards (time + 30 s per hint), 48 h offline rule, server re-checks every run, device-move codes (LYN-XXXX-XXXX), Google/Apple token linking (server side only), delete my data, anonymous daily counters, content feed at `/v1/content`.
+  - `packages/client` shared by web + mobile: outbox, save sync, feed cache. Web + Android tested end to end against a local API (offline → back online → ranked).
+  - Deploy: `scripts/deploy/*.sh` + GitHub workflows; rollback tested in a simulation. Server files in `apps/api/deploy/`. Checklist artifact v4.
+  - Decisions taken by Claude (can change): content feed served by the API (not letterlyn.com/content); new packs join the daily after 31 days (no schedule file needed); friend-code seeds name their pack; leaderboard = fastest time + 30 s per hint; no staging web game.
 - **2026-11-19:** Content via a versioned feed on our server (no app release for new packs). Daily puzzle generated from the date, plus a 30-day schedule in the feed; packs are append-only; an offline fallback daily is unranked. Plan §13–14.
 - **2026-11-19:** Studied the Vaultaire case (crowded category + web SEO with one agent-written guide/day + lifetime pricing). Proposed for Letterlyn: a daily playable/printable puzzle page loop on letterlyn.com and a lifetime "Plus" IAP. Updated the idea filter (see §4 case study). To discuss when the user is back.
 - **2026-11-19:** Deploys: GitHub Actions on push (staging/main), like the user's red-assistance site/admin. Three path-filtered workflows (site, web, API). SSH to Lightsail (no SSM), auto-rollback on a failed health check, no repo on the server. Plan §12c; checklist artifact updated.

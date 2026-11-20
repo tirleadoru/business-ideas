@@ -125,7 +125,7 @@ Content alone can't solve this. The game needs **loops that never run out**:
 |---|---|---|
 | M0 ✅ | Engine prototype | Done 2026-11-19 |
 | **M1 ✅ (2026-11-19, branch m1)** | **Complete core loop** | Tutorial and direction cards, ⚙️ menu, coins and hints, Daily Puzzle + streak + calendar, Relax/Challenge with score and combo, personal bests, share text and friend codes, Quick Play, XP/achievements/album, sound and haptics, large print and contrast |
-| **M2** | **Backend v1** | Cloudflare Workers + D1: player ID and generated nicknames, Google/Apple sign-in linking, link codes for portals, daily and Challenge leaderboards (per day, per language), anti-cheat checks, cloud save and transfer code, anonymous analytics events, privacy policy and data deletion |
+| **M2 ✅ (2026-11-20, branch m2)** | **Backend v1** | Cloudflare Workers + D1: player ID and generated nicknames, Google/Apple sign-in linking, link codes for portals, daily and Challenge leaderboards (per day, per language), anti-cheat checks, cloud save and transfer code, anonymous analytics events, privacy policy and data deletion |
 | **M3** | **Ads + platform adapters** | One `ads`/`platform` interface: Poki, CrazyGames (+ user/leaderboard mirror), Android and iOS (AdMob, purchases, Play Games/Game Center), dev mock |
 | **M4** | **Content for launch (last, by user's decision)** | How many packs and under what rules: to be decided together at that point. Plus banned-word lists and weekly-event packs |
 | **M5** | **Launch wave 1** | CrazyGames + Poki (request backend approval) + **Android + iOS** (the company has both store accounts; Android skips the 12-tester rule) + the web version on letterlyn.com |
@@ -358,3 +358,22 @@ The same 12×12 RO puzzle screen in both stacks, measured identically.
 - Store listings: "Plays fully offline."
 - Messages appear only at the moment they matter; no startup text walls.
 - All strings go into `packages/content` i18n (same text on web + mobile).
+
+## 16. M2 as built (2026-11-20, branch `m2`)
+**Changes from the plan (Claude's calls, easy to revisit):**
+- **Content feed** is served by the API (`api.letterlyn.com/v1/content`), not `letterlyn.com/content`. One source: the API validates dailies with the same packs it serves.
+- **No 30-day schedule file.** A new pack joins the daily rotation 31 days after its `addedOn` date. Anyone who synced in the last 30 days builds the same daily; older devices show "Unranked". The server decides the final ranking.
+- **Friend codes name their pack** (seed = pack number × 65,536 + variant), so a code builds the same puzzle on every device. A code for a pack the device lacks triggers a sync, then "code invalid".
+- **Leaderboard rule:** fastest time, +30 s per hint. Daily: first solve counts. Codes: best try counts.
+- **Coins on sync:** fast-forward when only one device changed (spending stays spent); higher balance only when two devices really diverged.
+- **Anti-cheat:** server rebuilds the puzzle, all words exactly once, first word ≥1.2 s, ≥250 ms between words, score recomputed.
+- **Analytics:** only daily counters (event, platform, language). Nothing per player.
+- **No staging web game.** The `staging` branch deploys only the API; mobile preview builds use staging-api.
+- Local API runs on port 3010 (3000 is taken on the dev Mac).
+
+**Still open after M2:**
+- Sign in with Google/Apple **buttons** in the apps: the server part is done and tested. It needs a Google OAuth client ID and Apple Sign-in setup in the developer consoles.
+- Sign-in nudge text (§15) waits for those buttons.
+- Privacy policy page (letterlyn.com/privacy) before any store submission.
+- GitHub environments + deploy key (README "One-time GitHub setup"), then Remus installs the server files.
+- A dev-only Reanimated warning on the mobile puzzle screen (shows in debug builds only); source not found yet.

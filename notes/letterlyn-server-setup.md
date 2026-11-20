@@ -1,7 +1,7 @@
 # Letterlyn server setup (AWS Lightsail), for Remus
 
 Letterlyn's own server. It's separate from every other business.
-The API code, its deploy script and service files arrive with milestone M2. This is the base setup.
+Ready-made server files are in the letterlyn repo under `apps/api/deploy/` (Doru sends them): systemd units, nginx config, sudoers rule, env example.
 
 ## 1. Instance
 - **OS:** Ubuntu 24.04 LTS.
@@ -24,7 +24,8 @@ The API code, its deploy script and service files arrive with milestone M2. This
 
 ## 4. Software
 - nginx
-- Node.js 24 LTS
+- Node.js 24 LTS from NodeSource (so it lives at `/usr/bin/node`)
+- rsync and curl (used by the deploys)
 - MariaDB 11, bound to localhost only
 - certbot (Let's Encrypt) with automatic renewal
 - unattended-upgrades for security patches
@@ -32,12 +33,13 @@ The API code, its deploy script and service files arrive with milestone M2. This
 ## 5. Users and folders
 - **Deploy user:** `letterlyn`, non-root, owns everything below.
 - **No repo, no git, no source code on the server.** GitHub Actions builds on every push (`staging` branch → staging, `main` → production) and uploads only the finished files over SSH. The same steps also run as a script from Doru's Mac.
-- **SSH keys on `letterlyn`:** the GitHub Actions deploy key (sent with M2) and Doru's key.
-- **Sudo rule:** `letterlyn` may only restart `letterlyn-api` and `letterlyn-api-staging` (no password), nothing else.
+- **SSH keys on `letterlyn`:** the GitHub Actions deploy key and Doru's key (Doru sends both public keys).
+- **Sudo rule:** `letterlyn` may only restart `letterlyn-api` and `letterlyn-api-staging` (no password), nothing else. File: `sudoers-letterlyn` → `/etc/sudoers.d/letterlyn`, mode 440.
 - **Web roots:** `/srv/letterlyn/www/site` and `/srv/letterlyn/www/play`. They receive only built files.
-- **API:** `/srv/letterlyn/api/releases/<date>` (bundled API + production packages), with `current` pointing at the live one. Rollback = point `current` at the previous release.
+- **API:** `/srv/letterlyn/api/releases/<id>` (production) and `/srv/letterlyn/api-staging/releases/<id>` (staging): one bundled file each, `current` points at the live one. A failed health check switches back automatically.
 
 ## 6. nginx sites (HTTPS everywhere, HTTP → HTTPS)
+- Ready-made: `letterlyn.conf` → `/etc/nginx/sites-available/`, enabled, then one `certbot --nginx` run for all five names.
 - **letterlyn.com** → `/srv/letterlyn/www/site`
 - **play.letterlyn.com** → `/srv/letterlyn/www/play`
   - gzip on.
@@ -45,10 +47,10 @@ The API code, its deploy script and service files arrive with milestone M2. This
 - **api.letterlyn.com** → reverse proxy to `127.0.0.1:3000`
 - **staging-api.letterlyn.com** → reverse proxy to `127.0.0.1:3001`
 
-## 7. API services (systemd; files provided in M2)
+## 7. API services (systemd; files ready: `letterlyn-api.service`, `letterlyn-api-staging.service`)
 - **Services:** `letterlyn-api` (port 3000) and `letterlyn-api-staging` (port 3001), `Restart=always`.
 - **Secrets:** `/etc/letterlyn/api.env` and `/etc/letterlyn/api-staging.env`, mode 600, owned by `letterlyn`. Never in git.
-- For now, just create `/etc/letterlyn/`.
+- Template: `api.env.example`. The API creates its tables itself on start (migrations).
 
 ## 8. Database
 - **Databases:** `letterlyn_prod` and `letterlyn_staging`.
