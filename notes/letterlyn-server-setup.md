@@ -1,5 +1,7 @@
 # Letterlyn server setup (AWS Lightsail), for Remus
 
+> **Status 2026-11-20 (Remus):** steps 1–9 and 11 done except: SSH keys, systemd units, email + MX/SPF/DKIM, disk alarm, uptime check, restore test. Backups changed: snapshots only, no nightly dumps for now. Env files use `DB_*` fields (the API reads them).
+
 Letterlyn's own server. It's separate from every other business.
 Ready-made server files are in the letterlyn repo under `apps/api/deploy/` (Doru sends them): systemd units, nginx config, sudoers rule, env example.
 

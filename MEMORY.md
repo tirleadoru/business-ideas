@@ -604,6 +604,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
+- **2026-11-20:** **Remus finished the Letterlyn server base setup** (Lightsail "letterlyn-prod", Frankfurt, Ubuntu 24.04, Node 24, MariaDB 11.4, nginx + one certificate for all 5 hosts, DNS in Route 53, snapshots daily keep 7, CPU + health alarms). **Changed by Remus:** no nightly DB dumps to a bucket for now; snapshots only until the game proves out. Env files use DB_HOST/DB_PORT/DB_NAME/DB_USER/DB_PASSWORD: the API was adapted to read them (commit 8c4a7a8). Still to do: SSH keys (Doru + GitHub Actions), install the systemd units, email provider (support@/privacy@), disk alarm, uptime check, restore test.
 - **2026-11-20:** **Letterlyn M2 built** on branch `m2` (company repo, 3 commits on top of m1, pushed). Details: plan §16.
   - API (`apps/api`): Node + Hono + MariaDB, bundled to one 1.5 MB file. Anonymous players + generated names, cloud save (fast-forward or merge), daily + friend-code leaderboards (time + 30 s per hint), 48 h offline rule, server re-checks every run, device-move codes (LYN-XXXX-XXXX), Google/Apple token linking (server side only), delete my data, anonymous daily counters, content feed at `/v1/content`.
   - `packages/client` shared by web + mobile: outbox, save sync, feed cache. Web + Android tested end to end against a local API (offline → back online → ranked).
