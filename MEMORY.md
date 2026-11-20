@@ -6,6 +6,24 @@ _Last updated: 2026-11-19_
 
 ---
 
+## ▶ Where we left off (updated 2026-11-20)
+**Letterlyn: M2 done (branch `m2`, pushed). Waiting on Remus before the first real deploy.**
+- Done:
+  - Step 1: Remus got the setup message + the two `.service` files.
+  - Step 2: Doru sent Remus two public keys: `~/.ssh/letterlyn_deploy.pub` (GitHub Actions) and `~/.ssh/id_ed25519.pub` (Doru).
+  - Step 3: GitHub environments `staging` + `production` created, each with `DEPLOY_HOST`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`. No "required reviewers" (paid plan only; not needed).
+- Waiting for Remus to confirm:
+  - keys added and temporary deploy key removed;
+  - systemd units installed + enabled (not started), staging env has PORT=3001;
+  - DB users have CREATE/ALTER/INDEX/REFERENCES/SELECT/INSERT/UPDATE/DELETE;
+  - nginx sends `X-Real-IP` for api + staging-api;
+  - `sudo -u letterlyn sudo -n -l` shows the 2 restart rules;
+  - rsync + curl installed.
+- **Next (step 4), when Doru pastes Remus's reply:** check it → merge `m1` then `m2` into `main` → create + push `staging` branch (first deploy to staging-api.letterlyn.com; watch it, fix if needed).
+- Step 5: push `main` (API + play.letterlyn.com live), then ask Remus for the uptime check on `/health`.
+- Open: email provider for support@/privacy@ (Doru decides). Next build work offered: letterlyn.com site + privacy policy (needed before store submissions), then M3 or Google/Apple sign-in buttons.
+- Doru prefers **one step at a time** with exact clicks/commands when doing setup tasks.
+
 ## 1. Goal & constraints
 
 - **Goal:** build products that bring in income with low ongoing effort. Target: about 1 week/month of maintenance, instead of the current ~20h/day work. This isn't about retiring. It's about freedom: being able to take a day or a week off without anything breaking or stopping.
