@@ -174,16 +174,29 @@ def _byshelf(title,intro,L):
     for r in L: by.setdefault(r['shelf'],[]).append(r)
     inner=''.join(_grp(sh,'',[_li(f"{r['en']} = {r['ro']}",f"{r['pack']} › {r['topic']} · {r['reason']}",r['proposal']) for r in rs]) for sh,rs in sorted(by.items()))
     return f'<details class="pack"><summary><span class="pt">{E(title)}</span><span class="cnt">{len(L)}</span></summary><p class="cov">{E(intro)}</p><div class="packs">{inner}</div></details>'
-r2=(_grp('Wrong Romanian','One of the Romanian partners of these English words is wrong in some topic: misspelled, has an article, wrong meaning or wrong form. Proposal per word.',[_li(r['en'],r['now']+' · '+r['reason'],r['proposal']) for r in Q['wrong']])
-   +_byshelf('Bad words (second rating)','A second helper re-rated every word on 8 shelves whose first helper rated its own words. These are still in the words.',Q['bad'])
-   +_byshelf('Weak first words','The first word of a topic should name it. The second rating found these weak.',Q['headline'])
-   +_grp('Same subject twice','Topic pairs a player could feel they played twice. Both word lists are shown, shared words in bold. Proposal: change the side named (new title from the reserve list, or narrow it).',[_li(f"{r['a']}  ↔  {r['b']}",f"{r['shared']} shared · {r['note']}",(f"change {r['change']}: " if r['change'] else '')+r['proposal'])[:-5]+CMPT([r['a'].split(' › ',1)[1],r['b'].split(' › ',1)[1]])+'</li>' for r in Q['same']]))
-nq=len(Q['wrong'])+len(Q['bad'])+len(Q['headline'])+len(Q['same'])
-r2_html=f'<details class="shelf"><summary><h2>Still to check</h2><span class="ro">open lists</span><span class="meta">{nq:,} items</span></summary><p class="cov" style="margin:8px 16px 8px 40px">What the whole-catalogue check found that only you can decide. Nothing here has been changed.</p><div class="packs">{r2}</div></details>'
-from datetime import date as _date
+Q3=json.load(open(B+'round3q.json'))
+def _ask_txt(x):
+    it=x['item']
+    if 'a' in it and 'b' in it:
+        a,b=it['a'],it['b']; head=f"{a.get('shelf')} › {a.get('topic')}  ↔  {b.get('shelf')} › {b.get('topic')}"
+        return _li(head,it.get('why',''),it.get('proposal',''))[:-5]+CMPT([a.get('topic',''),b.get('topic','')])+'</li>'
+    head=' · '.join(str(it[k]) for k in ('en','shelf','topic') if it.get(k)) or it.get('kind','')
+    body=it.get('why') or it.get('question') or it.get('facts') or ''
+    prop=it.get('proposal') or it.get('proposal_ro') or it.get('proposal_en') or (' / '.join(it['options']) if it.get('options') else '')
+    return _li(head,body,prop)
+_bystep={}
+for x in Q3['asks']: _bystep.setdefault(x['step'],[]).append(_ask_txt(x))
+step1=f'<details class="shelf" open><summary><h2>Questions for you</h2><span class="ro">all that is left to decide</span><span class="meta">{len(Q3["asks"])}</span></summary><div class="packs">'+''.join(_grp(k,'',v) for k,v in _bystep.items())+'</div></details>'
+_fl=[_li(f"{x['step']} · {x['shelf']} › {x['topic']}",f"{x['what']} · {x['note']}",x['why']) for x in Q3['fails']]
+step2=f'<details class="shelf"><summary><h2>Not changed automatically</h2><span class="ro">a game rule blocked these; for reference</span><span class="meta">{len(Q3["fails"])}</span></summary><p class="cov" style="margin:8px 16px 8px 40px">Changes the helpers proposed that would have broken a rule (a word repeated within 4 puzzles, used 8 times on a shelf, hidden in another word, or too long). These topics keep their current words; nothing urgent.</p><div class="packs">'+_grp('Blocked changes','',_fl)+'</div></details>'
+dec_html=''
+r2_html=(step1 if Q3['asks'] else '')+step2
 today='25 Nov'
-_nd=sum(len(i) for _,_,i in GROUPS)
-todo=f'On this page, open sections: <b>To decide together</b> ({_nd} near-duplicate topic pairs: say which repeat) and <b>Still to check</b>: {len(Q["wrong"])} wrong Romanian words, {len(Q["bad"])} bad words, {len(Q["headline"])} weak first words, {len(Q["same"])} same-subject topic pairs.'
+_titles={x['id']:x['title']['en'] for x in d['shelves']}
+_under=[f"{_titles.get(k,k)} ({'EN' if v['metrics']['en']['distinct']/v['metrics']['en']['slots']<0.70 else 'RO'} {min(v['metrics']['en']['distinct']/v['metrics']['en']['slots'],v['metrics']['ro']['distinct']/v['metrics']['ro']['slots']):.3f})" for k,v in MET.items() if min(v['metrics']['en']['ratio'],v['metrics']['ro']['ratio'])<0.70]
+_variety_txt=('Every shelf has at least 0.70 different words per slot in both languages.' if not _under else 'Every shelf has at least 0.70 different words per slot in both languages, except '+', '.join(_under)+' (just short: their pools have no more words that fit the rules).')
+_nd=0
+todo=(f'<b>Questions for you</b> ({len(Q3["asks"])}), on this page. ' if Q3['asks'] else '<b>Nothing left to decide on the catalogue.</b> The four checklist steps (repeating topics, bad words, wrong Romanian, first words) were done automatically on 25 Nov and Doru answered the last 16 questions (10 topics replaced). ')+'Separately: the coin numbers on the content page.'
 page=f'''<title>LetterLyn Catalogue</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
@@ -243,7 +256,7 @@ code{{font-size:.85em}}
     <h1>LetterLyn Catalogue</h1>
     <p class="lead">Every shelf and pack the game will have. <b>15 packs per shelf</b>, and the game grows by adding new shelves, never longer ones, so every shelf's trophies (bronze 5 · silver 10 · gold 15) are reachable the day it comes out. A shelf is released only when all 15 packs are done and checked. English and Romanian are written together as matching pairs; a pack is locked once published (per language).</p>
     <div class="stats"><span><b>{len(d["shelves"])}</b> shelves</span><span><b>{npacks}</b> packs</span><span><b>{ntop}</b> topics drafted</span><span><b>{rep["totals"]["distinct"+"Words"]:,}</b> different words</span><span><b>{rep["totals"]["warnings"]}</b> warnings</span><span><b>{rro["totals"]["topicsWithWords"]}</b> topics in Romanian · <b>{rro["totals"]["warnings"]}</b> RO warnings</span></div>
-    <div class="note"><strong>Where we are ({today}).</strong> All 8,700 topics have 16–18 words in English and Romanian, and the whole catalogue has been checked together (look-alike topics, translations, a second rating). The checker is clean: 0 errors and 0 warnings in English and Romanian; every Learn topic reaches Expert except 58 Romania topics (place names are not in Learn). Every shelf has at least 0.70 different words per slot in both languages (the last four reached it on 25 Nov with a new word round). Romanian checked on dexonline only where a doubt came up.</div>
+    <div class="note"><strong>Where we are ({today}).</strong> All 8,700 topics have 16–18 words in English and Romanian, and the whole catalogue has been checked together (look-alike topics, translations, a second rating). The checker is clean: 0 errors and 0 warnings in English and Romanian; every Learn topic reaches Expert except {rro['learn']['best']['classic']} Romania topics (place names are not in Learn). {_variety_txt} Romanian checked on dexonline only where a doubt came up.</div>
     <div class="note"><strong>Left to do.</strong> {todo} Then: Doru reviews the packs (about 1.5 h per pack), Sea &amp; Rivers first.</div>
     <div class="note"><strong>Reviews.</strong> A pack Doru has checked shows <b>✓ Review</b> with the date; if its words change later, the changed topics are marked <span class="lb chg" style="margin:0">changed since review</span>, so a second look only needs those. Reviewed so far: Sea &amp; Rivers › Sea Life (24 Nov), partly outdated.</div>
     <div class="note"><strong>How the two languages are shown.</strong> Under the <b>EN</b> line, the <b>RO</b> line shows each Romanian word with its English partner in small letters; each is the proper translation, the same kind of word. <span style="color:var(--accent)">+blue</span> = Romanian word with no English partner (local names); <span style="text-decoration:line-through;opacity:.6">struck</span> = English word with no Romanian partner. <b>Learn</b> = the best level a Learn puzzle can reach from the shared words (Relaxed needs 6, Classic 10, Expert 16).</div>

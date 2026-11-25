@@ -12,5 +12,6 @@ node scripts/check-catalog.mjs --lang en > /dev/null 2>&1 || true   # leaves cat
 python3 scripts/wordfill/compile_extras.py > /dev/null
 python3 "$T/shelf_metrics_all.py"
 python3 "$T/round2q.py" > /dev/null
+python3 "$T/round3q.py" > /dev/null
 python3 "$T/catalog_page.py"
 echo "built: $T/../pages/catalogue.html"

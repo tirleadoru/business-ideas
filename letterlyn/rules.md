@@ -130,5 +130,21 @@ If something isn't here, it isn't decided yet: look it up in the plan, or ask.
 - Kids: under the country's consent age (RO 16, IE 16, UK 13, US 13). One `policy` object with 5 differences (plan §25).
 - Remus is a partner, not an employee.
 
+## LetterLyn Learn subscription (decided 2026-11-25)
+- **One subscription for everything to learn:** "LetterLyn Learn" unlocks every Learn pair (both directions) and every school study subject, now and all added later. No one-time pairs or per-subject purchases (never sold, so no deal changes backwards).
+- **Prices:** €4.99 a month or €29.99 a year (yearly = "Save 50%", shown honestly, monthly always visible on the same screen, no crossed-out "was" price, no countdown). Local prices set per country in the stores, shown in the player's currency with VAT (Romania ~24.99 lei / 149.99 lei). Final numbers checked with soft-launch data.
+- **Free trial:** 7 days, yearly only, reminder before the first charge, cancel in one tap. Monthly has no trial.
+- **Free taster:** the Starter words shelf in Learn and the first topic of each school subject stay free.
+- **Plus included while active:** subscribers get every Plus benefit while the subscription runs; cancelling ends them (stamps, coins, items stay). Plus stays its own one-time purchase; Plus owners keep it forever and the shop says "You already have Plus".
+- **Price rises apply to new subscribers only;** existing subscribers keep their price.
+- **Kids (decided 2026-11-25, final):** the stores handle approval and payment; we never push. Child = under the country's consent age (RO/IE 16).
+  - Child profiles see the normal plans on the Learn screen, headed "For parents: your store will ask your parent". Tap → the store's own sheet. Linked accounts (Apple Family Sharing / Google Family Link): the request goes to the parent's phone (or the parent types their password on the child's phone). Unlinked, no card: the store asks for a payment method, so the child goes to the parent (card or gift card). Unlinked with own card: the child's card pays (its limit is the parent's control).
+  - No purchase prompts aimed at children: no pop-ups, offers, banners, countdowns or reminders; real-money screens only when the child opens them. No quiz-style parent gate (a 10-year-old passes any quiz).
+  - "Send to my parent": shares a plain info link (letterlyn.com/parents: what Learn is, how to approve it, gift cards). Never a payment page: **no web sales.**
+  - "Waiting for your parent's OK…" while the store holds the purchase (pending); unlocks by itself when approved.
+  - Limit: a child who signs up as an adult (in the store or in our age question) is treated as an adult. Our duty is the neutral age question, no targeting of kids, and switching a profile to child (and deleting what the policy says) when a parent tells support; refunds go through the stores.
+- **Family plan later, optional:** ~€44.99 a year, up to 6 profiles; never required for one child.
+- **Billing:** App Store + Google Play subscriptions directly, our server checks the entitlement (store server notifications); no revenue-share services. Follows the account, so it works on the web too; the web shows it, buying happens in the app.
+
 ## Launch
 - Closed test → soft launch Romania + Ireland (4–6 weeks, with set bars) → worldwide at once. Mainland China out; Vietnam to check (plan §25).
