@@ -1,0 +1,426 @@
+<title>LetterLyn Art List</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one readable column; each art group is a block with a count, a priority pill and the exact pieces needed. */
+:root{
+  --bg:#F6F5F1; --surface:#FFFFFF; --fg:#1E1D1A; --muted:#62605A; --line:#DEDCD4;
+  --accent:#2F5FD0; --launch:#1F7A4D; --launch-bg:#E3F2EA; --later:#8A5A0B; --later-bg:#FBF0DA;
+  --display:"Fraunces",Georgia,serif; --body:"Inter",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#17171A; --surface:#212126; --fg:#ECEAE4; --muted:#A3A19A; --line:#35353C;
+  --accent:#8FA9F0; --launch:#7FD3A6; --launch-bg:#1E3329; --later:#E8C27A; --later-bg:#352B18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17171A; --surface:#212126; --fg:#ECEAE4; --muted:#A3A19A; --line:#35353C;
+  --accent:#8FA9F0; --launch:#7FD3A6; --launch-bg:#1E3329; --later:#E8C27A; --later-bg:#352B18; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+h1{font-family:var(--display);font-size:40px;line-height:1.1;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-size:24px;margin:0;text-wrap:balance}
+h3{font-size:16px;margin:0}
+p{margin:0}
+.muted{color:var(--muted)}
+.intro{display:flex;flex-direction:column;gap:10px;max-width:65ch}
+.sum{display:flex;flex-wrap:wrap;gap:10px}
+.sum div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:0}
+.sum b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.sum span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+section{display:flex;flex-direction:column;gap:12px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.head h3{flex:1;min-width:12ch}
+.n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted);font-size:14px}
+.pill{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.pill.l{background:var(--launch-bg);color:var(--launch)}
+.pill.t{background:var(--later-bg);color:var(--later)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:3px}
+.why{font-size:13px;color:var(--muted)}
+.note{border-left:3px solid var(--accent);padding:4px 0 4px 14px;display:flex;flex-direction:column;gap:6px;max-width:65ch}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.ava{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:4px}
+.ava figure{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ava svg{width:100%;height:auto;max-width:200px;align-self:center}
+.ava figcaption{font-size:13px;color:var(--muted);line-height:1.4}
+.ava figcaption b{color:var(--fg)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}
+.tabs span{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--bg)}
+</style>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>LetterLyn Art List</h1>
+    <p>Everything the game needs drawn, for Remus. Grouped by what's needed <strong>for launch</strong> and what can come <strong>later</strong>. Counts are what the wireframes use today; they can grow.</p>
+    <p class="muted">Updated 25 Nov 2026 · Matches the wireframes (72 screens). Rewards are coins now: looks are bought, only stamps, trophies, medals, badges and the Plus frame are earned.</p>
+  </div>
+
+  <div class="sum" aria-label="Totals">
+    <div><span>Launch pieces</span><b>~150</b></div>
+    <div><span>Later pieces</span><b>~150</b></div>
+    <div><span>Start with</span><b>Lyn + style</b></div>
+  </div>
+
+  <section>
+    <h2>Start here: the style</h2>
+    <div class="item">
+      <div class="head"><h3>Lyn character sheet and art style</h3><span class="pill l">Launch · first</span></div>
+      <ul>
+        <li><strong>Lyn = variant 11</strong> (chosen 25 Nov by the friends' vote: 12 of 54 votes, the clear winner). The character sheet builds on that drawing.</li>
+        <li>Lyn from the front, side and 3/4 view, with Lyn's colours and proportions.</li>
+        <li><strong>Lyn has no gender</strong> (decided 22 Nov): the standard look stays neutral, and in texts Lyn is always just "Lyn". Lyn's look is ours, never dressed by players (decided 25 Nov): the standard Lyn everywhere, plus a few seasonal looks we choose.</li>
+        <li>A small palette and line style that everything else follows (pictures, themes, stamps).</li>
+        <li>Must look clear at small sizes: Lyn appears at 56–140 px on a phone.</li>
+        <li>Colour-blind rule for everything: never show a difference by colour alone (add a shape, label or number). Two-player colours are blue and orange, never red and green.</li>
+        <li>Lyn will be in the logo and app icon, so the standard look will also be registered as a figurative trademark once the logo is final. Keep that standard image stable.</li>
+      </ul>
+      <p class="why">Everything else depends on this. Agree on it before drawing the rest, so nothing has to be redone.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>For launch</h2>
+
+    <div class="item">
+      <div class="head"><h3>Lyn poses</h3><span class="n">13</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>Reading (Home greeting) · Waving (first run, ads consent) · Pointing (how-to-play cards)</li>
+        <li>Cheering (puzzle complete) · Thinking (hint) · Holding a key (sign in to protect progress)</li>
+        <li>With an alarm clock (daily reminder) · With a crown (LetterLyn Plus)</li>
+        <li>Sleepy / cloud (offline) · Kind "oops" (errors)</li>
+        <li><strong>New:</strong> holding a sign "Hatched: 2026" (age question, first run) · presenting / fun fact (word of the day, word card) · with two little flags (learning pairs; roadmap decides when)</li>
+      </ul>
+      <p class="why">Keep the head and neck in a similar position across poses, so seasonal looks (a Santa hat, a scarf) are easy to add.</p>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>App icon, splash and store graphics</h3><span class="n">4</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>App icon, 1024 × 1024, no text, readable at tiny size.</li>
+        <li>Splash screen.</li>
+        <li>Google Play feature graphic, 1024 × 500.</li>
+        <li>Background frame for store screenshots (we put real screens inside).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Player avatars: the name animals</h3><span class="n">32 at launch</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li><strong>Decided 25 Nov:</strong> a player's avatar is the animal in their name (CalmOtter42 → an otter), dressed with accessories. No picture list. Lyn is not dressed by players.</li>
+        <li>One head-and-shoulders drawing per animal in the name list: 32 today, growing to ~100 (append-only, like the list). Same size, same framing, friendly, kid-safe.</li>
+        <li>Each animal gets fixed <b>anchor points</b>: top of head, ears, eyes, nose/muzzle, neck; plus a fur layer the game can recolour and 2–3 markings. Accessories sit on these points, so one accessory drawing fits every animal (with small per-head scale/offset).</li>
+        <li>Must read at 32–56 px (rankings, friends).</li>
+      </ul>
+      <p class="why">No uploaded photos, ever. The animal + accessories is the only way players show themselves; it ties the avatar to the name.</p>
+    </div>
+    <div class="item">
+      <div class="head"><h3>Avatar examples (for Remus: style is his, these only show the idea)</h3><span class="pill l">Launch</span></div>
+      <div class="tabs"><span>Animal &amp; colours</span><span>Face</span><span>Head</span><span>Neck &amp; clothes</span><span>Accessories</span><span>Background</span></div>
+      <div class="ava">
+        <figure><svg viewBox="0 0 200 200" role="img" aria-label="Otter avatar with a red beret, round navy glasses and a teal scarf">
+<circle cx="100" cy="100" r="96" fill="#DCEBF7"/>
+<path d="M34 200 Q100 146 166 200 Z" fill="#7A5232"/>
+<path d="M78 135 Q76 165 72 185 L128 185 Q124 165 122 135 Z" fill="#7A5232"/>
+<circle cx="57" cy="72" r="11" fill="#7A5232"/><circle cx="143" cy="72" r="11" fill="#7A5232"/>
+<circle cx="57" cy="72" r="5" fill="#5C3D24"/><circle cx="143" cy="72" r="5" fill="#5C3D24"/>
+<ellipse cx="100" cy="106" rx="53" ry="49" fill="#8B5E3C"/>
+<ellipse cx="100" cy="126" rx="27" ry="19" fill="#EAD2B4"/>
+<ellipse cx="100" cy="115" rx="8" ry="5.5" fill="#2B1D14"/>
+<path d="M92 127 Q100 134 108 127" fill="none" stroke="#2B1D14" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M76 124 L56 120 M76 129 L56 131 M124 124 L144 120 M124 129 L144 131" stroke="#5C3D24" stroke-width="1.6" stroke-linecap="round"/>
+<circle cx="80" cy="99" r="6" fill="#1E1E1E"/><circle cx="120" cy="99" r="6" fill="#1E1E1E"/>
+<circle cx="82" cy="97" r="2" fill="#fff"/><circle cx="122" cy="97" r="2" fill="#fff"/>
+<circle cx="80" cy="99" r="13" fill="none" stroke="#1F3B73" stroke-width="4"/><circle cx="120" cy="99" r="13" fill="none" stroke="#1F3B73" stroke-width="4"/>
+<path d="M93 99 L107 99" stroke="#1F3B73" stroke-width="4"/>
+<g transform="rotate(-12 95 62)"><ellipse cx="95" cy="64" rx="42" ry="14" fill="#C0392B"/><ellipse cx="95" cy="58" rx="32" ry="12" fill="#C0392B"/><circle cx="95" cy="45" r="5" fill="#C0392B"/></g>
+<path d="M60 160 Q100 180 140 160 L142 175 Q100 196 58 175 Z" fill="#2A9D8F"/>
+<path d="M120 172 L132 198 L118 198 L112 176 Z" fill="#23867A"/>
+</svg><figcaption><b>CalmOtter42</b> · brown fur (free) · happy eyes · red beret · round glasses (navy frame) · teal scarf · blue background</figcaption></figure>
+        <figure><svg viewBox="0 0 200 200" role="img" aria-label="Fox avatar winking, with a purple punk crest, a handlebar moustache and a yellow bow tie">
+<circle cx="100" cy="100" r="96" fill="#E3F1E6"/>
+<path d="M34 200 Q100 150 166 200 Z" fill="#C9602A"/>
+<path d="M82 140 Q80 168 76 186 L124 186 Q120 168 118 140 Z" fill="#C9602A"/>
+<path d="M58 40 L46 92 L86 78 Z" fill="#E0742B"/><path d="M142 40 L154 92 L114 78 Z" fill="#E0742B"/>
+<path d="M60 56 L54 86 L78 78 Z" fill="#5A2A10"/><path d="M140 56 L146 86 L122 78 Z" fill="#5A2A10"/>
+<path d="M78 60 L82 26 L92 50 L100 18 L108 50 L118 26 L122 60 Z" fill="#7B4FBF"/>
+<path d="M48 86 Q100 44 152 86 Q162 122 100 162 Q38 122 48 86 Z" fill="#E0742B"/>
+<path d="M56 110 Q74 142 100 160 Q126 142 144 110 Q122 130 100 130 Q78 130 56 110 Z" fill="#FFF4E8"/>
+<circle cx="80" cy="102" r="6" fill="#1E1E1E"/><circle cx="82" cy="100" r="2" fill="#fff"/>
+<path d="M112 103 Q120 95 128 103" fill="none" stroke="#1E1E1E" stroke-width="3.5" stroke-linecap="round"/>
+<ellipse cx="100" cy="138" rx="7" ry="5" fill="#2B1D14"/>
+<path d="M100 146 C90 138 76 140 70 152 C78 148 88 150 100 151 C112 150 122 148 130 152 C124 140 110 138 100 146 Z" fill="#4A2A14"/>
+<path d="M100 172 L78 162 L78 182 Z" fill="#F2C14E"/><path d="M100 172 L122 162 L122 182 Z" fill="#F2C14E"/><circle cx="100" cy="172" r="5" fill="#D9A62E"/>
+</svg><figcaption><b>BraveFox7</b> · orange fur, white cheeks (markings) · wink · purple punk crest (head tuft) · handlebar moustache · yellow bow tie · green background</figcaption></figure>
+        <figure><svg viewBox="0 0 200 200" role="img" aria-label="Owl avatar with gold star eyes, a gold crown and a pink hoodie">
+<circle cx="100" cy="100" r="96" fill="#ECE6F7"/>
+<path d="M30 200 Q36 150 100 148 Q164 150 170 200 Z" fill="#E58AB0"/>
+<path d="M58 160 Q100 132 142 160 Q100 150 58 160 Z" fill="#CF6F98"/>
+<path d="M62 62 L50 34 L80 56 Z" fill="#5F7290"/><path d="M138 62 L150 34 L120 56 Z" fill="#5F7290"/>
+<ellipse cx="100" cy="108" rx="56" ry="54" fill="#7A8DA6"/>
+<path d="M86 146 l4 -6 l4 6 M106 146 l4 -6 l4 6 M96 154 l4 -6 l4 6" fill="none" stroke="#C9D3E1" stroke-width="2" stroke-linecap="round"/>
+<circle cx="78" cy="104" r="22" fill="#E9EEF5"/><circle cx="122" cy="104" r="22" fill="#E9EEF5"/>
+<path d="M78 92 L81.5 100.5 L90.5 101 L83.5 106.5 L86 115 L78 110 L70 115 L72.5 106.5 L65.5 101 L74.5 100.5 Z" fill="#F2B705"/>
+<path d="M122 92 L125.5 100.5 L134.5 101 L127.5 106.5 L130 115 L122 110 L114 115 L116.5 106.5 L109.5 101 L118.5 100.5 Z" fill="#F2B705"/>
+<path d="M93 122 L107 122 L100 136 Z" fill="#F28C28"/>
+<path d="M68 64 L72 40 L86 54 L100 32 L114 54 L128 40 L132 64 Z" fill="#F2C14E" stroke="#B88A1C" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="100" cy="52" r="4" fill="#C0392B"/><circle cx="80" cy="57" r="3" fill="#2A9D8F"/><circle cx="120" cy="57" r="3" fill="#2A9D8F"/>
+</svg><figcaption><b>WiseOwl310</b> · grey-blue feathers, chest markings · star eyes · gold crown (earned only, Plus) · pink hoodie · lilac background</figcaption></figure>
+        <figure><svg viewBox="0 0 200 200" role="img" aria-label="Otter head with the five anchor points marked: head top, ears, eyes, muzzle and neck">
+<circle cx="100" cy="100" r="96" fill="#EEF1F4"/>
+<path d="M34 200 Q100 146 166 200 Z" fill="#B9A08A"/>
+<path d="M78 135 Q76 165 72 185 L128 185 Q124 165 122 135 Z" fill="#B9A08A"/>
+<circle cx="57" cy="72" r="11" fill="#A88A70"/><circle cx="143" cy="72" r="11" fill="#A88A70"/>
+<ellipse cx="100" cy="106" rx="53" ry="49" fill="#C4A688"/>
+<ellipse cx="100" cy="126" rx="27" ry="19" fill="#EFE2D2"/>
+<g fill="#2F5FD0" stroke="#fff" stroke-width="2"><circle cx="100" cy="58" r="6"/><circle cx="57" cy="72" r="6"/><circle cx="143" cy="72" r="6"/><circle cx="80" cy="99" r="6"/><circle cx="120" cy="99" r="6"/><circle cx="100" cy="122" r="6"/><circle cx="100" cy="160" r="6"/></g>
+<g font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="700" fill="#1E1D1A" text-anchor="middle">
+<text x="100" y="45">head top</text><text x="40" y="96">ear</text><text x="160" y="96">ear</text><text x="100" y="88">eyes</text><text x="138" y="128">muzzle</text><text x="100" y="186">neck</text></g>
+</svg><figcaption><b>Anchor points</b> · every animal gets the same 5 points: head top, ears, eyes, muzzle, neck. Each accessory is drawn once and placed on these points, with a small scale/offset per animal.</figcaption></figure>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px"><svg viewBox="0 0 90 44" style="width:72px" role="img" aria-label="beret"><ellipse cx="45" cy="28" rx="40" ry="12" fill="#C0392B"/><ellipse cx="45" cy="22" rx="30" ry="11" fill="#C0392B"/><circle cx="45" cy="10" r="4.5" fill="#C0392B"/></svg><svg viewBox="0 0 90 44" style="width:72px" role="img" aria-label="beret"><ellipse cx="45" cy="28" rx="40" ry="12" fill="#2A9D8F"/><ellipse cx="45" cy="22" rx="30" ry="11" fill="#2A9D8F"/><circle cx="45" cy="10" r="4.5" fill="#2A9D8F"/></svg><svg viewBox="0 0 90 44" style="width:72px" role="img" aria-label="beret"><ellipse cx="45" cy="28" rx="40" ry="12" fill="#1F3B73"/><ellipse cx="45" cy="22" rx="30" ry="11" fill="#1F3B73"/><circle cx="45" cy="10" r="4.5" fill="#1F3B73"/></svg><svg viewBox="0 0 90 44" style="width:72px" role="img" aria-label="beret"><ellipse cx="45" cy="28" rx="40" ry="12" fill="#F2C14E"/><ellipse cx="45" cy="22" rx="30" ry="11" fill="#F2C14E"/><circle cx="45" cy="10" r="4.5" fill="#F2C14E"/></svg><svg viewBox="0 0 90 44" style="width:72px" role="img" aria-label="beret"><ellipse cx="45" cy="28" rx="40" ry="12" fill="#7B4FBF"/><ellipse cx="45" cy="22" rx="30" ry="11" fill="#7B4FBF"/><circle cx="45" cy="10" r="4.5" fill="#7B4FBF"/></svg><svg viewBox="0 0 90 44" style="width:72px" role="img" aria-label="beret"><ellipse cx="45" cy="28" rx="40" ry="12" fill="#1E1E1E"/><ellipse cx="45" cy="22" rx="30" ry="11" fill="#1E1E1E"/><circle cx="45" cy="10" r="4.5" fill="#1E1E1E"/></svg></div>
+      <p class="why">One beret drawing, six colours: the game recolours it, so each accessory gives many options with no extra art. The same works for fur, head tufts, beards, glasses frames and clothes.</p>
+      <ul>
+        <li><b>Animal &amp; colours:</b> the animal comes from your name (not changeable here); fur / feather / scale colour (natural shades free, special colours like gold or rainbow for coins); markings (spots, stripes, eye patch, white muzzle, freckles, cheek blush).</li>
+        <li><b>Face:</b> expression (happy, sleepy, wink, grin, tongue out, surprised, star eyes), eye colour, moustaches and beards (any colour).</li>
+        <li><b>Head:</b> head tufts in any colour (punk crest, bangs, curly top, top-knot, mane, mohawk), hats.</li>
+        <li><b>Neck &amp; clothes:</b> scarf, bow tie, collar with tag, bandana, necklace, hoodie, sweater, jersey, each in colours.</li>
+        <li><b>Accessories:</b> glasses (shape + frame colour), ear rings, ear bows, flowers, headphones; later: nose ring, face paint.</li>
+        <li><b>Background:</b> colour or pattern behind the avatar, plus the frame.</li>
+        <li>Free from day one: natural fur colours, eye colour, expressions, background colours and a few basic items. Coins: hats, glasses, tufts, beards, clothes, special colours and markings. Earned only: Plus crown, league crown. Lyn is never dressed by players.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Avatar frames</h3><span class="n">~12</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>About 10 frames sold in Lyn's shop for coins (no level or achievement frames any more: rewards are coins).</li>
+        <li>Plus supporter frame + a small supporter badge (shown next to names on leaderboards).</li>
+        <li>One frame in the first money set (Autumn).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Board themes</h3><span class="n">6</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>Classic (default), Night, Forest, Sea, plus Autumn and Winter (these two go in money sets).</li>
+        <li>Each theme: background, grid tile, letter colour, selection colour, found-word colour.</li>
+      </ul>
+      <p class="why">Letters must stay very readable on every theme, including the large-letters setting.</p>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Accessories for the avatars</h3><span class="n">~40</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>Every accessory fits every animal (anchor points above). For the player's animal only; Lyn is not dressed by players.</li>
+        <li>Categories: hats (winter hat, beret, party hat, top hat, cap, crown for Plus), glasses, scarves and bows, bow ties, flowers and hair clips, headphones, moustaches, tops/collars.</li>
+        <li>A small free set at launch; the rest 300–800 coins; some only in money sets; a few earned only (Plus crown, league crown). More may become free later.</li>
+        <li>New ones every month (seasonal hats etc.): cheap to draw, keeps the shop full.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="head"><h3>Lyn's seasonal looks</h3><span class="n">~4 a year</span><span class="pill l">Launch: 2</span></div>
+      <ul>
+        <li>Chosen by us, shown to everyone at the same time: Santa hat (December), winter scarf, summer sunglasses, crown on the Plus screen.</li>
+        <li>Only on the poses seen most: the Home greeting, the puzzle-complete cheer, the Lyn tab.</li>
+      </ul>
+      <p class="why">Lyn is the trademark: the standard look never changes; these are small, temporary touches.</p>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Pack covers, shelf icons and stamps</h3><span class="n">15 per shelf + 29 + 15 per shelf</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>One cover per pack. A shelf launches complete (15 packs) once it is checked, so covers come 15 at a time. First: Sea &amp; Rivers and Everyday Food (checked first), then Land Animals.</li>
+        <li>One small icon per shelf: 29 shelves (catalogue page), in the order they are checked.</li>
+        <li>One stamp per pack, the reward for finishing it. A simple version of the cover works.</li>
+        <li>Plus 3 difficulty ribbons used on every stamp and trophy, ski style, colour and shape: green circle (Relaxed), blue square (Classic), black diamond (Expert). Drawn once.</li>
+      </ul>
+      <p class="why">New packs arrive every month, so this is a template Remus will repeat (cover + stamp per pack).</p>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Shelf trophies and league medals</h3><span class="n">1 base + 8 tops + 4</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>One shared trophy base, plus a top piece special to each shelf (a shell and wave for Sea &amp; Rivers, a cup for Everyday Food, a tower for City Life…). One new top per new shelf.</li>
+        <li>4 states. The shelf top piece stays the same at every tier; only the metal and the base change, so colour-blind players can tell them apart by height: grey silhouette of the whole trophy (locked), bronze on a 1-step base (5 packs), silver on a 2-step base (10), gold on a 3-step base with a laurel wreath around the top piece (15 = the whole shelf). No platinum. Draw one base in 3 heights plus the laurel, shared by all shelves. Tier name shown under it.</li>
+        <li>A spot on the base for the difficulty ribbon.</li>
+        <li>League medals: 1st, 2nd, 3rd, top 10%.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Achievement badges</h3><span class="n">~14</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>First puzzle, 100 words, 1,000 words, first daily, pack complete, no-hint pack, combo 5, score 1,000, speedy, polyglot, <strong>Sharp eyes</strong> (bonus words: 50 / 250 / 1,000, three steps).</li>
+        <li><strong>New: Lyn's bonus jar</strong>, a small jar that fills as players find bonus words (real words in the grid that aren't on the list). Needed: the jar in about 5 fill levels (empty to full), a short "pays out" moment (lid pops, coins), and a tiny version for the puzzle screen chip.</li>
+        <li>Each in a locked and an unlocked state. (Streak badges are only the streak goal badges below, merged 25 Nov.)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Small game icons</h3><span class="n">~20</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>Coin, streak, streak freeze, hint, first letter, rotate, mystery word, daily, weekend special, league, friends, shop, settings.</li>
+        <li>5 tab icons: Play, Lyn, Home, Social, Me.</li>
+        <li><strong>New:</strong> speaker 🔊 (hear a word), save word ☆, report ⚑, accessibility, tap mode, My puzzles, My words.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Word card and word of the day</h3><span class="n">2</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>A card background for the word card, and a slightly fancier one for the word of the day (uses the "presenting" pose).</li>
+        <li>Age question: a stack of book spines for the year picker (one spine drawn, we repeat it).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Custom puzzles and printing</h3><span class="n">2</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>A banner for "A puzzle from …" shown while playing someone's custom puzzle.</li>
+        <li>A printable page header with Lyn and the logo, black and white friendly, for "Print (PDF)".</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Streak goal</h3><span class="n">4</span><span class="pill l">Launch</span></div>
+      <ul><li>A small badge for each goal the player can commit to: 7, 14, 30 and 50 days (reaching it pays bonus coins).</li></ul>
+    </div>
+    <div class="item">
+      <div class="head"><h3>Free accessory of the month</h3><span class="n">1 a month</span><span class="pill l">Launch</span></div>
+      <ul><li>One of the month's new accessories, free for players who completed every daily of that month (catch-up with past dailies and streak freezes counts). Make it a bit special (a "monthly" badge corner), since it shows who played the whole month. No extra art beyond the monthly accessory.</li></ul>
+    </div>
+    <div class="item">
+      <div class="head"><h3>Invite a friend</h3><span class="n">1</span><span class="pill l">Launch</span></div>
+      <ul><li>A small card or banner for "Invite a friend: you both get coins when they finish their first pack" (Social tab), with Lyn and a coin.</li></ul>
+    </div>
+    <div class="item">
+      <div class="head"><h3>Notifications and email</h3><span class="n">3</span><span class="pill l">Launch</span></div>
+      <ul>
+        <li>Android notification icon: a one-colour white silhouette (Lyn's head or the logo shape), 24 × 24, as Android requires.</li>
+        <li>Email header with Lyn and the logo, for notification emails and the newsletter (opt-in only).</li>
+        <li>A simple newsletter template: header, one picture spot, footer with the unsubscribe line.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Later</h2>
+
+    <div class="item">
+      <div class="head"><h3>Lyn's adventures and postcards</h3><span class="n">4 scenes × ~7</span><span class="pill t">Later</span></div>
+      <ul>
+        <li>Scenes: seaside, mountains, Paris, winter cabin. Each one is a background with Lyn and 6 empty item spots.</li>
+        <li>6 items per scene, plus the finished postcard version of the scene.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Lyn's room</h3><span class="n">1 + ~30</span><span class="pill t">Later</span></div>
+      <ul>
+        <li>Room background (Lyn's study) with 15 spots: window, shelf, desk, lamp, rug, plant, wall pictures…</li>
+        <li>2 versions per spot to start, plus room sets for money (e.g. "Cosy winter room").</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Journey maps</h3><span class="n">1 per month</span><span class="pill t">Later</span></div>
+      <ul><li>A route map with 30 stops (e.g. November: Around Europe). One a month, so plan it as a template.</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Lyn's bookshelf</h3><span class="n">~10</span><span class="pill t">Later</span></div>
+      <ul><li>Shelf board and book spines in shelf colours. Books are generated from these parts, not drawn one by one.</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Animal reactions</h3><span class="n">~6 gestures</span><span class="pill t">Idea · roadmap</span></div>
+      <ul><li>Friend reactions shown by the sender's animal: clap, thumbs up, laugh, surprised, cheer, wave. Gestures are shared layers (paws/wings on the anchor points), drawn once for all animals.</li></ul>
+    </div>
+    <div class="item">
+      <div class="head"><h3>Animated Lyn cheer</h3><span class="n">1</span><span class="pill t">Idea · roadmap</span></div>
+      <ul><li>A 1–2 second loop for the puzzle-complete screen (the moment players see most), instead of the still cheering pose. Format to agree (Lottie or sprite sheet).</li></ul>
+    </div>
+    
+
+    <div class="item">
+      <div class="head"><h3>League tiers</h3><span class="n">~5</span><span class="pill t">Later</span></div>
+      <ul><li>One badge per league tier (bronze, silver, gold… with promotion and demotion zones), in the same height-not-colour style as the trophies.</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Club emblems</h3><span class="n">~24</span><span class="pill t">Later</span></div>
+      <ul><li>Simple emblems (fox, owl, book, star, leaf…) that work in 8 club colours.</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Monthly Journey ticket</h3><span class="n">6–8 a month</span><span class="pill t">Later</span></div>
+      <ul>
+        <li>Each month's theme (e.g. November: Around Europe): the route map, the postcard scene, an animated frame, an accessory, and a few premium reactions (animated Lyn, phrases like "Bon voyage!").</li>
+        <li>Fewer, better items (decided: slow to earn). About 1–2 days of art a month. These items come back later as seasonal sets, so nothing is drawn for one use only.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Learning (two languages)</h3><span class="n">~8</span><span class="pill t">Roadmap decides</span></div>
+      <ul>
+        <li>Learn shelf header, a flag-pair badge per pair (start: Română ↔ English).</li>
+        <li>Box icons 1–5 for "repeat to remember" and a "learned ✓" badge.</li>
+        <li>Review screen background. Pack covers are reused from the normal packs.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Home-screen widget</h3><span class="n">2</span><span class="pill t">Later</span></div>
+      <ul><li>A tiny Lyn head and a background for the small and medium widget sizes.</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Holiday dailies</h3><span class="n">~3 per date</span><span class="pill t">Later</span></div>
+      <ul><li>Per big date (Christmas, Easter, Halloween, 1 Dec, Mărțișor…): grid background, a stamp and a postcard only collectable that day.</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Seasonal money sets</h3><span class="n">~4 a year</span><span class="pill t">Later</span></div>
+      <ul><li>Each set: one theme + matching accessories + one frame (e.g. Christmas, Spring, Summer). Autumn and Winter are already in the launch list.</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Files</h2>
+    <div class="tbl">
+      <table>
+        <tr><th>What</th><th>Format</th><th>Size</th></tr>
+        <tr><td>Lyn, animals, accessories, items, emblems</td><td>Transparent PNG (SVG if the style allows)</td><td>Draw at 1024 px; we scale down</td></tr>
+        <tr><td>Frames, stamps, medals, badges</td><td>Transparent PNG or SVG</td><td>512 × 512</td></tr>
+        <tr><td>Icons</td><td>SVG</td><td>24 × 24 grid</td></tr>
+        <tr><td>Themes, scenes, room, maps</td><td>PNG or layered source</td><td>1290 × 2796 (tall phone)</td></tr>
+        <tr><td>Source files</td><td>Original working files (layers kept)</td><td>In the company drive</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Suggested order</h2>
+    <ol>
+      <li>Lyn character sheet + style (agree on it together).</li>
+      <li>App icon and the 13 Lyn poses.</li>
+      <li>Small game icons and tab icons (needed for the build right away).</li>
+      <li>Pack covers + stamps for the first shelves (15 each), shelf icons, trophies, medals.</li>
+      <li>The name animals (avatars), frames, achievement badges, streak goal badges, the invite-a-friend card.</li>
+      <li>Board themes and accessories, then the Autumn and Winter sets.</li>
+      <li>Store graphics, last, once the screens look final.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Ownership</h2>
+    <div class="note">
+      <p><strong>Decided 23 Nov (option B):</strong> at launch Remus transfers the copyright on Lyn and the LetterLyn art to <strong>Doru personally</strong>, in writing as Romanian law requires (rights, uses, full term, worldwide, paid or free). Remus stays credited as the author. Doru then gives SmartDevSolutions a free licence to use the name, Lyn and the art, and files the "LetterLyn" word mark and Lyn's image mark (the final variant-11 drawing) in his name.</p>
+      <p>Keep all source files in the company drive. If any stock or generated material is used, keep its licence next to the file.</p>
+      <p class="muted">The papers are made at launch and checked by a lawyer.</p>
+    </div>
+  </section>
+</div>

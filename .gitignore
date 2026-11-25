@@ -1,9 +1,4 @@
-# OS / editor noise
+# generated inputs for the LetterLyn page builders (rebuilt by letterlyn/tools/refresh-catalogue.sh)
+letterlyn/tools/build/
+__pycache__/
 .DS_Store
-Thumbs.db
-*.swp
-.idea/
-.vscode/
-
-# Local Claude Code settings
-.claude/settings.local.json

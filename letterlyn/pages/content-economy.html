@@ -1,0 +1,307 @@
+<title>LetterLyn Content &amp; Coins</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: one reading column, sections as plain headed blocks; tables scroll inside their own box on phones. */
+:root{
+  --bg:#F6F6F2; --surface:#FFFFFF; --fg:#1D1D1A; --muted:#5C5C55; --line:#DCDCD4;
+  --accent:#2C5FCC; --accent-soft:#E8EEFB; --warn:#9A4A0B; --warn-soft:#FBEFE3; --ok:#22703A;
+  --display:"Space Grotesk",Inter,system-ui,sans-serif; --body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141513; --surface:#1D1E1B; --fg:#ECECE6; --muted:#A5A59C; --line:#34352F;
+  --accent:#8FB0F5; --accent-soft:#1F2A40; --warn:#F0B27A; --warn-soft:#3A2817; --ok:#7FD18F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141513; --surface:#1D1E1B; --fg:#ECECE6; --muted:#A5A59C; --line:#34352F;
+  --accent:#8FB0F5; --accent-soft:#1F2A40; --warn:#F0B27A; --warn-soft:#3A2817; --ok:#7FD18F; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:2.1rem}
+h2{font-size:1.45rem}
+h3{font-size:1.08rem}
+p{margin:0;max-width:68ch}
+section{display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.02rem}
+ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;max-width:72ch}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.box.note{background:var(--accent-soft);border-color:transparent}
+.box.ask{background:var(--warn-soft);border-color:transparent}
+.box.ask h3{color:var(--warn)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tree{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto;white-space:pre;line-height:1.6;margin:0}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.grids{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.g{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.g .shape{align-self:center;border:2px solid var(--fg);border-radius:6px;background:repeating-linear-gradient(0deg,transparent 0 9px,var(--line) 9px 10px),repeating-linear-gradient(90deg,transparent 0 9px,var(--line) 9px 10px)}
+.small{font-size:.88rem;color:var(--muted)}
+a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <span class="eyebrow">LetterLyn · draft for Doru · updated 25 Nov 2026</span>
+    <h1>Content &amp; Coins</h1>
+    <p class="lead">How the puzzles are organized so we can grow to thousands without redoing anything, then the rewards and prices plan (slow on purpose), the daily tasks, and how words, meanings and learning are stored. Everything here is a proposal. The open questions are at the end.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">1 · Content structure</span>
+    <h2>Four levels, and only the bottom one grows fast</h2>
+    <p>Their 25,000 levels are 400+ chapters of about 60 puzzles, numbered in one long line. We keep the player free to choose, so we organize by subject instead, with room to grow at every level:</p>
+<pre class="tree">Shelf (specific name, exactly 15 packs)  e.g. Sea &amp; Rivers
+ └─ Pack (exactly 20 topics)              e.g. Sea Life · Coral Reef · Sharks · Whales …
+     └─ Topic (3 puzzles: one per level)  e.g. "Under the sea", "Coral reef", "Sharks" …
+         └─ Word list (16–18 related words)  e.g. CORAL, REEF, DIVER, SHELL, TIDE, WAVES …</pre>
+    <ul>
+      <li><strong>29 shelves, specific names</strong> <span class="pill">decided 23 Nov</span>: Land Animals, Birds & Bugs, Sea & Rivers, Wild Places, Plants & Gardens, Weather & Seasons, Space Adventure, Science Lab, Digital World, Everyday Food, World Kitchens, Sweets & Treats, Around the House, People & Body, Clothes & Shopping, Jobs & Trades, School Days, Sports Fan, Games & Toys, Music & Stage, Arts & Crafts, Stories & Myths, On the Move, On Vacation, City Life, Countries & Maps, Long Ago, Holidays & Festivals, Romania. A name says exactly what is inside, so no shelf ever needs a "2". The game grows by <strong>new named shelves</strong> (Birds &amp; Bugs next to Land Animals), never by making a shelf longer. A shelf is released only when all 15 packs are done and checked.</li>
+      <li><strong>Packs are narrow too.</strong> "Land Animals" is a shelf, not a pack. Narrow packs (Pets, On the Farm, Safari…) are what give variety.</li>
+      <li><strong>The library is one row per shelf</strong>, swiped sideways for its packs, with a "NEW" row and a "Seasonal" row on top. A pack can sit on two shelves through tags (e.g. "Christmas food" on Food and on Holidays).</li>
+      <li><strong>Pack size</strong> <span class="pill">decided 23 Nov</span>: <strong>exactly 20 topics</strong> (60 puzzles over the three levels), so every stamp and trophy means the same amount of play. A published pack never changes. Topics beyond 20 are kept as reserves (Extras).</li>
+      <li><strong>Stamps per difficulty</strong> <span class="pill">decided</span>: each stamp carries a ski-style difficulty ribbon, colour plus shape so colour-blind players can read it: ● green Relaxed, ■ blue Classic, ◆ black Expert (Expert also counts for the easier ones). Stars stay for how well a puzzle was solved, metals for how many packs. Every pack stays a real challenge for heavy players, and it triples honest playable content.</li>
+      <li><strong>Running out?</strong> No. The whole catalogue is written: 29 shelves, 435 packs, 8,700 topics, 26,100 pack puzzles, about 26,000 different words per language (25 Nov). At 6–8 packs a month that is 4.5–6 years of new packs, and 23 years of dailies without repeating a topic. The real limit is checking: about 1.5 h per pack per language.</li>
+      <li><strong>Rewards</strong> <span class="pill">decided</span>: a <strong>stamp per finished pack</strong> (album) and a <strong>trophy per shelf in tiers</strong>: bronze at 5 finished packs on that shelf, silver at 10, gold at 15 = the whole shelf (changed 23 Nov; no platinum). Stamps, trophies and league medals are earned only, never sold. Each shelf has its own trophy design (a shared base with a shelf-specific top piece). The shelf's top piece looks the same at every tier; the base grows: bronze on 1 step, silver on 2 steps, gold on 3 steps plus a laurel wreath around the top piece, so colour-blind players can tell tiers apart by height. The tier name shows under it. The trophy also carries the difficulty ribbon it was earned in, so 10 packs in Expert look different from 10 in Relaxed. Gold means the whole shelf: shelves have exactly 15 packs and never grow (new subjects become new shelves), so a trophy never moves out of reach.</li>
+      <li><strong>One topic serves all three difficulties.</strong> Each puzzle has 16–18 words; Relaxed uses 6–8 of them (the shortest), Classic 10–12, Expert all of them. So one written topic gives three different puzzles.</li>
+      <li><strong>New languages</strong> <span class="pill">decided</span>: chosen by who can check them. Native-speaker "language friends" review the words, meanings and texts before a language goes live (thank-you: lifetime Plus, given from the admin site). Candidates after English and Romanian: Polish, Czech, Spanish, Italian, Hungarian.</li>
+      <li><strong>Language-specific packs</strong> (Romanian cities, Romanian dishes) live next to universal ones; a universal pack is written once and translated, then checked.</li>
+      <li><strong>Packs are data, not code.</strong> They already arrive through the content feed, so new packs never need an app update. After launch a published puzzle is never changed (people's progress points at it); we only add.</li>
+    </ul>
+    <div class="scroll"><table>
+      <thead><tr><th>Stage</th><th class="n">Packs / language</th><th class="n">Topics</th><th class="n">Playable puzzles (× 3 difficulties)</th><th>Writing effort</th></tr></thead>
+      <tbody>
+        <tr><td>Launch</td><td class="n">12</td><td class="n">240</td><td class="n">720</td><td>~4,000 words per language: AI draft, Doru checks RO</td></tr>
+        <tr><td>Each month after</td><td class="n">+2 to 4</td><td class="n">+40 to 80</td><td class="n">+120 to 240</td><td>"one week a month" of content work</td></tr>
+        <tr><td>After year 1</td><td class="n">~48</td><td class="n">~960</td><td class="n">~2,900</td><td>plus the daily (365 a year) and endless Quick Play</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">The aim is not to match 25,000. A finished pack takes a regular player about 2 weeks, so they never run out, and the daily plus Quick Play never end.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">2 · Grid shapes</span>
+    <h2>Taller grids, because phones are tall <span class="pill">decided: we try it</span></h2>
+    <p>You noticed their grids aren't square. Phones are about twice as tall as they are wide, so a tall grid gives bigger letters (easier to tap, easier for older eyes) than a square one with the same number of letters.</p>
+    <div class="grids">
+      <div class="g"><span class="pill">Relaxed</span><div class="shape" style="width:70px;height:90px"></div><strong>7 wide × 9 tall</strong><span class="small">6–8 words · ~51 px letters</span></div>
+      <div class="g"><span class="pill">Classic</span><div class="shape" style="width:90px;height:120px"></div><strong>9 wide × 12 tall</strong><span class="small">10–12 words · ~40 px letters</span></div>
+      <div class="g"><span class="pill">Expert</span><div class="shape" style="width:110px;height:140px"></div><strong>11 wide × 14 tall</strong><span class="small">14–18 words · ~33 px letters</span></div>
+    </div>
+    <ul>
+      <li>Today we use 10×10 squares (36 px letters). Classic at 9×12 has more letters <em>and</em> bigger ones.</li>
+      <li>The shape is fixed per puzzle, not per screen, so the daily and friend codes stay identical for everyone. On a computer the tall grid sits next to the word list.</li>
+      <li>Needs a small engine change (width and height instead of one size), and a check that the grid plus 12 words still fit on a small phone.</li>
+      <li><strong>The daily</strong> <span class="pill">decided</span>: Classic size (9×12, all directions) every day, and on Sunday the bigger <strong>weekend special</strong> at Expert size (11×14). Same for everyone, whatever difficulty they picked for packs.</li>
+      <li><strong>Game time</strong> <span class="pill">decided</span>: a new daily for everyone at <strong>00:00 UTC</strong> (02:00 in Romania in winter), with a countdown on Home. Travelling never changes it. Dailies are labelled by number (Daily #326), never by weekday. The puzzle's key comes from our server at that moment, so future dailies can't be built from the code.</li>
+    </ul>
+    <div class="box">
+      <h3>No patterns: how words are placed</h3>
+      <p>In the other app, long words often form a lattice of parallel diagonals two rows apart. Once you see it, you follow the pattern instead of searching. Our generator today picks a random spot for each word: it never builds patterns on purpose, but nothing stops them either. The fix is to score each possible spot:</p>
+      <ul>
+        <li><strong>Mixed directions:</strong> no direction takes more than about a third of the words; Expert gets its share of backwards words.</li>
+        <li><strong>No parallel neighbours:</strong> a word running the same way as another, one or two lines away, scores low.</li>
+        <li><strong>Spread out:</strong> empty areas of the grid score higher, so words don't pile into one half.</li>
+        <li><strong>Some crossings, not many:</strong> a few shared letters are fun; too many rebuild the lattice.</li>
+        <li><strong>Then pick randomly among the best few spots</strong>, so puzzles still feel different.</li>
+        <li><strong>A test</strong> generates thousands of puzzles and checks the direction mix and parallel neighbours.</li>
+        <li><strong>Later, Expert only:</strong> decoy fragments in the filler letters (DREA next to DREAM).</li>
+      </ul>
+      <p><strong>Generator versions from launch:</strong> every phone rebuilds puzzles from a seed. If the generator improves after launch, old and new app versions would build different grids for the same daily or friend code. So each puzzle records which generator version built it, and old versions stay in the code.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">3 · Rewards and prices</span>
+    <h2>Slow on purpose <span class="pill">decided 22 Nov: starting rule</span></h2>
+    <p>Looks and collections should take some work, especially for free players. We start slow and only loosen later, never the other way round. Players notice and resent a game that gets stingier.</p>
+    <div class="box note">
+      <h3>The pace rule</h3>
+      <ul>
+        <li><strong>Nothing big in a day.</strong> No theme, accessory set or trophy can be earned in one sitting.</li>
+        <li><strong>Something noticeable every 1–2 weeks</strong> for a regular free player (an accessory or frame bought with coins), a theme about every 3–4 weeks.</li>
+        <li><strong>The whole launch catalogue takes a regular player ~21 months</strong> of steady income and a heavy player ~9 months, while ~6,000 coins of new items arrive every month, so the shop never runs dry (proposed 25 Nov).</li>
+        <li><strong>Hints stay affordable</strong> (15 coins, ~3 puzzles). Each one delays the next look, which is the choice we want.</li>
+        <li><strong>Paid content never becomes coins:</strong> Learn puzzles, Journey ticket rows and custom puzzles pay XP only, or nothing.</li>
+      </ul>
+    </div>
+
+    <h2 style="margin-top:8px">Where coins come from <span class="pill">proposed 25 Nov, for Doru</span></h2>
+    <p class="small">Old number in brackets. About 40% lower across the board: buying should take a grind at the start, and we can always give more later, never less.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Source</th><th class="n">Coins</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Pack puzzle, first solve</td><td class="n">3 / 4 / 6</td><td>Relaxed / Classic / Expert (3 / 5 / 7). Replays pay 0 coins (XP only).</td></tr>
+        <tr><td>No hints used</td><td class="n">+1</td><td>On a first solve (+2).</td></tr>
+        <tr><td>Mystery word found</td><td class="n">+1</td><td>One per puzzle (+2).</td></tr>
+        <tr><td>Bonus jar full (10 bonus words)</td><td class="n">10</td><td>Unchanged (rules sheet "Bonus words"). About 1 coin per word.</td></tr>
+        <tr><td>Daily puzzle</td><td class="n">8 + 1 per streak day</td><td>Streak bonus up to +5 (10 + up to 10).</td></tr>
+        <tr><td>Quick Play</td><td class="n">3, then 0</td><td>The first 3 a day pay (5).</td></tr>
+        <tr><td>Daily tasks</td><td class="n">4 / 6 / 10</td><td>Easy / medium / hard (5 / 10 / 15).</td></tr>
+        <tr><td>All 3 tasks done</td><td class="n">+10</td><td>(+20 and a streak freeze). <span class="pill">decided 25 Nov</span> No free freeze from tasks: freezes are bought with coins; only the 7- and 30-day streak goals give one.</td></tr>
+        <tr><td>Level up</td><td class="n">+15</td><td>Every level (+25). Every 5th level +50, levels 10 / 25 / 50 +150, levels 20 / 40 +300 (these replace the old item gifts).</td></tr>
+        <tr><td>Streak goal reached</td><td class="n">30 / 75 / 200 / 350</td><td>The player commits to 7 / 14 / 30 / 50 days; 7 and 30 also give one streak freeze (if you hold fewer than 2).</td></tr>
+        <tr><td>Invite a friend</td><td class="n">75 each</td><td>Both, when the friend finishes a first pack.</td></tr>
+        <tr><td>Achievements</td><td class="n">15 – 75</td><td>Once each (20 – 100).</td></tr>
+        <tr><td>Weekly league</td><td class="n">100 / 70 / 50 / 25</td><td>1st / 2nd / 3rd / top 10% (150 / 100 / 75 / 40), plus a league medal. Sign-in needed to collect.</td></tr>
+        <tr><td>Optional ad</td><td class="n">+8</td><td>Up to 3 a day (+10, up to 5).</td></tr>
+        <tr><td>Mystery topic, club goal, duet (later)</td><td class="n">2–6 · 40 · 4</td><td>Same 40% cut when they come.</td></tr>
+        <tr><td>Learn puzzles, word review, custom puzzles</td><td class="n">0</td><td>XP only (Learn) or nothing.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 style="margin-top:8px">Rewards are coins <span class="pill">decided 25 Nov</span></h2>
+    <p>Playing pays coins; looks (accessories, frames, themes, room items) are bought with them, so every player picks what they want. Like Duolingo, which rewards only gems. No look is given as a gift any more. A few things are <strong>earned only and never sold</strong>, because their value is that they prove something:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Earned only</th><th>How</th></tr></thead>
+      <tbody>
+        <tr><td>Stamps</td><td>Each finished pack, per level (ribbon)</td></tr>
+        <tr><td>Shelf trophies</td><td>Bronze 5 / silver 10 / gold 15 packs of a shelf</td></tr>
+        <tr><td>League medals</td><td>Weekly league top places (league tiers with promotion and demotion zones: later)</td></tr>
+        <tr><td>Sharp eyes badge</td><td>50 / 250 / 1,000 bonus words</td></tr>
+        <tr><td>Plus supporter frame + badge</td><td>With LetterLyn Plus</td></tr>
+        <tr><td>Free accessory of the month <span class="pill">decided 25 Nov</span></td><td>Every daily of the month done by month end (on the day, or as a past daily: free with Plus, 50 coins otherwise; streak-freeze days count; mid-month joiners can catch up the same way, since the archive goes back to launch). The one exception to "no cosmetics as rewards"; harsh on purpose, loosened later if needed.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 style="margin-top:8px">What coins buy <span class="pill">proposed 25 Nov</span></h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Item</th><th class="n">Coins</th><th>= Classic puzzles</th><th>Real money?</th></tr></thead>
+      <tbody>
+        <tr><td>Hint (shows a whole word)</td><td class="n">15 (25)</td><td>~3</td><td>No (hint bundles only if data shows demand)</td></tr>
+        <tr><td>First letter</td><td class="n">6 (10)</td><td>~1</td><td>No</td></tr>
+        <tr><td>Rotate the board</td><td class="n">free</td><td></td><td></td></tr>
+        <tr><td>Streak freeze (hold max 2)</td><td class="n">200 (150)</td><td>~38</td><td>Never</td></tr>
+        <tr><td>One past daily</td><td class="n">50</td><td>~9</td><td>No (all free with Plus)</td></tr>
+        <tr><td>Name change before the month is up</td><td class="n">100</td><td>~19</td><td>No (or one short optional ad)</td></tr>
+        <tr><td>Accessory for your avatar animal (hat, glasses, scarf, tuft, beard, clothes…)</td><td class="n">300 – 800</td><td>~55 – 150</td><td rowspan="3">Yes, only as sets (below)</td></tr>
+        <tr><td>Frame</td><td class="n">700 (500)</td><td>~130</td></tr>
+        <tr><td>Board theme</td><td class="n">2,500 – 3,500 (1,500 – 2,500)</td><td>~570</td></tr>
+        <tr><td>Lyn's room item (later)</td><td class="n">300 – 1,000</td><td></td><td>Yes, only as sets</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">A Classic puzzle pays about 5.3 coins on average (4 + mystery word + no-hint bonus). For comparison, Duolingo (what Doru saw): ~9–15 gems a lesson, 20 for an ad, 600 for a streak freeze, so a freeze is ~40 lessons; ours is ~38 Classic puzzles. Hints get cheaper on purpose: they are the sink players come back to every day, and a stuck player who can't afford one quits. Coins themselves are never sold.</p>
+
+    <h2 style="margin-top:8px">What real money buys</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Product</th><th class="n">Price</th><th>What's in it</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td>LetterLyn Plus</td><td class="n">~€6.99 once</td><td>No forced ads, past dailies archive, 1 free hint a day, supporter frame + badge. No themes, no coins. <span class="pill">decided 25 Nov</span> Plus never gives coins or faster coins (that would be selling coins, and unfair); the free hint (~450 coins of hints a month) is the limit.</td><td>Launch (price open)</td></tr>
+        <tr><td>Look set</td><td class="n">€2.99</td><td>Theme + matching accessories + frame (~5,200 coins of items) <span class="pill">decided 25 Nov: stays €2.99</span>, fans buy sets for the look, not the value</td><td>Launch, 1–2 sets</td></tr>
+        <tr><td>Learning pair</td><td class="n">~€4.99 once</td><td>One pair (e.g. Română ↔ English), both directions, all universal packs forever, word cards, voice, My words review. First shelf free.</td><td>Roadmap decides</td></tr>
+        <tr><td>Journey ticket</td><td class="n">~€3.49 / month</td><td>6–8 cosmetic items on the ticket row (reactions, animated frame, accessory, the month's postcard). Never coins, hints or boosts.</td><td>Later (needs the journey)</td></tr>
+        <tr><td>Learn subscription</td><td class="n">~€3.99 / month or €24.99 / year</td><td>All pairs + recorded native voices. Pair buyers keep theirs.</td><td>Later (3+ pairs)</td></tr>
+        <tr><td>Hint bundles</td><td class="n">€0.99 – 5.99</td><td>15 / 50 / 120 hints</td><td>Only if data shows demand</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 style="margin-top:8px">The math: what each player earns, spends and can buy <span class="pill">proposed 25 Nov</span></h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Player</th><th>Assumed play</th><th class="n">Coins a day played</th><th class="n">Earned a week</th><th class="n">Spent a week (hints, freezes)</th><th class="n">Left to buy looks</th></tr></thead>
+      <tbody>
+        <tr><td>Casual</td><td>5 days a week: daily + 3 puzzles + 1 task; 0.7 hints a day; a freeze every 2 months</td><td class="n">~32</td><td class="n">~165</td><td class="n">~75</td><td class="n">~90</td></tr>
+        <tr><td>Regular</td><td>6–7 days: daily + 6 puzzles + 1 Quick Play + 3 tasks + 1 ad; 0.8 hints a day; 1 freeze a month</td><td class="n">~86</td><td class="n">~580</td><td class="n">~125</td><td class="n">~460</td></tr>
+        <tr><td>Heavy</td><td>Every day: daily + 12 puzzles (half Expert) + 3 Quick Play + 3 tasks + 3 ads; 0.4 hints a day</td><td class="n">~155</td><td class="n">~1,155</td><td class="n">~90</td><td class="n">~1,070</td></tr>
+      </tbody>
+    </table></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Coins left for looks after…</th><th class="n">Week 1</th><th class="n">Month 1</th><th class="n">Month 3</th><th class="n">Month 6</th><th class="n">Month 12</th></tr></thead>
+      <tbody>
+        <tr><td>Casual</td><td class="n">~200</td><td class="n">~800: an accessory</td><td class="n">~1,700: a few accessories</td><td class="n">~3,550: a theme</td><td class="n">~6,000</td></tr>
+        <tr><td>Regular</td><td class="n">~600: an accessory</td><td class="n">~2,800: a few accessories + a frame + an accessory</td><td class="n">~7,800: ~19% of the launch shop</td><td class="n">~13,900</td><td class="n">~26,300: ~2/3 of the launch shop, but by then 12 months of new items have come too</td></tr>
+        <tr><td>Heavy</td><td class="n">~1,500: a few accessories</td><td class="n">~5,900: a theme + a few accessories + a frame</td><td class="n">~15,900</td><td class="n">~30,300</td><td class="n">~58,700</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box note">
+      <h3>The balance rule</h3>
+      <ul>
+        <li><strong>The shop:</strong> launch catalogue ≈ <strong>42,600 coins</strong> (6 themes ~18,000 + ~32 paid accessories ~17,600 + 10 frames ~7,000; avatars are the player's name animal, decided 25 Nov; Lyn is not dressed by players). New each month ≈ <strong>5,900 coins</strong> (1 theme, ~4 accessories, 1 frame).</li>
+        <li><strong>Nobody empties it:</strong> after the first months, a regular player earns ~2,000 a month for looks = <strong>a third</strong> of what arrives each month; a heavy player ~4,600 = <strong>77%</strong>. Both always have something left to want, even the heavy player after buying the whole launch shop (~9 months).</li>
+        <li><strong>Coins never pile up uselessly:</strong> hints, streak freezes, past dailies and name changes are used up and bought again (our version of Duolingo's energy refills, but never needed to keep playing). Later sinks: Lyn's room (many small items, cheap to make) and sending a look to a friend.</li>
+        <li><strong>Slow at the start:</strong> a regular player's first theme takes ~6 weeks (was under 3), a casual player's ~6 months. A Classic puzzle pays ~5 coins; a theme is ~570 puzzles.</li>
+        <li><strong>Room to loosen later:</strong> every number can only go up (rewards) or down (prices) after launch, the trust rule. Watched in the soft launch: share of players who bought nothing after 2 weeks, coins sitting unspent, hint use.</li>
+        <li>Model: <code>letterlyn/tools/economy-model.py</code> (player types, level speed: level 10 at ~1.5 weeks, 20 at ~7 weeks for a regular player).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">4 · Daily tasks</span>
+    <h2>Three tasks a day: one easy, one medium, one hard</h2>
+    <p>Picked fresh each day from the list below. Each player gets their own mix. One free swap a day if you don't like a task.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Level</th><th>Task</th><th class="n">Coins</th></tr></thead>
+      <tbody>
+        <tr><td>Easy</td><td>Play today's daily</td><td class="n">5</td></tr>
+        <tr><td>Easy</td><td>Solve 2 puzzles</td><td class="n">5</td></tr>
+        <tr><td>Easy</td><td>Find 20 words</td><td class="n">5</td></tr>
+        <tr><td>Easy</td><td>Find a mystery word</td><td class="n">5</td></tr>
+        <tr><td>Medium</td><td>Solve 3 puzzles without hints</td><td class="n">10</td></tr>
+        <tr><td>Medium</td><td>Find 8 words going down</td><td class="n">10</td></tr>
+        <tr><td>Medium</td><td>Find 6 diagonal words</td><td class="n">10</td></tr>
+        <tr><td>Medium</td><td>Find 3 words of 7+ letters</td><td class="n">10</td></tr>
+        <tr><td>Medium</td><td>Play a puzzle from a pack you haven't touched</td><td class="n">10</td></tr>
+        <tr><td>Medium</td><td>Play a friend code or Quick Play</td><td class="n">10</td></tr>
+        <tr><td>Hard</td><td>Solve 5 puzzles</td><td class="n">15</td></tr>
+        <tr><td>Hard</td><td>Find 5 backwards words <span class="small">(Classic and Expert only)</span></td><td class="n">15</td></tr>
+        <tr><td>Hard</td><td>Get 3 stars on 3 puzzles in a row</td><td class="n">15</td></tr>
+        <tr><td>Hard</td><td>Solve a puzzle in Challenge mode</td><td class="n">15</td></tr>
+        <tr><td>Hard</td><td>Find the mystery word in 3 puzzles</td><td class="n">15</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Never a task to watch an ad, spend coins or pay.</strong></li>
+      <li><strong>Never a task about your rank</strong> ("finish top 10"), since that depends on other people.</li>
+      <li><strong>Tasks match your difficulty</strong>: Relaxed players never get "backwards words", since their puzzles have none.</li>
+      <li>New tasks at game time (00:00 UTC), like the daily. Unfinished ones simply disappear, with no penalty.</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">5 · Words, meanings and the database</span>
+    <h2>One concept, many languages</h2>
+    <p>Today the packs live in code files and reach the apps through the content feed. To manage content from the admin site, everything moves into the database. The feed is then built from the database and the apps don't change; they still ship a built-in copy for offline first launch.</p>
+<pre class="tree">concepts     id (animal.dog, animal.bat, sport.bat), topic tags
+words        concept · language · word as shown · meaning · example
+             · status (draft / approved) · pronunciation (later)
+shelves      id · title per language · order
+packs        id · shelf · title per language · sequel of · published on
+             · kind (universal / local) · learning directions
+pack_words   pack · concept · which puzzle (topic)
+puzzles      pack · number · difficulty · language · generator version
+             · grid (frozen once live)
+dailies      game day · language · puzzle · word of the day
+reports      puzzle · word · reason · note · app version · status</pre>
+    <ul>
+      <li><strong>Meanings are written per language, not translated,</strong> and attached to the concept, so "bat" the animal gets the right one. Our own short text (drafted offline, then checked), never copied from DEX or other dictionaries, whose definitions belong to their publishers.</li>
+      <li><strong>A pack can't publish</strong> until every word has an approved meaning and example.</li>
+      <li><strong>A new language</strong> = new <code>words</code> rows for existing concepts, plus its own local packs.</li>
+      <li><strong>Learning pairs come almost free:</strong> grid from one language's words, list from the other's, same concepts. Local packs (Romanian dishes) have no pair word, so they work only in the direction whose grid is Romanian, with a description clue. Set per pack.</li>
+      <li><strong>No repeats:</strong> a daily topic not again for 60 days, a word not in any daily for 90 days, the word of the day never within 365 days. Needs ≥365 approved words per language per year, which the packs cover easily.</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">6 · To decide</span>
+    <div class="box ask">
+      <h3>Open questions</h3>
+      <ul>
+        <li><strong>Launch size:</strong> 12 packs × 20 topics per language, or smaller and grow faster after launch?</li>
+        <li><strong>Which shelves and packs first</strong> for launch (the 12 packs).</li>
+        <li><strong>Numbers:</strong> the slow starting rule is decided; exact values get tuned in the soft launch (only ever loosened).</li>
+      </ul>
+      <h3 style="margin-top:10px">Decided since (22 Nov)</h3>
+      <ul>
+        <li>The real coin balance lives on our server. Offline earnings sync later and are re-checked against the solved puzzles; the shop needs internet.</li>
+        <li>Slow to earn: the pace rule, prices and examples in section 3. Paid content never turns into coins.</li>
+        <li>Word card and word of the day at launch; meanings are our own text, stored per concept and language.</li>
+        <li>Learning pair one-time ~€4.99; Learn subscription later; both stay available.</li>
+        <li>Earning stays capped by design (first clears pay once, Quick Play full pay 3 a day), so cheating can't farm coins. This also protects hint bundles if we ever sell them.</li>
+      </ul>
+    </div>
+  </section>
+</div>

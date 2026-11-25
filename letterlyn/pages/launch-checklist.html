@@ -1,0 +1,308 @@
+<title>LetterLyn Launch Checklist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: one readable column; each area is a section of task rows with a status pill, notes and decisions set apart as quieter blocks. */
+:root {
+  --bg: #f3f1ea;
+  --surface: #fffdf8;
+  --ink: #23291f;
+  --muted: #646d5e;
+  --line: #dcd8cb;
+  --accent: #4f7440;
+  --accent-soft: rgba(79, 116, 64, 0.12);
+  --warn: #9a6a12;
+  --warn-soft: rgba(154, 106, 18, 0.12);
+  --info: #3d6273;
+  --info-soft: rgba(61, 98, 115, 0.12);
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171b15; --surface: #20261d; --ink: #e9ece3; --muted: #a3ab9b; --line: #353d30;
+    --accent: #93bf7c; --accent-soft: rgba(147, 191, 124, 0.14);
+    --warn: #e0b45c; --warn-soft: rgba(224, 180, 92, 0.14);
+    --info: #8fbccf; --info-soft: rgba(143, 188, 207, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171b15; --surface: #20261d; --ink: #e9ece3; --muted: #a3ab9b; --line: #353d30;
+  --accent: #93bf7c; --accent-soft: rgba(147, 191, 124, 0.14);
+  --warn: #e0b45c; --warn-soft: rgba(224, 180, 92, 0.14);
+  --info: #8fbccf; --info-soft: rgba(143, 188, 207, 0.14);
+  color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+.page {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 40px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.5rem); letter-spacing: -0.01em; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+strong { font-weight: 650; }
+em { font-style: italic; }
+
+header { display: grid; gap: 12px; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.lede { color: var(--muted); max-width: 62ch; }
+.meta { font-size: 0.85rem; color: var(--muted); }
+
+.summary { display: flex; flex-wrap: wrap; gap: 8px; }
+.summary a {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink);
+  padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 0.88rem; font-weight: 500;
+}
+.summary a:hover { border-color: var(--accent); }
+.summary .n { font-variant-numeric: tabular-nums; color: var(--muted); }
+
+section { display: grid; gap: 14px; scroll-margin-top: 16px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.section-head .who { font-size: 0.85rem; color: var(--muted); }
+
+.tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.task { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.task-top { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+.task-top p { font-weight: 600; min-width: 0; }
+.task ul { margin: 0; padding-left: 20px; color: var(--muted); display: grid; gap: 4px; font-size: 0.95rem; }
+.task ul strong { color: var(--ink); }
+.task.done .task-top p { color: var(--muted); text-decoration: line-through; }
+
+.pill { flex: none; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.pill.open { color: var(--muted); background: transparent; border: 1px solid var(--line); }
+.pill.decide { color: var(--warn); background: var(--warn-soft); }
+.pill.done { color: var(--accent); background: var(--accent-soft); }
+.pill.ask { color: var(--info); background: var(--info-soft); }
+
+.note { border-radius: 12px; padding: 14px 16px; background: var(--info-soft); display: grid; gap: 6px; font-size: 0.95rem; }
+.note.warn { background: var(--warn-soft); }
+.note.good { background: var(--accent-soft); }
+.note h3 { font-size: 0.95rem; }
+.note ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+
+.fees { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.fees-wrap { overflow-x: auto; }
+.fees th, .fees td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.fees th { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.fees td.num { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+
+.sources { font-size: 0.85rem; color: var(--muted); display: grid; gap: 6px; }
+.sources ul { margin: 0; padding-left: 18px; display: grid; gap: 2px; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+</style>
+
+<main class="page">
+  <header>
+    <span class="eyebrow">LetterLyn · before the public launch (M5)</span>
+    <h1>LetterLyn Launch Checklist</h1>
+    <p class="lede">Everything that has to be settled before LetterLyn goes public: brand and trademark, company and tax questions, product loose ends, server tasks and store listings. Claude updates this page as items get done.</p>
+    <p class="meta">Last updated 25 November 2026</p>
+    <nav class="summary" aria-label="Sections">
+      <a href="#brand">Brand &amp; trademark <span class="n">6</span></a>
+      <a href="#company">Company &amp; legal <span class="n">3 questions</span></a>
+      <a href="#product">Product <span class="n">4</span></a>
+      <a href="#ops">Server &amp; ops <span class="n">4</span></a>
+      <a href="#launch">Launch plan <span class="n">3 phases + languages</span></a>
+      <a href="#stores">Stores &amp; portals <span class="n">2</span></a>
+    </nav>
+  </header>
+
+  <!-- ============================================================ BRAND -->
+  <section id="brand">
+    <div class="section-head"><h2>Brand &amp; trademark</h2><span class="who">Doru · Remus</span></div>
+
+    <ul class="tasks">
+      <li class="task">
+        <div class="task-top"><p>Register the word mark “LetterLyn”</p><span class="pill decide">To decide</span></div>
+        <ul>
+          <li>Classes <strong>9</strong> (downloadable game software and apps) and <strong>41</strong> (online games and entertainment). Capital letters don’t matter: it also covers “Letterlyn”.</li>
+          <li>A word mark protects the name in <strong>any font, color or style</strong>, so it survives logo redesigns. In Romania: ≈ 762 lei + 254 lei for the second class ≈ <strong>1,016 lei (~€200)</strong>.</li>
+          <li><strong>Who files it:</strong> cheapest is Doru <strong>personally</strong> in Romania (OSIM), no attorney needed since he lives there. The company then uses the name under a free one-page license. Filing as the Gibraltar company likely needs a Romanian attorney.</li>
+          <li><strong>When:</strong> just before the public launch (≈ €150). Within 6 months, <strong>if the game shows traction</strong>, extend through the Madrid System to where the players and money are (usually EU, US, UK); they keep the Romanian date. If it stays small, stop at Romania.</li>
+          <li><strong>How the 6 months work:</strong> a filing in another country within 6 months counts as made on the OSIM day, so a squatter who files there in month 4 loses to you. Conditions: claim the priority explicitly in each filing, same mark, same or fewer goods/services, same owner (keep Doru as applicant inside the window; move it to the company later if wanted). After 6 months the priority is gone, and some countries (e.g. China) are strictly first-to-file.</li>
+          <li>There’s no single worldwide trademark. Unregistered countries only matter if someone there owns a conflicting mark and enforces it; the loss would be that one country’s listing.</li>
+        </ul>
+      </li>
+      <li class="task">
+        <div class="task-top"><p>Register Lyn the mascot as an image mark</p><span class="pill open">Later</span></div>
+        <ul>
+          <li>Decided 2026-11-22: Lyn will be the brand face (logo, app icon), so this mark is planned. File once the final art exists, ideally together with the word mark so both share the same priority date. Same classes (9 + 41). A color image costs a bit more in Romania (≈ 1,100 lei examination + 508 lei publication).</li>
+          <li>Register <strong>Lyn alone</strong>, without text. The full logo (text + Lyn) usually isn’t needed, and “Lyn” as a word on its own isn’t worth it (short common name, weak to defend).</li>
+          <li>Extra classes only if the business goes there: 28 toys/plush, 16 printed puzzle books, 25 clothing.</li>
+        </ul>
+      </li>
+      <li class="task">
+        <div class="task-top"><p>Keep Lyn clearly different from Lex (PopCap/EA’s <em>Bookworm</em>)</p><span class="pill open">Rule</span></div>
+        <ul>
+          <li><em>Bookworm</em> is a famous word game whose mascot Lex is a <strong>green bookworm with glasses and a red bow tie</strong>. Lyn: not green, no glasses and bow tie. The graduation cap is a good distinct touch.</li>
+          <li><strong>Never use “Bookworm”</strong> as a product, mode or store-title name: PopCap holds a BOOKWORM trademark for online games. “Lyn, a little bookworm” in a description is ordinary language and fine.</li>
+        </ul>
+      </li>
+      <li class="task">
+        <div class="task-top"><p>Remus signs a copyright transfer for the art he makes</p><span class="pill open">Open</span></div>
+        <ul>
+          <li>Remus draws the logo and Lyn. Whoever draws something owns its copyright, so he signs a one-page <em>cesiune de drepturi patrimoniale de autor</em> to the company, covering everything he makes for LetterLyn.</li>
+          <li>Under Romanian law (Law 8/1996) only software made by an employee belongs to the employer automatically. Art doesn’t, so it’s needed either way. A lawyer has a standard template.</li>
+        </ul>
+      </li>
+      <li class="task">
+        <div class="task-top"><p>Final art drawn or reworked by Remus</p><span class="pill open">Rule</span></div>
+        <ul>
+          <li>AI sketches (from Claude or others) are fine as a starting point and need no contract. Purely AI-made images likely have no copyright, so the <strong>final</strong> versions should be Remus’s own work.</li>
+        </ul>
+      </li>
+      <li class="task">
+        <div class="task-top"><p>Last trademark search right before filing</p><span class="pill open">Open</span></div>
+        <ul>
+          <li>TMview and EUIPO eSearch for “LetterLyn” and “Letterlyn”. The search on 19 Nov 2026 found nothing.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="note warn">
+      <h3>When to extend beyond Romania (any one of these)</h3>
+      <ul>
+        <li><strong>Money:</strong> about €800–1,000 a month for 2 months in a row. The ≈ €2,000–2,500 is then two to three months of LetterLyn’s own income for 10 years of protection.</li>
+        <li><strong>Players:</strong> about 1,000+ daily players or 10,000+ installs a month, still growing after 2 months.</li>
+        <li><strong>A spotlight moment:</strong> featured by Apple or Google, on the Poki or CrazyGames front page, top 100 word games in a country, or a viral post or press. File soon after.</li>
+        <li><strong>One country stands out:</strong> 10–15%+ of players or money from one country → add that country.</li>
+        <li><strong>Before spending on the brand:</strong> paid ads, merch, partnerships, or talks with a buyer.</li>
+        <li><strong>A copycat appears</strong> (similar name or a Lyn look-alike) → file right away.</li>
+        <li><strong>Deadline:</strong> 6 months after the Romanian filing to keep its date. Reminder at <strong>month 5</strong> to check these signals; extending later is still possible, just without the earlier date.</li>
+      </ul>
+    </div>
+
+    <div class="fees-wrap">
+      <table class="fees">
+        <thead><tr><th>Route</th><th>Cost</th><th>Covers</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Romania (OSIM), Doru personally</td><td class="num">≈ 762 lei</td><td>Romania</td><td>Word mark, one class; +254 lei per extra class. Gives a 6-month priority window for the EU. Confirm fees on osim.ro.</td></tr>
+          <tr><td>EU (EUIPO)</td><td class="num">€850 / €900</td><td>All EU countries</td><td>One / two classes, online, valid 10 years. A non-EU company needs an EU representative if anyone objects.</td></tr>
+          <tr><td>Worldwide add-on (WIPO Madrid System)</td><td class="num">≈ CHF 650 + per country</td><td>Countries you pick</td><td>Built on the Romanian filing. Add countries now or later. EU + US + UK in one class ≈ €2,000–2,500 in total with the Romanian mark. Depends on the Romanian mark for the first 5 years. Check WIPO’s fee calculator.</td></tr>
+          <tr><td>EUIPO SME Fund refund</td><td class="num">up to 75% back</td><td>—</td><td>Only for SMEs established in the EU, so probably <strong>not</strong> the Gibraltar company. The 2026 trademark vouchers reportedly ran out; the voucher must be granted before filing.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h3>Copyright vs trademark</h3>
+      <ul>
+        <li><strong>Copyright</strong> is automatic and free. It protects the art, code and texts against copying. Keep the dated proof: git history, the original design files, Remus’s transfer. Copyright “registration” websites only add a timestamp.</li>
+        <li><strong>Trademark</strong> protects the name and logo as a brand and has to be registered (whoever files first wins in the EU and Romania). Copyright can’t stop someone registering “LetterLyn” for their own game.</li>
+        <li><strong>Risk of not registering:</strong> nobody can take the business, code, players or art. Someone who registers “LetterLyn” first gets rights to the <strong>name</strong> in that territory, so the worst case is a forced rename there.</li>
+        <li><strong>Your history still counts:</strong> a filing made in bad faith (knowing about LetterLyn, to block it or sell the name back) can be cancelled at any time, using git history, launch dates, store listings and the domain as proof. Copying the logo or Lyn is also grounds, through copyright.</li>
+        <li><strong>Why register anyway:</strong> winning costs money and months (EUIPO cancellation ≈ €630 in fees plus a lawyer), stores can pull a listing while it’s sorted out, and an innocent earlier filer is hard to beat. Squatters watch the app charts and file names of rising games, especially in the US and China. Low risk while unknown, higher as it grows.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ COMPANY -->
+  <section id="company">
+    <div class="section-head"><h2>Company &amp; legal</h2><span class="who">Doru · accountant</span></div>
+
+    <div class="note good">
+      <h3>Decided</h3>
+      <ul>
+        <li><strong>LetterLyn runs under smartdevsolutions</strong> (Gibraltar), which already has the App Store and Google Play accounts and the D-U-N-S number. No new company for now.</li>
+        <li><strong>Taxes are sorted:</strong> Doru has been a Romanian tax resident for 6 years. Store and ad payouts are company revenue like client invoices, and dividends are taxed in Romania as usual.</li>
+        <li><strong>Not under Doru’s own name:</strong> in Romania it isn’t less paperwork (PFA or independent activity, CASS/CAS, a special VAT code), and EU rules would show his <strong>home address and phone</strong> publicly on the store listings.</li>
+        <li><strong>Several of <em>your own</em> products in one company is fine:</strong> all of it is company revenue, taxed the same. Track income and costs per product (accountant’s cost centers, store reports per app). The stores’ 15% rate on the first $1M a year is shared by all apps in one developer account. A serious problem in one product involves the company that owns both.</li>
+        <li><strong>Separate company later</strong> only if LetterLyn earns real money or will be sold. Moving is simple: transfer the trademark and use Apple’s and Google’s app transfer.</li>
+      </ul>
+    </div>
+
+    <ul class="tasks">
+      <li class="task">
+        <div class="task-top"><p>Store and ad payouts in the bookkeeping</p><span class="pill ask">Ask accountant</span></div>
+        <ul>
+          <li>Apple and Google pay monthly, after their 15–30% cut, with self-billed statements instead of our invoices. AdMob, Poki and CrazyGames also pay monthly with statements.</li>
+          <li>In the EU the stores are the seller to the player and handle the VAT on purchases.</li>
+        </ul>
+      </li>
+      <li class="task">
+        <div class="task-top"><p>US withholding tax on US earnings</p><span class="pill ask">Ask accountant</span></div>
+        <ul>
+          <li>Stores and ad networks require a US tax form (W-8BEN-E). Gibraltar likely has no tax treaty with the US, so <strong>up to 30%</strong> of US-sourced earnings, especially ad revenue, may be withheld. Does it apply, and is anything worth doing about it?</li>
+        </ul>
+      </li>
+      <li class="task">
+        <div class="task-top"><p>GDPR: EU representative for a non-EU company?</p><span class="pill ask">Ask lawyer</span></div>
+        <ul>
+          <li>A company outside the EU with EU players may need an EU representative (GDPR Article 27, usually a few hundred euros a year). Gibraltar’s data-protection status is changing under the new UK–EU treaty on Gibraltar.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ PRODUCT -->
+  <section id="product">
+    <div class="section-head"><h2>Product</h2><span class="who">Doru · Claude</span></div>
+    <ul class="tasks">
+      <li class="task"><div class="task-top"><p>Wipe the test data from the production database</p><span class="pill open">Open</span></div><ul><li>Remus and Doru’s wife played on production while testing.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Real app icon and splash screen</p><span class="pill open">Open</span></div><ul><li>Replace the Expo placeholder art with the LetterLyn set, once Remus’s logo exists.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Shared links open the app when it’s installed</p><span class="pill open">Open</span></div><ul><li>Universal links (iOS) and app links (Android), so play.letterlyn.com/?code=… opens the app instead of the web game.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Privacy policy and support addresses</p><span class="pill open">Open</span></div><ul><li>letterlyn.com/privacy (settings already link to it), plus support@ and privacy@ mailboxes.</li><li>Must also cover the email opt-in (25 Nov): email kept only while notification emails or the newsletter are on, double opt-in, deleted with the account.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Notifications: push and email</p><span class="pill open">Open</span></div><ul><li>Push on phones (Firebase for Android, Apple push for iOS) and browser notifications on the web where allowed.</li><li>Notification emails mirror push, on/off per type in Settings › Notifications; a separate newsletter opt-in with an unsubscribe link in every email.</li><li>Choose an email sending service (cost per email near zero; the list only grows with opt-ins) and set up its SPF/DKIM for letterlyn.com.</li><li>Register the sending domain with Apple’s private email relay, so players who hid their address with Sign in with Apple still get the emails.</li></ul></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ OPS -->
+  <section id="ops">
+    <div class="section-head"><h2>Server &amp; ops</h2><span class="who">Remus</span></div>
+    <ul class="tasks">
+      <li class="task"><div class="task-top"><p>Uptime check on both APIs</p><span class="pill open">Open</span></div><ul><li>api.letterlyn.com/health and staging-api.letterlyn.com/health, alerting Doru by email.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Disk alarm</p><span class="pill open">Open</span></div><ul><li>Lightsail alarm when the disk is over 80% full, like the CPU alarm.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Email through Google Workspace</p><span class="pill open">Open</span></div><ul><li>letterlyn.com as a secondary domain, the MX, SPF, DKIM and DMARC records in Route 53, and support@ and privacy@ as aliases on Doru’s user.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Restore test from a snapshot</p><span class="pill open">Open</span></div><ul><li>Once there’s real player data.</li></ul></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ LAUNCH -->
+  <section id="launch">
+    <div class="section-head"><h2>Launch plan</h2><span class="who">Doru · friend in Ireland</span></div>
+    <div class="note good"><strong>Decided 22 Nov:</strong> closed test → soft launch in Romania + Ireland → worldwide. Not country by country: English works everywhere, and holding countries back only loses free installs.</div>
+    <ul class="tasks">
+      <li class="task"><div class="task-top"><p>Phase 0 · Closed test (about 2 weeks)</p><span class="pill open">Open</span></div><ul><li>By invite in both stores (Google Play closed testing, Apple TestFlight): friends, family, Remus, the friend in Ireland.</li><li>Each test round has its own country list, so friends abroad can join too (e.g. the Italian friend in Vietnam, the UK friend in Hong Kong). Confirm Vietnam when setting it up.</li><li>Looking for crashes, confusing screens and obvious content mistakes in both languages.</li><li>Google requires 12 testers for 14 days only for new <em>personal</em> developer accounts; we publish through the company's organisation account, which should be exempt. Confirm when we get there; this phase covers it anyway.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Phase 1 · Soft launch in Romania + Ireland (4–6 weeks)</p><span class="pill open">Open</span></div><ul><li>Public in only these two countries' stores. Romania: Doru's own feedback and local word of mouth, and the Romanian content. Ireland: English content, and ad income at near-UK rates (Romanian ad income is a few times lower, so it can't answer the €5k question).</li><li>The friend in Ireland helps test and spread the word. Friends and family come back out of kindness, so judge the numbers on strangers: we need roughly 500–1,000 installs from people who don't know us.</li><li>Both countries are EU, so the same consent screens apply; the consent age is 16 in both (kids policy).</li></ul></li>
+      <li class="task"><div class="task-top"><p>Bars to pass before going worldwide</p><span class="pill decide">Set now</span></div><ul><li>Next-day return ≥ 35% and after a week ≥ 12% (new players).</li><li>≥ 99.5% of sessions without a crash.</li><li>≥ 85% finish the tutorial.</li><li>No single puzzle or screen with an unusual quit or report rate.</li><li>Ireland's ad income per daily player roughly in line with the €0.35–0.55 a month estimate.</li><li>Clearly under a bar → fix and extend the soft launch, don't go big with a leaky game.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Language friends</p><span class="pill decide">Decided 22 Nov</span></div><ul><li>Native-speaker friends check a language before it goes live: word lists, meanings, example sentences and app texts. Also an honest "is this good for people here?" opinion.</li><li>Thank-you, no money: lifetime Plus for free, given from the admin site (Players → Give a gift).</li><li><strong>The next languages are chosen by who can check them:</strong> Polish, Czech, Spanish, Italian, Hungarian (friends for each). Order decided in the roadmap.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Word lists per language: bonus words and ban list</p><span class="pill decide">Decided 22 Nov</span></div><ul><li><strong>Bonus word list:</strong> written by us. It holds the catalogue words, plus our own everyday words (4–8 letters), plus real words found in a frequency run of random grids on Doru's PC. No outside dictionaries, so no licences. Ships in the app; the server checks against the same list.</li><li><strong>Ban list:</strong> built per language with the language friends (all slurs, slang, misspellings). It stays on our side only. Every grid is scanned in 8 directions before it ships.</li><li><strong>Every grid is made in advance and checked</strong>, Quick Play included (a pool of ~50 grids per pack per size, never repeated until all are seen). If players ever find Quick Play repetitive, we go back to grids made on the phone, with the ban list shipped as hashes.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Phase 2 · Worldwide</p><span class="pill open">Open</span></div><ul><li>All countries at once, except those that require a government game licence: <strong>mainland China</strong> (iOS needs a licence). <strong>Hong Kong is fine</strong> (own stores, no licence rule). <strong>Vietnam: to check</strong> near launch; its licence rule mainly targets games with in-app purchases, so we may be able to list there. Re-check the whole list at launch time.</li><li>Word of mouth abroad: friends in Ireland, Italy, Poland, Czechia, Spain, Hungary and the UK (in Hong Kong).</li><li>Store listings stay English + Romanian until more languages arrive.</li></ul></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ STORES -->
+  <section id="stores">
+    <div class="section-head"><h2>Stores &amp; portals</h2><span class="who">Doru</span></div>
+    <ul class="tasks">
+      <li class="task"><div class="task-top"><p>Poki approval</p><span class="pill open">Open</span></div><ul><li>Poki blocks outside requests by default: send them the API addresses and the privacy policy to approve.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Store listings in English and Romanian</p><span class="pill open">Open</span></div><ul><li>Name “LetterLyn”. No “Bookworm” in the title or keywords.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Check Stripe Managed Payments for web purchases</p><span class="pill open">Open</span></div><ul><li>In the Stripe dashboard (company account), see if “Managed Payments” (Stripe as merchant of record: it handles VAT) can be turned on for a Gibraltar company. About 3.5% on top of card fees.</li><li>If not available: Paddle or Lemon Squeezy. Same prices as in the apps; sign-in before buying.</li></ul></li>
+      <li class="task"><div class="task-top"><p>Apply for Google web-game ads (H5 Games Ads) for play.letterlyn.com</p><span class="pill open">Open</span></div><ul><li>After the new screens are built. Needs a Google-certified consent banner, ads mentioned in the privacy policy, and an ads.txt file.</li></ul></li>
+    </ul>
+  </section>
+
+  <footer class="sources">
+    <p>Not legal or tax advice. Fees and rules are from the sources below as of November 2026; confirm on the official pages before filing.</p>
+    <ul>
+      <li><a href="https://en.wikipedia.com/wiki/Bookworm_(game)">Bookworm (video game), Wikipedia</a></li>
+      <li><a href="https://trademarks.justia.com/owners/popcap-games-inc-1363598">PopCap Games trademarks, Justia</a></li>
+      <li><a href="https://tmarkmetric.com/insights/eu-trademark-cost">EU trademark cost 2026, tmarkmetric</a></li>
+      <li><a href="https://osim.ro/en/online-filing-trademarks/guides">OSIM trademark guides</a></li>
+      <li><a href="https://osim.ro/images/Ordine_Dispozitii/ordin_79_01.10.2025.pdf">OSIM Order 79/2025 (fees)</a></li>
+      <li><a href="https://intellectual-property-helpdesk.ec.europa.eu/news-events/news/applications-are-open-2026-sme-fund-2026-02-10_en">SME Fund 2026, EU IP Helpdesk</a></li>
+      <li><a href="https://craneip.com/euipo-sme-fund-2026-trade-mark-and-design-vouchers-exhausted-patents-and-plant-varieties-still-available/">SME Fund 2026 vouchers exhausted, Crane IP</a></li>
+      <li><a href="https://www.gibraltarlaw.com/data-protection-changes-taking-effect-under-the-uk-eu-treaty-on-gibraltar/">Data protection under the UK–EU treaty on Gibraltar</a></li>
+    </ul>
+  </footer>
+</main>

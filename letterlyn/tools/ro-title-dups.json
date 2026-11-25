@@ -1,0 +1,733 @@
+[
+ {
+  "ro": "Mustăți",
+  "uses": [
+   [
+    "Land Animals",
+    "Animal Bodies",
+    "Whiskers",
+    "Mustăți"
+   ],
+   [
+    "People & Body",
+    "Hair",
+    "Mustaches",
+    "Mustăți"
+   ]
+  ]
+ },
+ {
+  "ro": "Pene",
+  "uses": [
+   [
+    "Birds & Bugs",
+    "Bird Flight",
+    "Feathers",
+    "Pene"
+   ],
+   [
+    "Science Lab",
+    "Simple Machines",
+    "Wedges",
+    "Pene"
+   ]
+  ]
+ },
+ {
+  "ro": "Vânătoare de comori",
+  "uses": [
+   [
+    "Sea & Rivers",
+    "Pirates",
+    "Pirate treasure hunt",
+    "Vânătoare de comori"
+   ],
+   [
+    "Games & Toys",
+    "Outdoor Games",
+    "Treasure hunt",
+    "Vânătoare de comori"
+   ]
+  ]
+ },
+ {
+  "ro": "Mușchi",
+  "uses": [
+   [
+    "Wild Places",
+    "In the Forest",
+    "Mosses",
+    "Mușchi"
+   ],
+   [
+    "Science Lab",
+    "Skeleton",
+    "Muscles",
+    "Mușchi"
+   ]
+  ]
+ },
+ {
+  "ro": "Locuințe în peșteri",
+  "uses": [
+   [
+    "Wild Places",
+    "Caves",
+    "Cave dwellings",
+    "Locuințe în peșteri"
+   ],
+   [
+    "Long Ago",
+    "Stone Age",
+    "Cave homes",
+    "Locuințe în peșteri"
+   ]
+  ]
+ },
+ {
+  "ro": "Golfuri",
+  "uses": [
+   [
+    "Wild Places",
+    "Landscapes",
+    "Bays",
+    "Golfuri"
+   ],
+   [
+    "Countries & Maps",
+    "Continents",
+    "Gulfs and bays",
+    "Golfuri"
+   ]
+  ]
+ },
+ {
+  "ro": "Bâlciul",
+  "uses": [
+   [
+    "Wild Places",
+    "Countryside",
+    "County fair",
+    "Bâlciul"
+   ],
+   [
+    "Romania",
+    "The Romanian Village",
+    "Bâlciul",
+    "Bâlciul"
+   ]
+  ]
+ },
+ {
+  "ro": "Aprinderea focului",
+  "uses": [
+   [
+    "Wild Places",
+    "Wilderness Survival",
+    "Starting a fire",
+    "Aprinderea focului"
+   ],
+   [
+    "Long Ago",
+    "Stone Age",
+    "Making fire",
+    "Aprinderea focului"
+   ]
+  ]
+ },
+ {
+  "ro": "Roșii",
+  "uses": [
+   [
+    "Plants & Gardens",
+    "Vegetable Patch",
+    "Tomato plants",
+    "Roșii"
+   ],
+   [
+    "Everyday Food",
+    "Vegetables",
+    "Tomatoes",
+    "Roșii"
+   ]
+  ]
+ },
+ {
+  "ro": "Ardei",
+  "uses": [
+   [
+    "Plants & Gardens",
+    "Vegetable Patch",
+    "Pepper plants",
+    "Ardei"
+   ],
+   [
+    "Everyday Food",
+    "Vegetables",
+    "Peppers",
+    "Ardei"
+   ]
+  ]
+ },
+ {
+  "ro": "Nuci",
+  "uses": [
+   [
+    "Plants & Gardens",
+    "Orchard",
+    "Walnut trees",
+    "Nuci"
+   ],
+   [
+    "Sweets & Treats",
+    "Nuts",
+    "Walnuts",
+    "Nuci"
+   ]
+  ]
+ },
+ {
+  "ro": "Arahide",
+  "uses": [
+   [
+    "Plants & Gardens",
+    "Field Crops",
+    "Peanut plants",
+    "Arahide"
+   ],
+   [
+    "Sweets & Treats",
+    "Nuts",
+    "Peanuts",
+    "Arahide"
+   ]
+  ]
+ },
+ {
+  "ro": "Ananas",
+  "uses": [
+   [
+    "Plants & Gardens",
+    "Tropical Plants",
+    "Pineapple plants",
+    "Ananas"
+   ],
+   [
+    "Everyday Food",
+    "Fruit",
+    "Pineapples",
+    "Ananas"
+   ]
+  ]
+ },
+ {
+  "ro": "Vanilie",
+  "uses": [
+   [
+    "Plants & Gardens",
+    "Tropical Plants",
+    "Vanilla orchids",
+    "Vanilie"
+   ],
+   [
+    "World Kitchens",
+    "Spices",
+    "Vanilla",
+    "Vanilie"
+   ]
+  ]
+ },
+ {
+  "ro": "Solstițiul de vară",
+  "uses": [
+   [
+    "Weather & Seasons",
+    "Summer",
+    "Summer solstice",
+    "Solstițiul de vară"
+   ],
+   [
+    "Holidays & Festivals",
+    "Holidays of the World",
+    "Midsummer",
+    "Solstițiul de vară"
+   ]
+  ]
+ },
+ {
+  "ro": "Băuturi calde",
+  "uses": [
+   [
+    "Weather & Seasons",
+    "Winter",
+    "Hot drinks",
+    "Băuturi calde"
+   ],
+   [
+    "Around the House",
+    "Cosy Evening",
+    "Warm drinks",
+    "Băuturi calde"
+   ]
+  ]
+ },
+ {
+  "ro": "Cizme de cauciuc",
+  "uses": [
+   [
+    "Weather & Seasons",
+    "Rain",
+    "Rain boots",
+    "Cizme de cauciuc"
+   ],
+   [
+    "Clothes & Shopping",
+    "Shoes",
+    "Rubber boots",
+    "Cizme de cauciuc"
+   ]
+  ]
+ },
+ {
+  "ro": "Baloane cu aer cald",
+  "uses": [
+   [
+    "Weather & Seasons",
+    "Sky",
+    "Hot-air balloons",
+    "Baloane cu aer cald"
+   ],
+   [
+    "Holidays & Festivals",
+    "Festivals",
+    "Hot air balloon festivals",
+    "Baloane cu aer cald"
+   ]
+  ]
+ },
+ {
+  "ro": "Ceasuri de mână",
+  "uses": [
+   [
+    "Weather & Seasons",
+    "Telling Time",
+    "Watches",
+    "Ceasuri de mână"
+   ],
+   [
+    "Clothes & Shopping",
+    "Accessories",
+    "Wristwatches",
+    "Ceasuri de mână"
+   ]
+  ]
+ },
+ {
+  "ro": "Ceasornicari",
+  "uses": [
+   [
+    "Weather & Seasons",
+    "Telling Time",
+    "Clockmakers",
+    "Ceasornicari"
+   ],
+   [
+    "Jobs & Trades",
+    "Store Jobs",
+    "Watch repairers",
+    "Ceasornicari"
+   ]
+  ]
+ },
+ {
+  "ro": "Camera obscură",
+  "uses": [
+   [
+    "Science Lab",
+    "Light",
+    "Pinhole camera",
+    "Camera obscură"
+   ],
+   [
+    "Arts & Crafts",
+    "Photography",
+    "Darkroom",
+    "Camera obscură"
+   ]
+  ]
+ },
+ {
+  "ro": "Căști",
+  "uses": [
+   [
+    "Digital World",
+    "Gadgets",
+    "Headphones",
+    "Căști"
+   ],
+   [
+    "Clothes & Shopping",
+    "Hats",
+    "Helmets",
+    "Căști"
+   ]
+  ]
+ },
+ {
+  "ro": "Murături",
+  "uses": [
+   [
+    "Everyday Food",
+    "Pantry",
+    "Pickles",
+    "Murături"
+   ],
+   [
+    "Romania",
+    "Romanian Dishes",
+    "Pickles (murături)",
+    "Murături"
+   ]
+  ]
+ },
+ {
+  "ro": "Plăcinte",
+  "uses": [
+   [
+    "Sweets & Treats",
+    "Desserts",
+    "Pies",
+    "Plăcinte"
+   ],
+   [
+    "Romania",
+    "Romanian Dishes",
+    "Plăcinte",
+    "Plăcinte"
+   ]
+  ]
+ },
+ {
+  "ro": "Turtă dulce",
+  "uses": [
+   [
+    "Sweets & Treats",
+    "Cookies",
+    "Gingerbread cookies",
+    "Turtă dulce"
+   ],
+   [
+    "Holidays & Festivals",
+    "Christmas",
+    "Gingerbread",
+    "Turtă dulce"
+   ]
+  ]
+ },
+ {
+  "ro": "Pungi cu surprize",
+  "uses": [
+   [
+    "Sweets & Treats",
+    "Party Food",
+    "Party bags",
+    "Pungi cu surprize"
+   ],
+   [
+    "Holidays & Festivals",
+    "Birthday",
+    "Goody bags",
+    "Pungi cu surprize"
+   ]
+  ]
+ },
+ {
+  "ro": "Acoperișuri",
+  "uses": [
+   [
+    "Around the House",
+    "Kinds of Homes",
+    "Roofs",
+    "Acoperișuri"
+   ],
+   [
+    "City Life",
+    "In the City",
+    "Rooftops",
+    "Acoperișuri"
+   ]
+  ]
+ },
+ {
+  "ro": "Inele",
+  "uses": [
+   [
+    "Clothes & Shopping",
+    "Jewelry",
+    "Rings",
+    "Inele"
+   ],
+   [
+    "Sports Fan",
+    "Gymnastics",
+    "Still rings",
+    "Inele"
+   ]
+  ]
+ },
+ {
+  "ro": "Croitorie",
+  "uses": [
+   [
+    "Clothes & Shopping",
+    "Sewing",
+    "Tailor's shop",
+    "Croitorie"
+   ],
+   [
+    "City Life",
+    "Shops",
+    "Tailor shop",
+    "Croitorie"
+   ]
+  ]
+ },
+ {
+  "ro": "Fanfare",
+  "uses": [
+   [
+    "Clothes & Shopping",
+    "Uniforms",
+    "Marching bands",
+    "Fanfare"
+   ],
+   [
+    "Holidays & Festivals",
+    "Carnival",
+    "Brass bands",
+    "Fanfare"
+   ]
+  ]
+ },
+ {
+  "ro": "Fântâni arteziene",
+  "uses": [
+   [
+    "Clothes & Shopping",
+    "Mall",
+    "Fountains",
+    "Fântâni arteziene"
+   ],
+   [
+    "City Life",
+    "In the City",
+    "City fountains",
+    "Fântâni arteziene"
+   ]
+  ]
+ },
+ {
+  "ro": "Magazin de dulciuri",
+  "uses": [
+   [
+    "Clothes & Shopping",
+    "Mall",
+    "Candy store",
+    "Magazin de dulciuri"
+   ],
+   [
+    "City Life",
+    "Shops",
+    "Sweet shop",
+    "Magazin de dulciuri"
+   ]
+  ]
+ },
+ {
+  "ro": "Sirene",
+  "uses": [
+   [
+    "Jobs & Trades",
+    "Emergency Services",
+    "Sirens",
+    "Sirene"
+   ],
+   [
+    "Stories & Myths",
+    "Fairies",
+    "Mermaids",
+    "Sirene"
+   ]
+  ]
+ },
+ {
+  "ro": "Negustori",
+  "uses": [
+   [
+    "Jobs & Trades",
+    "Store Jobs",
+    "Shopkeepers",
+    "Negustori"
+   ],
+   [
+    "Long Ago",
+    "Middle Ages",
+    "Merchants",
+    "Negustori"
+   ]
+  ]
+ },
+ {
+  "ro": "Vânzători din piață",
+  "uses": [
+   [
+    "Jobs & Trades",
+    "Store Jobs",
+    "Market vendors",
+    "Vânzători din piață"
+   ],
+   [
+    "City Life",
+    "Market",
+    "Market sellers",
+    "Vânzători din piață"
+   ]
+  ]
+ },
+ {
+  "ro": "Instalația electrică",
+  "uses": [
+   [
+    "Jobs & Trades",
+    "Building Site",
+    "Wiring",
+    "Instalația electrică"
+   ],
+   [
+    "On the Move",
+    "Car Parts",
+    "Car electrics",
+    "Instalația electrică"
+   ]
+  ]
+ },
+ {
+  "ro": "Plastilină",
+  "uses": [
+   [
+    "School Days",
+    "Preschool",
+    "Play dough",
+    "Plastilină"
+   ],
+   [
+    "Arts & Crafts",
+    "Crafts",
+    "Modeling clay",
+    "Plastilină"
+   ]
+  ]
+ },
+ {
+  "ro": "Sala de sport",
+  "uses": [
+   [
+    "School Days",
+    "Around the School",
+    "School gym",
+    "Sala de sport"
+   ],
+   [
+    "Sports Fan",
+    "Ball Sports",
+    "Sports hall",
+    "Sala de sport"
+   ]
+  ]
+ },
+ {
+  "ro": "Orgi",
+  "uses": [
+   [
+    "Music & Stage",
+    "Instruments",
+    "Organs",
+    "Orgi"
+   ],
+   [
+    "City Life",
+    "Places of Worship",
+    "Pipe organs",
+    "Orgi"
+   ]
+  ]
+ },
+ {
+  "ro": "Vitrine",
+  "uses": [
+   [
+    "Arts & Crafts",
+    "Museum",
+    "Display cases",
+    "Vitrine"
+   ],
+   [
+    "City Life",
+    "Shops",
+    "Shop windows",
+    "Vitrine"
+   ]
+  ]
+ },
+ {
+  "ro": "Torsul lânii",
+  "uses": [
+   [
+    "Arts & Crafts",
+    "Textile Arts",
+    "Spinning wool",
+    "Torsul lânii"
+   ],
+   [
+    "Romania",
+    "Folk Crafts",
+    "Spinning wool (furca)",
+    "Torsul lânii"
+   ]
+  ]
+ },
+ {
+  "ro": "Atena",
+  "uses": [
+   [
+    "Stories & Myths",
+    "Greek Myths",
+    "Athena",
+    "Atena"
+   ],
+   [
+    "City Life",
+    "Famous Cities",
+    "Athens",
+    "Atena"
+   ]
+  ]
+ },
+ {
+  "ro": "Piste de biciclete",
+  "uses": [
+   [
+    "On the Move",
+    "Bikes",
+    "Bike paths",
+    "Piste de biciclete"
+   ],
+   [
+    "City Life",
+    "Streets",
+    "Bike lanes",
+    "Piste de biciclete"
+   ]
+  ]
+ }
+]

@@ -1,0 +1,134 @@
+# LetterLyn rules sheet
+
+**The one place for every decided rule and number.** Check here before stating a rule, writing code, data or a page.
+When a decision changes, edit the line here (newest wins) and note the date. Details and the reasons live in `letterlyn-plan.md` (§ numbers) and the Content & Coins page.
+If something isn't here, it isn't decided yet: look it up in the plan, or ask.
+
+## Grids and difficulty
+- Difficulty levels: ● green **Relaxed**, ■ blue **Classic**, ◆ black **Expert** (ski-style ribbons, colour + shape).
+- **Tall grids** (width × height): Relaxed **7×9**, Classic **9×12**, Expert **11×14**. The mega puzzle (later) is **20×30**. The shape is fixed per puzzle, not per screen. (Content page §2; the prototype code still has 7/8/10/12 squares and must change.)
+- Words used per puzzle: Relaxed **6–8** (the shortest), Classic **10–12**, Expert **all that fit, at least 16** (a topic may hold 1–2 mega-only words). Checker needs per topic: 8 fit Relaxed, 12 fit Classic, 16 fit Expert. One written topic gives three puzzles.
+- Daily: Classic size (9×12) every day; Sunday weekend special at Expert size (11×14). Same for everyone. New daily at 00:00 UTC.
+- The review grid for My words is 6×6.
+
+## Words
+- A topic has **16–18 words**.
+- **Length rule (2026-11-22):**
+  - A word goes into a level if it fits across. That means up to 7 letters for Relaxed, 9 for Classic and 11 for Expert.
+  - At most 1 longer word per puzzle may be placed down only. That allows up to 9 letters in Relaxed, 12 in Classic and 14 in Expert.
+  - 15–20 letters: mega puzzle only. Over 20: never. Minimum 3 letters.
+- **Two-word names (2026-11-22):**
+  - Stored and shown with their proper spelling ("GUINEA PIG", "AYE-AYE"), joined only in the grid (GUINEAPIG).
+  - Never in Relaxed; at most 2 per Classic puzzle and 4 per Expert puzzle.
+  - A one-line tip the first time one appears.
+  - Watched in the soft launch through "not really in grid" reports and quit rates; the checker can find every one if we need to remove them.
+- Grid form is letters only. Spaces, hyphens and apostrophes exist only in the display form.
+- **No hidden-inside pairs in one topic (2026-11-22):** a word inside another word of the same topic, forwards or backwards (BEE in BUMBLEBEE), can't share a grid with it. The engine keeps the first and drops the other, so the checker counts the topic the same way. Both words may stay in the topic: the engine picks per puzzle (shuffles, then skips a word that clashes with one already picked), so each puzzle holds only one of them (SPRING/PRIMĂVARĂ and SUMMER/VARĂ, 2026-11-23); the checker counts only one toward the level fit. When it costs a headline word, the topic's headline word stays (RABBIT in "Rabbits"); the compound goes. No rude words (the bad-word scan covers every grid line in 8 directions).
+- Meanings are our own text per concept and language. Not DEX.
+- No repeats: a daily topic not again for 60 days; a word not in any daily for 90 days; the word of the day never within 365 days.
+
+## Content structure
+- Shelf → pack → topic (one puzzle per difficulty) → 16–18 words.
+- **Topics per pack: exactly 20** (Doru, 2026-11-23; was 20–30), so every pack has the same length and a stamp/trophy always means the same amount of play. Topics beyond 20 go to the **Extras** list (`catalog/extras.json`, shown at the bottom of the catalogue page, not a shelf): reserve topics + spare packs, used to replace weak topics, seed new shelves, or for dailies and Quick Play.
+- **Packs per shelf: exactly 15** (Doru, 2026-11-23; replaces 20 and the old 10–12). The game grows by adding **new named shelves** (e.g. Birds & Bugs next to Animals), never by making a shelf longer. The catalogue is all planned content (pack titles, topics, then words in EN + RO); thin themes are merged into named shelves, the weakest packs kept as spares. Catalogue v3 (2026-11-23): 29 shelves × 15 = 435 packs (14 "to draft" slots), 24 spare packs.
+- **Launch size is decided by how much has been checked by real eyes**, not by how much is planned. A shelf is released only when all 15 packs are done and checked (so every trophy is reachable from day one).
+- **Shelf names are specific, never generic** (Doru, 2026-11-23): a name must describe exactly what's inside so no shelf ever needs a "2" (Land Animals, Everyday Food, Long Ago, Countries & Maps). Shelf names may use "&"; pack names may not.
+- Pack names have no "X and Y". Split, rename or merge instead.
+- A published pack never changes. Drafts can change freely.
+- **Repeat rules (2026-11-22, checked by `letterlyn/packages/content/scripts/check-catalog.mjs`):**
+  - Every topic title is unique in the whole catalogue.
+  - **Similar or same-meaning titles (Doru, 2026-11-25):** judged by the words, not the title. A similar title (or the same Romanian title) is fine when the topics sit apart (different shelves, not one after another) and have different words; when the words repeat, one topic changes. Titles with a double meaning must have clearly different words. The catalogue page shows both word lists side by side for every such pair.
+  - A word appears in at most 3 topics of one pack.
+  - **Play order rule (Doru):** play order is the packs in shelf order, then the topics in pack order (the Continue button). A word may not come back within the next **4 puzzles**. Repeats further apart are fine, as long as each puzzle also has new words.
+  - Fixed mostly by reordering: `scripts/order-topics.mjs <shelf>`. A pack's **first topic is its headline topic** (Pets → Dogs) and never moves.
+  - **The game helps too:** when choosing a puzzle's 6–8 or 10–12 words, it skips words the player saw in their last few puzzles at that level, if it can. This also covers shuffled play and Quick Play.
+  - Shelf freshness (the share of a pack's words new to its shelf) is shown on the catalogue page as information only. It is not a rule.
+  - Each pack has `covers` and `leaves` notes saying what it owns.
+- **Topics must be concrete** (species, objects, names), not moods or ideas. Vague topics fill up with generic words (TINY, NIGHT, MOTHER, GROW). (Learned from the Animals draft, 2026-11-22.)
+- **The whole catalogue is drafted now** (2026-11-22): every shelf, pack, topic and English word. This way words are settled across all packs before anything is published. Run the checker against all drafts before publishing any pack. Romanian words come in a second pass (tested first on Pets and Farm, 2026-11-23); other languages are added when their language friends check them. See "Languages and Learn mode".
+- **Topic titles in other languages (Doru, 2026-11-24):** every topic has a title per language (`ro`). Two topics may share the same translated title when they mean different things in different places (Sirens on emergency vehicles and Mermaids in fairy tales are both "Sirene"); the pack gives the context. Only a real duplicate (the same concept twice) is replaced.
+- **How words are chosen (Doru, 2026-11-24):** per shelf, never topic by topic. Each topic gets a pool of candidates (EN + RO), each candidate is rated core / good / weak / bad, then one program picks the 16–18 words of every topic for the whole shelf: core words kept, weak and bad never used, everything else spread so the shelf repeats itself as little as possible, all other rules kept. Aim: at least 0.7 different words per word slot on a shelf, no word in more than ~7 topics of a shelf. Tools: `letterlyn/packages/content/scripts/wordfill/`.
+- Local shelves (e.g. Romania) exist only in their language. In Learn mode they work only in the direction whose grid is in that language.
+
+## Languages and Learn mode (decided 2026-11-23)
+- **Shared across languages:** shelves, packs, topics (titles translated). **Per language:** the words. Each language has its own 16–18 words per topic, written/checked by a native speaker; not word-for-word translations.
+- **Every language gets its own grids** from its own words, same grid sizes. Each level picks the shortest words of that language, so Relaxed may use different words per language.
+- **The checker runs per language** with all the same rules (`check-catalog.mjs --lang ro`). A language is ready when its report is clean.
+- **Fix order when a word fails in a language:** a shorter word people really use → another word for the topic → down-only (1 per puzzle) or mega-only → last resort: the topic is left out in that language (a pack has 20–30 topics). If one language is regularly too long, it may get a per-language setting (e.g. 2 down-only words), never a different grid size.
+- **While drafting, English may change so the EN–RO lists match** (Doru, 2026-11-23), as long as the English word is just as good. EN–RO is our best pair; later languages match English as best they can. Reviewed topic by topic with Doru (Dogs done).
+- **Translation rule (Doru, 2026-11-23):** each word is the proper translation of its English partner, as the same kind of word: noun for noun (PETTING = MÂNGÂIAT, CHASE = FUGĂREALĂ), adjective for adjective (CRACKED = CRĂPAT), verb for verb. **Romanian verbs use the "it does" form** (present, 3rd person, without "se"): CLIMB = CAȚĂRĂ, SING = CÂNTĂ, NIBBLE = RONȚĂIE, SNIFF = ADULMECĂ. Dog commands are commands (SIT = ȘEZI, SPIN = ÎNVÂRTE). Nouns without article; plural only when the English is plural. If no exact match exists, change the English word (while drafting) or leave the pair out. Learn mode depends on this.
+- **A word only has to exist, not be common** (Doru, 2026-11-24): a correct translation that is in the dictionary is fine even if rare (GHIU, ECHE). Learning new words is part of the game and every word gets a word card with its meaning. Replace a word or topic only when no correct word exists in that language.
+- **One word, two concepts is fine in other languages** (REAP and SICKLE = SECERĂ): the engine never puts the same word twice in one puzzle, Learn never puts both concepts in one puzzle, and the word card explains each meaning. The checker notes it as info; it counts once toward the level fit.
+- **English = US English** (Doru, 2026-11-23): US words and spelling everywhere (VACATION, CAN, LEASH, CORN, GRAY, COLOR, PLOW, TIRES, FENDER, CANDY, SOCCER, MATH, MOVIES). The checker flags known UK words and spellings. A UK edition can come later as its own language with only the differences. **(Doru, 2026-11-25):** one English for everyone; UK players understand US English, so a UK edition only if players ask for it. Words that are UK in one sense but normal US in another are allowed in the US sense, and review checks the sense: HOLIDAY (public holiday, not vacation), TIN (the metal, not a can), TAP (tap dance, to tap; not a faucet), DUMMY (bridge), FLASK (lab), TORCH (flaming/Olympic torch, not a flashlight), DIALOGUE, FOOTBALL (American football). Titles too: movies, not cinema.
+- **Packs lock per language.** A new language adds puzzles and never changes published ones.
+- **Data:** every word is linked to an **English concept** (English is the hub). In the topic files: `words.ro` lines up with `words.en` (same position = same concept, `null` = not used in that language); words with no English partner go in `extra.ro`.
+- **Learn mode puzzles are their own puzzles**, one set per language pair and direction, made in advance and frozen like all grids (same ban scan).
+  - The grid is in the language being learned, so only its lengths matter. The list is in the player's language (labels may wrap).
+  - Only **shared concepts** (present in both languages) are used. Aim: a new language keeps **at least 12 of a topic's English concepts** where the language allows. Extra local words are fine.
+  - The checker counts, per pair and topic, the shared concepts that fit each level in the grid language (`--learn ro:en`; a level needs at least 6 / 10 / 16 fitting words, the low end of each level's range). Topics without enough are left out of Learn for that pair, or offered at an easier level only.
+  - **No ambiguous pairs in one Learn puzzle:** two concepts that share a word in either language (HARE and RABBIT are both IEPURE) never go in the same Learn puzzle.
+  - Topics that can't translate stay out of Learn, marked `"learn": false` in the topic file (Pet names, Rare breeds). They are normal puzzles in each language, with that language's own words: `words.ro` is then its own list, not lined up with English (no pairs, no extras).
+  - **Names are never in Learn (Doru, 2026-11-25):** first names, pet names and place names are names, not translations. Name topics are `learn: false` (First Names pack, Pet names); on the Romania shelf, place names have no English partner (`en` null) and keep their Romanian diacritics (MUREȘ, BRAȘOV). Learning other countries' cities, mountains and rivers would be its own pack.
+  - **A word's Romanian follows the topic's sense (2026-11-25):** KICK = LOVITURĂ in martial arts; the word card explains the exact meaning (lovitură cu piciorul). Same meaning, same Romanian everywhere (AIRLOCK = SAS in space, ECLUZĂ only for canal locks).
+
+## Grid making and safety (decided 2026-11-22)
+- **Every grid is made in advance on our side and checked** (packs, dailies, mega, Quick Play) by **one fixed, versioned generator**, tested properly before launch. The generator version is saved with every puzzle; a new version only affects new puzzles.
+- **Ban list** per language, built with the language friends (slurs, slang, misspellings). It stays on our side only; every grid is scanned with it in all 8 directions before it ships. Plus my review of the grids' leftover words.
+- **Quick Play = a pool** of ~50 grids per pack per Quick Play size (~50,000+ and growing as packs launch; more can be added any time). The phone never repeats a pool grid until it has shown them all for that pack and size. Friend codes point to a pool grid.
+- **Fallback, only if players say Quick Play feels repetitive:** go back to grids made on the phone, with the ban list shipped as **hashes** (never readable words), and accept the small risk. Possibly with a licensed word list then.
+
+## Rewards
+- **Stamp per finished pack, per difficulty.**
+- **Shelf trophies (changed 2026-11-23):** bronze **5** packs, silver **10**, gold **15** (= the whole shelf). No platinum or higher tier.
+- Each shelf has its own trophy design. The top piece never changes; the base grows: bronze 1 step, silver 2, gold 3 plus a laurel wreath. The tier name shows under it. The trophy carries the difficulty ribbon it was earned in.
+- Stars = how well a puzzle was solved; ribbon = difficulty; metal = how many packs.
+- **Bonus words (decided 2026-11-22):** a real word of 4+ letters traced in the grid but not on the list goes into Lyn's bonus jar (+1, nothing marked in the grid).
+  - Every 10 bonus words pay **10 coins**, then the jar restarts.
+  - Counts once per puzzle per word, only on first solves of pack puzzles, the daily and the first 3 Quick Plays a day.
+  - Doesn't count: a word inside a list word (CREAM in ICE CREAM), or any rude word.
+  - No effect on rank or time. Learn mode: XP only.
+  - "Sharp eyes" badge at 50 / 250 / 1,000. Metric: bonus words per puzzle.
+  - **One bonus word list per language, written by us:** catalogue words, our own everyday words (4–8 letters), and real words found in a frequency run of random grids on Doru's PC (I mark them, Doru checks Romanian). The list ships in the app and the server checks against the same list. No outside dictionaries, no licences. A real word missing from the list simply doesn't count; we add words as we find them.
+- Economy (slow to earn, only ever loosened): Content & Coins page §3 and plan §25.
+- **Rewards are coins (Doru, 2026-11-25, after looking at Duolingo):** playing pays coins (daily tasks, streak goals, league prizes, finished packs, bonus words); themes, pictures and Lyn's outfits are bought with those coins. No cosmetic is given as a reward.
+  - **Exception, earned only, never sold:** things that prove something: stamps, shelf trophies, league medals, the Sharp eyes badge, the Plus supporter frame and badge.
+  - **Streak goal:** the player commits to 7 / 14 / 30 / 50 days and gets bonus coins on reaching it (amounts set with the economy numbers).
+  - **Invite a friend → coins**, through friend codes (paid when the friend really plays, e.g. finishes a first pack, so it can't be farmed; amount with the economy numbers).
+  - **Free accessory of the month (Doru, 2026-11-25, from launch; the one exception to "no cosmetics as rewards"):** by the end of the month (00:00 UTC on the 1st) every day of that month must be done: the daily solved that day, or later as a past daily (free with Plus, 50 coins otherwise), or covered by a streak freeze. Past dailies count only if solved before the month ends. The archive goes back to launch, so a player who joins mid-month can catch up the earlier days the same way (free with Plus, 50 coins each otherwise). Harsh on purpose so it can be loosened later (e.g. allow 2 missed days).
+  - **League tiers** with promotion and demotion zones (bronze → silver → …): later, on top of the weekly league.
+  - Still: coins are never sold, no lives or energy.
+  - **No free streak freeze from daily tasks (Doru, 2026-11-25):** freezes are bought with coins (only the 7- and 30-day streak goals give one). Replaces "all 3 tasks → a freeze".
+  - **Plus never gives coins or faster coins (Doru, 2026-11-25):** that would be selling coins and unfair to free players. Plus may make play more comfortable (its 1 free hint a day, ~450 coins of hints a month, is the limit), never shop progress.
+  - **Look sets stay €2.99 (Doru, 2026-11-25):** they are bought by fans, not for value; a higher price would not earn more.
+  - Coin amounts and prices: proposed economy v2 on the content page ("The math"), waiting for Doru's check.
+
+## Avatars (decided 2026-11-25)
+- **Your avatar is your name's animal** (CalmOtter42 → an otter), dressed with accessories. No picture list, no uploaded photos.
+- **Accessories are for the player's animal only** (hats, glasses, scarves, bows, collars, tufts, beards, clothes…), placed on fixed anchor points of each animal head.
+- **Lyn is our mascot and trademark, never dressed by players (Doru, 2026-11-25).** Lyn stays the standard Lyn everywhere; we give Lyn a few seasonal looks ourselves (Santa hat in December, winter scarf, summer sunglasses, crown on the Plus screen). Replaces the old Lyn outfits.
+- Stored as a small list of choices with the account (animal from the name + accessory ids); drawn from layers everywhere (rankings, friends, league), offline too.
+- **Start limited, loosen later:** a small free set at launch (natural fur colours, eye colour, expressions, background colours, a few basic items); the rest unlocked with coins, some in money sets, a few earned only (Plus crown, league crown). New ones every month. If the game earns enough, more can become free later (only ever loosened; Duolingo makes all of it free).
+- Changing your name's animal changes the avatar's animal (name-change rules apply); accessories stay.
+
+## Player names (decided 2026-11-23)
+- **Built from lists, never typed:** adjective + animal + number ("CalmOtter42", Romanian noun first with the article: "VidraCalmă42"). Players pick the adjective and the animal from the lists (or tap random); the server gives the number. No moderation needed.
+- **Every name is unique.** The server checks before giving out or changing a name (unique index on adjective + animal + number). The number is the shortest free one for that pair: 2 digits first, then 3, then 4 (10–9999). If a pair is full: "This one is taken, try another word."
+- **Room:** lists grow to ~100 adjectives and ~100 animals (append-only, so existing names never change) → ~100 million names. Today: 32 × 32 × 90 = 92,160.
+- **Typed names: not planned** (2026-11-25). Players already choose their name from the lists; typed names would need moderation. Look again only if many players ask.
+- **Names are online only.** First launch offline: play with no name (progress saved on the device); the name is given the first time the player is online. Never a temporary offline name that changes later. Changing the name needs internet ("Needs internet" on the button); cost rules as in plan §25 (free once a month, sooner 100 coins or one optional ad), charged on the server.
+
+## Email and notifications (decided 2026-11-25)
+- **No email login and no passwords, ever.** Sign-in is Google or Apple (or the portal account); we store "provider + id → player".
+- **Email is stored only when the player opts in** to one of the two below. It is pre-filled from the Google/Apple sign-in, can be changed, and is confirmed by a link (double opt-in, consent time saved). Apple's hidden address works: Apple forwards our mail once our sending domain is registered with Apple's private email relay.
+- **1. Notification emails:** the same messages as push notifications (new pack, streak reminder…), so web players get them too. Each type is on/off in Settings › Notifications, like push.
+- **2. Newsletter:** a separate opt-in with its own consent; every newsletter has an unsubscribe link (not a notification setting).
+- The email is deleted when both are off, or with the account (delete-my-data). Only players over the country's consent age; never on Poki or CrazyGames (no personal data allowed there). Web players can also get web push where the browser allows it.
+- Sending service: to choose when built (keep the cost per email near zero; the list only grows with opt-ins).
+
+## People and brand
+- Lyn has no gender. In texts always "Lyn", never he or she. Romanian copy avoids gendered adjectives about Lyn.
+- Kids: under the country's consent age (RO 16, IE 16, UK 13, US 13). One `policy` object with 5 differences (plan §25).
+- Remus is a partner, not an employee.
+
+## Launch
+- Closed test → soft launch Romania + Ireland (4–6 weeks, with set bars) → worldwide at once. Mainland China out; Vietnam to check (plan §25).

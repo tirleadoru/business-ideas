@@ -6,23 +6,11 @@ _Last updated: 2026-11-19_
 
 ---
 
-## ▶ Where we left off (updated 2026-11-20)
-**Letterlyn: M2 done (branch `m2`, pushed). Waiting on Remus before the first real deploy.**
-- Done:
-  - Step 1: Remus got the setup message + the two `.service` files.
-  - Step 2: Doru sent Remus two public keys: `~/.ssh/letterlyn_deploy.pub` (GitHub Actions) and `~/.ssh/id_ed25519.pub` (Doru).
-  - Step 3: GitHub environments `staging` + `production` created, each with `DEPLOY_HOST`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`. No "required reviewers" (paid plan only; not needed).
-- Waiting for Remus to confirm:
-  - keys added and temporary deploy key removed;
-  - systemd units installed + enabled (not started), staging env has PORT=3001;
-  - DB users have CREATE/ALTER/INDEX/REFERENCES/SELECT/INSERT/UPDATE/DELETE;
-  - nginx sends `X-Real-IP` for api + staging-api;
-  - `sudo -u letterlyn sudo -n -l` shows the 2 restart rules;
-  - rsync + curl installed.
-- **Next (step 4), when Doru pastes Remus's reply:** check it → merge `m1` then `m2` into `main` → create + push `staging` branch (first deploy to staging-api.letterlyn.com; watch it, fix if needed).
-- Step 5: push `main` (API + play.letterlyn.com live), then ask Remus for the uptime check on `/health`.
-- Open: email provider for support@/privacy@ (Doru decides). Next build work offered: letterlyn.com site + privacy policy (needed before store submissions), then M3 or Google/Apple sign-in buttons.
-- Doru prefers **one step at a time** with exact clicks/commands when doing setup tasks.
+## ▶ Where we left off
+- **LetterLyn** (word search, 🛠 building) has its own memory: **`letterlyn/MEMORY.md`** (where we left off, decisions, page links). Its rules sheet is `letterlyn/rules.md`, its plan `letterlyn/plan.md`. Everything LetterLyn lives in `letterlyn/`.
+- Other ideas: see the idea pipeline (§4).
+
+---
 
 ## 1. Goal & constraints
 
@@ -612,7 +600,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
 
 - **Layout (2026-11-19):**
   - **Restructured (2026-11-19):** `~/Business Ideas/` is a plain folder.
-  - The notes repo lives in `business-ideas/` (personal): `MEMORY.md`, `CLAUDE.md`, `notes/`.
+  - The notes repo lives in `business-ideas/` (personal): `MEMORY.md`, `CLAUDE.md`, and one folder per product (`letterlyn/`, since 2026-11-25: its memory, rules, plan, page sources and tools).
   - Each product is a **sibling** folder with its own repo on the company account (e.g. `letterlyn/`). No repo-in-repo.
   - A root `CLAUDE.md` (untracked) imports `business-ideas/CLAUDE.md`.
   - **letterlyn/** (2026-11-19): repo `git@github.com:SmartDevSolutionsLimited/letterlyn.git` (the default github.com SSH key = DoruTirleaSD). The local identity is pinned to `DoruTirlea <doru@smartdevsolutions.net>`.
@@ -622,66 +610,7 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
   - No AI co-author lines in commits, ever.
 
 ## 7. Decision log
-- **2026-11-20:** **Remus finished the Letterlyn server base setup** (Lightsail "letterlyn-prod", Frankfurt, Ubuntu 24.04, Node 24, MariaDB 11.4, nginx + one certificate for all 5 hosts, DNS in Route 53, snapshots daily keep 7, CPU + health alarms). **Changed by Remus:** no nightly DB dumps to a bucket for now; snapshots only until the game proves out. Env files use DB_HOST/DB_PORT/DB_NAME/DB_USER/DB_PASSWORD: the API was adapted to read them (commit 8c4a7a8). Still to do: SSH keys (Doru + GitHub Actions), install the systemd units, email provider (support@/privacy@), disk alarm, uptime check, restore test.
-- **2026-11-20:** **Letterlyn M2 built** on branch `m2` (company repo, 3 commits on top of m1, pushed). Details: plan §16.
-  - API (`apps/api`): Node + Hono + MariaDB, bundled to one 1.5 MB file. Anonymous players + generated names, cloud save (fast-forward or merge), daily + friend-code leaderboards (time + 30 s per hint), 48 h offline rule, server re-checks every run, device-move codes (LYN-XXXX-XXXX), Google/Apple token linking (server side only), delete my data, anonymous daily counters, content feed at `/v1/content`.
-  - `packages/client` shared by web + mobile: outbox, save sync, feed cache. Web + Android tested end to end against a local API (offline → back online → ranked).
-  - Deploy: `scripts/deploy/*.sh` + GitHub workflows; rollback tested in a simulation. Server files in `apps/api/deploy/`. Checklist artifact v4.
-  - Decisions taken by Claude (can change): content feed served by the API (not letterlyn.com/content); new packs join the daily after 31 days (no schedule file needed); friend-code seeds name their pack; leaderboard = fastest time + 30 s per hint; no staging web game.
-- **2026-11-19:** Content via a versioned feed on our server (no app release for new packs). Daily puzzle generated from the date, plus a 30-day schedule in the feed; packs are append-only; an offline fallback daily is unranked. Plan §13–14.
 - **2026-11-19:** Studied the Vaultaire case (crowded category + web SEO with one agent-written guide/day + lifetime pricing). Proposed for Letterlyn: a daily playable/printable puzzle page loop on letterlyn.com and a lifetime "Plus" IAP. Updated the idea filter (see §4 case study). To discuss when the user is back.
-- **2026-11-19:** Deploys: GitHub Actions on push (staging/main), like the user's red-assistance site/admin. Three path-filtered workflows (site, web, API). SSH to Lightsail (no SSM), auto-rollback on a failed health check, no repo on the server. Plan §12c; checklist artifact updated.
-- **2026-11-19:** **No repo on the Letterlyn server** (user's preference). A deploy script on the Mac builds and uploads only outputs (site, web game, bundled API) over SSH. Releases folder + `current` link for rollback. Server checklist artifact: https://claude.ai/artifact/3RZVW5eDurcLFqf1Rdh33u
-- **2026-11-19:** Remus does whatever we specify, so we hand him a decided spec instead of questions: `notes/letterlyn-server-setup.md` (Ubuntu 24.04, Frankfurt, 2 GB plan, nginx + Node 24 + MariaDB local, staging + prod API on ports 3001/3000, Lightsail snapshots + bucket DB dumps, support@/privacy@ email, monitoring).
-- **2026-11-19:** Hosting decided: **Letterlyn gets its own setup on the company's AWS Lightsail** (Remus is the user's business partner and server admin). It's a separate business from red-assistance (EC2); don't compare or copy its infrastructure. One instance: nginx for site + web game, Node API (+ staging), DB on-box or Lightsail managed, Lightsail snapshots + bucket backups. Details: plan §12b.
-- **2026-11-19:** **letterlyn.com bought.** Remus is preparing a server. Deployment explained: only build outputs go out (site → letterlyn.com, web game → play.letterlyn.com, API → api.letterlyn.com, mobile → stores). Claude recommends Cloudflare Pages + Workers instead of a self-managed server. Questions for Remus are in plan §12.
-- **2026-11-19:** **Letterlyn M1 built** on branch `m1` (company repo, commit 1905eb5).
-  - Layout: monorepo with `packages/engine` (all game rules: session, scoring/combos, daily+streaks, coins/XP/levels, achievements, save migration, share texts, friend codes), `packages/content` (packs + EN/RO strings), `apps/web` (plain TS, ~20 KB gz), `apps/mobile` (Expo SDK 58, Expo Router, Gesture Handler + Reanimated, haptics, expo-audio).
-  - Tooling: Lefthook per-folder hooks, path-filtered GitHub checks (source only), red-assistance-style `scripts/build.sh`.
-  - Verified:
-    - 50 engine tests + 3 mobile tests; expo-doctor 20/20.
-    - Web end-to-end in Chrome.
-    - Android release build played end to end on the emulator (same daily, rewards and achievements as web).
-    - iOS release build launches with light/dark mode (simulator touch not automated).
-  - Open: real icon/splash art, `eas init` with the company account, user device testing, merge m1 → main.
-- **2026-11-19:** Disk nearly full (2.4 GB free). With the user's OK, cleared the npm, Xcode DerivedData, Gradle and CocoaPods caches plus unavailable simulators → 46 GB free. Rule: delete Letterlyn's generated ios/android folders after each native test build.
-- **2026-11-19:** User: no more tests; build each platform natively, two codebases OK. Claude proposes **Expo/RN for iOS+Android + plain TS web for portals/site**, sharing one TS engine (needed for identical daily puzzles and server checks). Swift+Kotlin advised against: 3 UIs + an engine ported twice + cross-language determinism risk. Waiting for the user's decision.
-- **2026-11-19:** **Stack spike run** (branch spike/stack-comparison, company repo). Same 12×12 screen in Capacitor vs Expo.
-  - Web: both 60 fps; Capacitor ready in ~0.5 s vs Expo ~2.4 s (both OK for portals).
-  - Mobile (emulator/simulator): Expo starts faster (0.84 vs 1.18 s median on Android), has steadier frames (worst 33 vs 67 ms), and shows the board within 1 s on iOS. Capacitor showed a blank WebView for 6+ s on first iOS launch.
-  - Leaning **Expo**. Waiting for the user's real-device tests (iPhone 13/16, S20 Ultra; budget Samsung A15/A16 recommended to buy). Details: plan §10.
-- **2026-11-19:** The user demanded a premium feel ("we do not do shit stuffs in this company").
-  - Research: WebViews are weakest for games/gestures/animation and on budget Android; no top-chart Capacitor games found. Claude corrected its earlier overconfident "plenty fast" claim.
-  - Portal limits: CrazyGames ≤50 MB (≤20 MB for mobile homepage), Poki ~8 MB (unverified), so an Expo web build fits.
-  - **Stack reopened:** proposed a 1–2 day device spike (Capacitor vs Expo universal, on iPhone + mid + budget Android), measuring fps, latency, cold start and web load. Expo (option B) expected to win; option C (Expo mobile + tiny web UI) is the fallback.
-- **2026-11-19:** CI = source checks only; **no app builds in CI** (user). Native Capacitor projects are committed, with build output ignored. Builds are local, with fastlane one-command release scripts; cloud builds optional later (Capawesome/Codemagic; Ionic Appflow sunsets 31 Dec 2027).
-- **2026-11-19:** **Monorepo agreed.** Per-folder checks: Lefthook hooks (glob/root per workspace; engine changes trigger game + API checks) and CI with path filters + Turborepo affected runs. Native builds run on CI/release. **The Letterlyn plan is complete**, ready for M1 on the user's go.
-- **2026-11-19:** Stack decided: **one codebase, web + Capacitor, React UI** (user OK).
-  - The user referenced the red-assistance multi-repo split (mobile/admin/web/api).
-  - Claude proposes a **monorepo** (packages/engine + content shared by game and API; apps/game, api, site, admin later). The shared engine is needed for server-side score checks. Waiting for the user's decision.
-- **2026-11-19:** User decisions:
-  - Content packs move to the **end** (decided together then).
-  - **iOS joins the launch wave.**
-  - They asked about React Native and about cross-device progress. Claude proposes **web core + Capacitor** (portals need a tiny web build; React/Preact UI OK) instead of RN + RN-web.
-  - Cross-device: one player record with several identities attached (device, Google, Apple, CrazyGames). Optional "Save your progress" via Sign in with Google/Apple (no passwords stored). Link codes for CrazyGames/Poki. Defined merge rules.
-- **2026-11-19:** The user approved Relax/Challenge, the coin economy, and EN + RO first.
-  - They pushed back on backend phasing: how do we get data in one place and shared leaderboards across web and mobile without a backend? **They're right:** platform services are silos.
-  - Revised: **small own backend from launch** (Cloudflare Workers + D1, $5/month paid plan), anonymous player ID + generated nickname, transfer code instead of logins, server-checked scores, one leaderboard per day/language everywhere.
-  - Constraints: Poki blocks external requests unless approved, and allows no personal data. CrazyGames allows backends and has its own leaderboards; it forbids Google/email logins inside games.
-  - Also revised: **launch Android together with the portals**, since mobile players may not visit portals.
-- **2026-11-19:** User feedback on M0: works well, but needs more packs, a how-to-play and settings menu (backwards words were not obvious), monetization, long-term replayability/competition, and a backend question.
-  - **Product plan v1 written:** `notes/letterlyn-plan.md`.
-  - Contents: onboarding with direction cards; fair-ads placement and a soft coin economy; Daily Puzzle + streak; Relax vs Challenge (timer, score, combo); share and friend codes; Quick Play; XP and achievements.
-  - Backend phases: none → Play Games/Game Center/CrazyGames → own serverless backend only if justified. No own login system.
-  - Waiting for the user's decisions (plan §6). No coding until agreed.
-- **2026-11-19:** **Letterlyn M0 prototype done** and pushed to SmartDevSolutionsLimited/letterlyn (`936f426`).
-  - Vite + TypeScript, no framework, about 7 KB gzipped.
-  - Seeded generator, EN + RO, 6 packs × 12 puzzles, hints, stars, saved progress.
-  - 19 tests pass. Played end to end in headless Chrome in both languages.
-  - Next: M1 (daily puzzle, 30 packs per language, sound/haptics, large print, banned-word lists).
-- **2026-11-19:** The user picked Letter Moss. **The check killed it:** "LetterMoss: Филворд", a Russian word search game, is already in a Play closed test (Oct 2026), and there is a US "MOSS" game mark (Polyarc). Remaining clean options: **Letterlyn** (coined, strongest) and **Letter Hush**. Waiting for the user's choice and a manual TMview/USPTO check.
-- **2026-11-19:** Word search: **English is the main language, Romanian is the first extra** (in-app switch, localized store listings). Name shortlist checked (see design doc §3): Letter Moss, Letter Hush, Letterlyn/Wordlyn, Letter Still, Word Sanctum. Waiting for the user's pick, then a trademark check.
-- **2026-11-19:** Game design v0.1 written: `notes/word-search-game-design.md`.
 - **2026-11-19:** Researched word search, offline-only brands/diaspora, and dropshipping.
   - Claude recommends **word search as the first product**: local-first, Romanian quality test, with a bilingual vocabulary mode; web portals first, then mobile.
   - Diaspora: an affiliate site plus Etsy POD as a cheap side test.
@@ -700,3 +629,4 @@ The user wants other shops or brands, in Romania or worldwide, that are strong o
 - **2026-11-19** — Everything targets a global audience, multilingual from launch, with translation done at build time.
 - **2026-11-19** — Car warning lights researched: saturated, and free OS features already do it. Not building it as a standalone product. Idea A now limited to domains with authoritative public datasets.
 - **2026-11-19** — Shortlist: A (knowledge engine + programmatic SEO) as the main bet, B (casual web/mobile game) as a side bet, C (marketplace app) as an alternative. Waiting for the user's input on market/domain.
+

@@ -3,13 +3,15 @@
 This repo is a workspace for brainstorming, validating and building low-maintenance income products.
 
 ## Rules
-- **Read `MEMORY.md` at the start of every session.** It holds the goals, constraints, idea pipeline and decision log.
-- **Update `MEMORY.md` after every meaningful discussion:** new ideas, analysis, research findings (with dates), decisions, and open questions. Keep it organized, not append-only chat logs.
+- **Read `MEMORY.md` at the start of every session.** It holds the goals, constraints, idea pipeline and general decision log. **Working on LetterLyn: also read `letterlyn/MEMORY.md`** (where we left off, LetterLyn decisions, page links).
+- **One folder per product in this repo** (`letterlyn/`, …): everything specific to that product (its memory, rules, plan, page sources, tools) goes there; the root holds only general business notes.
+- **LetterLyn rules sheet: `letterlyn/rules.md`.** Every decided rule and number. Check it before stating a rule or writing code, data or pages, and update it the moment a decision changes. Old prototype code is never a source of decisions.
+- **Update the right memory after every meaningful discussion** (`MEMORY.md` for general topics, `<product>/MEMORY.md` for a product): new ideas, analysis, research findings (with dates), decisions, and open questions. Keep it organized, not append-only chat logs.
 - **Folder layout** (`~/Business Ideas/` is a plain folder, not a git repo):
   ```
   Business Ideas/
   ├── CLAUDE.md          ← untracked pointer, imports business-ideas/CLAUDE.md
-  ├── business-ideas/    ← THIS repo: shared notes (personal account)
+  ├── business-ideas/    ← THIS repo: shared notes (personal account); business-ideas/letterlyn/ = LetterLyn notes
   └── <product>/         ← one sibling folder + own repo per business (company account), e.g. letterlyn/
   ```
 - **This repo (`business-ideas/`) uses the personal account only.** Before any commit/push, verify:
