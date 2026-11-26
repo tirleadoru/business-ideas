@@ -17,7 +17,7 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 3. **Romanian verbs in the "it does" form** (present, 3rd person, no "se"): CLIMB = CAȚĂRĂ, SNIFF = ADULMECĂ. Dog commands are commands: SIT = ȘEZI, FETCH = APORT, HEEL = LA PICIOR.
 4. **Dictionary form**: adjectives masculine (TABBY = TIGRAT), except breed names agreeing with the animal (PERSANĂ). Nouns without the article (MAI, not MAIUL). Plural only when the English is plural, and both sides the same number.
 5. **Same thing twice in one topic**: two pairs naming the same object, sound or action (FETCH and RETRIEVE; SQUEAL and SQUEAK; DISH and BOWL).
-6. **One word inside another in the same topic**, forwards or backwards, in either language (APORT inside APORTEAZĂ, BEE inside BUMBLEBEE). Those two can't share a grid.
+6. **One word inside another in the same topic**, forwards or backwards, in either language (APORT inside APORTEAZĂ, BEE inside BUMBLEBEE). Those two can't share a grid. It means one WHOLE word inside another; two words that only share a part are fine (PISICĂ NEAGRĂ and UȘIȚĂ DE PISICĂ).
 7. **Fit with the topic**: a word that doesn't belong to the topic's subject, or is so generic it could be anywhere.
 8. **US English only**: flag UK words and spellings (COLOUR, TRAINERS for sneakers, TAP for faucet).
 9. **Spelling**: ș and ț with the comma below (never ş ţ); correct diacritics. Only Romanian letters in the Romanian word (A–Z, Ă Â Î Ș Ț): foreign letters like É or Ü are a problem (NAZARÉ → NAZARE).
