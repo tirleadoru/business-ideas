@@ -14,6 +14,7 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 - LETTUCE may be SALATĂ, SALATĂ VERDE or LĂPTUCĂ (all correct; LĂPTUCĂ avoids confusion with salad).
 - MEDITERANEEAN (double E) is the official DOOM 3 spelling; MEDITERANEAN is only an older variant.
 - LAY=OUĂ is the verb (a se oua: «găina se ouă»), in our form without «se»; not the noun «eggs».
+- FIGUREHEAD=FIGURĂ DE PROVĂ is the usual Romanian nautical term; GALION is the ship (galleon).
 - RUGBI is the official Romanian spelling (RUGBY is only a variant).
 - No trademarks: the modern Olympic and Paralympic Games are never named (titles or words); flag any brand, event or franchise name.
 - GRASSHOPPER=LĂCUSTĂ and KATYDID=COSAȘ are the catalogue's standard pairs.
