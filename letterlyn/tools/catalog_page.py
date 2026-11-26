@@ -54,11 +54,15 @@ def topichtml(t,pid):
         return f'<li><span class="tt">{E(t["en"])}{RT(t)}</span><span class="ws">{" · ".join(wordhtml(w) for w in en)}</span></li>'
     if t.get('learn') is False:
         return f'<li><span class="tt">{E(t["en"])}{RT(t)}<span class="lb none">Not in Learn · own words per language</span>{chg}</span><span class="ws"><b class="lg">EN</b> {" · ".join(wordhtml(w) for w in en)}</span><span class="ws rows"><b class="lg">RO</b> {" · ".join(wordhtml(w) for w in ro)}</span></li>'
-    enl=" · ".join(wordhtml(w) if r else f'<span class="nr">{E(w)}</span>' for w,r in zip(en,ro))
-    rol=" · ".join([f'{wordhtml(r)}<small>{E(w.lower()) if w else "ro only"}</small>' for w,r in zip(en,ro) if r]+[f'<span class="ex">+{wordhtml(r)}</span>' for r in ex])
+    # One line per topic while Doru checks (2026-11-26): each pair as RO → EN, easy to read and copy.
+    def _pair(w,r):
+        if r and w: return f'{wordhtml(r)} → {E(w)}'
+        if r: return f'{wordhtml(r)} → <i>(no English)</i>'
+        return f'<span class="nr">(no Romanian) → {E(w)}</span>'
+    rol=" · ".join([_pair(w,r) for w,r in zip(en,ro)]+[f'<span class="ex">+{wordhtml(r)}</span>' for r in ex])
     lx=learn.get((pid,t['en'])); lb=f'<span class="lb {lx["best"]}">Learn: {LV[lx["best"]]} · {lx["shared"]} shared</span>' if lx else ''
     if t.get('learn') is False: lb='<span class="lb none">Not in Learn · own words per language</span>'
-    return f'<li><span class="tt">{E(t["en"])}{RT(t)}{lb}{chg}</span><span class="ws"><b class="lg">EN</b> {enl}</span><span class="ws rows"><b class="lg">RO</b> {rol}</span></li>'
+    return f'<li><span class="tt">{E(t["en"])}{RT(t)}{lb}{chg}</span><span class="ws rows"><b class="lg">RO → EN</b> {rol}</span></li>'
 npacks=sum(len(s['packs']) for s in d['shelves']); ntop=sum(len(v) for v in topics.values())
 done_shelves=sorted({s['id'] for s in d['shelves'] for p in s['packs'] if p['id'] in topics})
 parts=[]
@@ -298,7 +302,7 @@ code{{font-size:.85em}}
     <div class="note"><strong>Where we are ({today}).</strong> All 8,700 topics have 16–18 words in English and Romanian, and the whole catalogue has been checked together (look-alike topics, translations, a second rating). {_check_txt} {_learn_txt} {_variety_txt} Romanian checked on dexonline only where a doubt came up.</div>
     <div class="note"><strong>Left to do.</strong> {todo} Then: Doru reviews the 40 launch packs in the review list below (about 1.5 h per pack).</div>
     <div class="note"><strong>Reviews.</strong> A pack Doru has checked shows <b>✓ Review</b> with the date; if its words change later, the changed topics are marked <span class="lb chg" style="margin:0">changed since review</span>, so a second look only needs those. Reviewed so far: Sea &amp; Rivers › Sea Life (24 Nov), partly outdated.</div>
-    <div class="note"><strong>How the two languages are shown.</strong> Under the <b>EN</b> line, the <b>RO</b> line shows each Romanian word with its English partner in small letters; each is the proper translation, the same kind of word. <span style="color:var(--accent)">+blue</span> = Romanian word with no English partner (local names); <span style="text-decoration:line-through;opacity:.6">struck</span> = English word with no Romanian partner. <b>Learn</b> = the best level a Learn puzzle can reach from the shared words (Relaxed needs 6, Classic 10, Expert 16).</div>
+    <div class="note"><strong>How the two languages are shown.</strong> One line per topic: each pair is written <b>ROMANIAN → ENGLISH</b>, pairs separated by · (the arrow is never part of a word, so dashed words like ZGÂRIE-NORI stay readable and copy cleanly). Each is the proper translation, the same kind of word. <i>(no English)</i> = a Romanian word without an English partner (local names); <span style="text-decoration:line-through;opacity:.6">(no Romanian) → WORD</span> = an English word with no Romanian partner; <span style="color:var(--accent)">+blue</span> = an extra Romanian-only word. Topics not in Learn (own words per language) still show two lists. <b>Learn</b> = the best level a Learn puzzle can reach from the shared words (Relaxed needs 6, Classic 10, Expert 16).</div>
     <div class="note"><strong>How to read it.</strong> Each shelf line shows its different words, words per slot (target 0.70, <span style="color:var(--gold);font-weight:600">gold</span> = under it), the most-used word and core / weak / bad words per topic. Each topic gives 3 puzzles from its 16–18 words: Relaxed 7×9 uses the 6–8 shortest, Classic 9×12 uses 10–12, Expert 11×14 uses all that fit. Two-word names are shown as in the game's list ("GUINEA PIG") and joined only in the grid; never in Relaxed. Topics are listed in <b>play order</b> (what Continue plays next); the first topic of each pack is its headline. No word comes back within the next 4 puzzles. <b>New</b> = share of a pack's words not used by packs above it on the same shelf (information only). Word colours (by letters in the grid): plain = up to 9 letters (fits across from Classic up) · <span style="font-weight:600">dark</span> = 10–11 letters, Classic down-only or Expert · <i style="color:var(--gold)">gold italic</i> = 12+ letters, Expert down-only or the mega puzzle.</div>
   </header>
   {launch_html}
