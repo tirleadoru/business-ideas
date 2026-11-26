@@ -730,3 +730,10 @@ Idea from Doru (his kid asked about it). A real word traced in the grid that isn
 - One LetterLyn Learn subscription covers every pair; adding pairs never changes the price.
 - Wireframe 42 (Learn) shows "You speak: Română › change" and "Learn words in:" (English; Español greyed: after the RO–ES check, later).
 
+### 27o. Word cards: written after the words are locked (decided 2026-11-26)
+- Every word gets a card (plan §25: meaning, example, phone voice, save; word of the day uses it). Lyn's fun fact and the "why here" line become one optional **Lyn's line** per word in its topic (COLONEL in Mustaches: "the big handlebar mustache was the classic look of old army officers").
+- **Order of work:** the words are reviewed and the pack locked first; then helpers write the cards (meaning + example per word and language, Lyn's line where useful); then Doru reviews the card text only. The words are settled by then, so the card review doesn't touch grammar-in-the-grid, lengths, repeats or any word rule; it checks that the text is correct, clear, short and child-safe, and that EN and RO say the same thing. Doru expects it to be much faster than the word review (agreed: no rules interplay; Romanian sentences still need a native eye).
+- **Size:** ~26,000 different words per language in the whole catalogue; launch needs only the 40 launch packs (about a third). The rest are written a few months before each pack is released, like the words.
+- **Checks:** a card checker like the word checker (both languages present, length limits, the example contains the word or its form, no names of real people, ban list), part of check-all before a pack's cards are reviewed.
+- Data: meanings per word and language (reused across topics; one per sense when a word has two), Lyn's lines per topic word (`why` in the topic file, already used for 10 words).
+
