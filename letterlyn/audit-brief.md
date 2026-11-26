@@ -9,6 +9,7 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 - Proper names and loanwords that Romanians really use (LABRADOR, PET SHOP, GUPPY).
 - TORPOARE is a dictionary word (rare, = toropeală); TORPOREALĂ does not exist.
 - PRĂBUȘIRE also means a sudden decline (figurative), e.g. a population crash.
+- An English uncountable noun (FRUIT, STRAW, LUGGAGE) may pair with the Romanian plural when that's how Romanian says it (FRUCTE, PAIE, BAGAJE), as long as the topic makes the meaning obvious (Fruit salad, Straw hats); FRUIT = FRUCT when it means a single fruit or fruit in general.
 - GRASSHOPPER=LĂCUSTĂ and KATYDID=COSAȘ are the catalogue's standard pairs.
 - PALMURĂ = the webbing between toes (frogs, water birds); it has no palm-leaf meaning.
 - CÂRD for any group of animals of one kind, mammals too (DEX: «grup mare de animale sau de păsări, de pești de același fel»), e.g. HERD=CÂRD for deer.
