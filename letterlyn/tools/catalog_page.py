@@ -79,6 +79,18 @@ for _sid in LAUNCH_SHELVES:
         _it.append(f'<li><b>#{LAUNCH[_p["id"]]}</b> {E(_p["title"]["en"])} <span class="ro">{E(_p["title"]["ro"])}</span>{_st}</li>')
     _rows+=f'<div><h3 style="margin:6px 0 2px;font-size:15px">{E(_SH[_sid]["title"]["en"])}</h3><ol style="margin:0;padding-left:18px;list-style:none">{"".join(_it)}</ol></div>'
 _ndone=sum(1 for _s2,_p in _ll if _p['id'] in REV and not any(k.split('/')[0]==_p['id'] for k in CHANGED))
+import re as _re, collections as _col
+_weak=_col.defaultdict(list)
+for _r in (rep, rro):
+    for _i in _r['issues']:
+        if _i['level']=='info' and _i['msg'].startswith('rated weak but in use: '):
+            _m=_re.match(r'([^/]+)/([^ ]+) "(.*)"$',_i['where'])
+            if _m:
+                _k=(_m.group(1),_m.group(3)); _w=_i['msg'].split(': ',1)[1]
+                if _w not in _weak[_k]: _weak[_k].append(_w)
+_st={x['id']:x['title']['en'] for x in d['shelves']}
+_wl=''.join(f'<li><b>{E(_st.get(k[0],k[0]))}</b> › {E(k[1])}: {E(", ".join(v))}</li>' for k,v in sorted(_weak.items()))
+weak_html=(f'<details class="shelf"><summary><h2>Weak words still in use</h2><span class="ro">no better pool word fits the rules</span><span class="meta">{sum(len(v) for v in _weak.values())} words · {len(_weak)} topics</span></summary><p class="cov" style="margin:8px 16px 8px 40px">Rated weak by the second rating. The swap tool replaced 980 of 1,186 on 26 Nov; for these, every pool word would break a rule (repeat within 4 puzzles, hidden pair, grid fit). Fix them in your review, or leave them: they are correct words, just loose fits. Read from the checker report.</p><ul style="columns:2;margin:0 16px 14px 40px;font-size:.85rem">{_wl}</ul></details>' if _weak else '')
 launch_html=f'<details class="shelf" open><summary><h2>Your review list: the launch packs</h2><span class="ro">8 shelves × 5 packs, decided 25 Nov</span><span class="meta">{_ndone} of {len(_ll)} done</span></summary><p class="cov" style="margin:8px 16px 8px 40px">These 40 packs go live at launch (rules sheet "Launch"): ~60 h of review at ~1.5 h a pack. The catalogue is frozen, so each pack is reviewed once; only your corrections change words. Always the first 5 packs in shelf order, so the play order and the no-repeat checks stay as they are. Look for the <span class="chip launch" style="margin:0">Launch #</span> chip in the shelves below.</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 20px;padding:0 16px 14px 40px">{_rows}</div></details>'
 for s in d['shelves']:
     has=any(p['id'] in topics for p in s['packs'])
@@ -123,7 +135,7 @@ for s in d['shelves']:
         def _c(L):
             v=m.get(L); 
             if not v: return ''
-            return f'<span class="{"m bad" if v["ratio"]<0.70 else "m"}"><b>{L.upper()}</b> {v["distinct"]:,} words · {v["ratio"]:.2f} per slot · max ×{v["max"]} ({E(v["maxw"])})</span>'
+            return f'<span class="{"m bad" if v["ratio"]<0.70 else "m"}"><b>{L.upper()}</b> {v["distinct"]:,} words · {v["ratio"]:.3f} per slot · max ×{v["max"]} ({E(v["maxw"])})</span>'
         mt=f'<div class="mets">{_c("en")}{_c("ro")}<span class="{"m bad" if q.get("under5core") else "m"}">core {q["core"]:.1f} · weak {q["weak"]:.2f} · bad {q["bad"]:.2f} per topic{f" · {q[chr(117)+'nder5core']} topics under 5 core" if q.get("under5core") else ""}</span></div>'
     parts.append(f'<details class="shelf"{op}><summary><h2>{E(s["title"]["en"])}</h2><span class="ro">{E(s["title"]["ro"])}</span><span class="meta">{len(s["packs"])} packs</span>{local}{status}{mt}</summary><div class="packs">{"".join(packs)}</div></details>')
 ex=json.load(open(C+'extras.json'))
@@ -214,9 +226,13 @@ dec_html=''
 r2_html=(step1 if Q3['asks'] else '')+step2
 today='25 Nov'
 _titles={x['id']:x['title']['en'] for x in d['shelves']}
-_under=[f"{_titles.get(k,k)} ({'EN' if v['metrics']['en']['distinct']/v['metrics']['en']['slots']<0.70 else 'RO'} {min(v['metrics']['en']['distinct']/v['metrics']['en']['slots'],v['metrics']['ro']['distinct']/v['metrics']['ro']['slots']):.3f})" for k,v in MET.items() if min(v['metrics']['en']['ratio'],v['metrics']['ro']['ratio'])<0.70]
+_under=[f"{_titles.get(k,k)} ({L.upper()} {v['metrics'][L]['ratio']:.3f})" for k,v in MET.items() for L in ('en','ro') if L in v['metrics'] and v['metrics'][L]['ratio']<0.70]
 _lc=rro['learn']['best']['classic']+rro['learn']['best'].get('relaxed',0)+rro['learn']['best'].get('none',0)
 _learn_txt=('every Learn topic reaches Expert, Romania included (the names that matter stay for Romanian players; resident names and side names were swapped for common words).' if not _lc else f'every Learn topic reaches Expert except {_lc} (see the Learn level on each topic).')
+_te,_tr=rep['totals'],rro['totals']
+_check_txt=(f"The checker is clean: 0 errors and 0 warnings in English and Romanian (read from its reports, {rep['generated'][:16].replace('T',' ')} UTC);" if not (_te['errors'] or _te['warnings'] or _tr['errors'] or _tr['warnings'])
+  else f"<b>The checker is NOT clean:</b> English {_te['errors']} errors / {_te['warnings']} warnings, Romanian {_tr['errors']} errors / {_tr['warnings']} warnings (catalog/report.json);")
+_check_txt+=f" {_te.get('weakInUse',0):,} English words rated weak are still in topics, only where no better pool word fits the rules (list below);"
 _variety_txt=('Every shelf has at least 0.70 different words per slot in both languages.' if not _under else 'Every shelf has at least 0.70 different words per slot in both languages, except '+', '.join(_under)+' (just short: their pools have no more words that fit the rules).')
 _nd=0
 todo=(f'<b>Questions for you</b> ({len(Q3["asks"])}), on this page. ' if Q3['asks'] else '<b>Nothing left to decide on the catalogue.</b> The four checklist steps (repeating topics, bad words, wrong Romanian, first words) were done automatically on 25 Nov and Doru answered the last 16 questions (10 topics replaced). ')+'Separately: the coin numbers on the content page.'
@@ -279,13 +295,14 @@ code{{font-size:.85em}}
     <h1>LetterLyn Catalogue</h1>
     <p class="lead">Every shelf and pack the game will have. <b>15 packs per shelf</b>, and the game grows by adding new shelves, never longer ones, so every shelf's trophies (bronze 5 · silver 10 · gold 15) are reachable the day it comes out. At launch: 8 shelves with their first 5 reviewed packs each (bronze reachable); the monthly packs then fill them to 15. English and Romanian are written together as matching pairs; a pack is locked once published (per language).</p>
     <div class="stats"><span><b>{len(d["shelves"])}</b> shelves</span><span><b>{npacks}</b> packs</span><span><b>{ntop}</b> topics drafted</span><span><b>{rep["totals"]["distinct"+"Words"]:,}</b> different words</span><span><b>{rep["totals"]["warnings"]}</b> warnings</span><span><b>{rro["totals"]["topicsWithWords"]}</b> topics in Romanian · <b>{rro["totals"]["warnings"]}</b> RO warnings</span></div>
-    <div class="note"><strong>Where we are ({today}).</strong> All 8,700 topics have 16–18 words in English and Romanian, and the whole catalogue has been checked together (look-alike topics, translations, a second rating). The checker is clean: 0 errors and 0 warnings in English and Romanian; {_learn_txt} {_variety_txt} Romanian checked on dexonline only where a doubt came up.</div>
+    <div class="note"><strong>Where we are ({today}).</strong> All 8,700 topics have 16–18 words in English and Romanian, and the whole catalogue has been checked together (look-alike topics, translations, a second rating). {_check_txt} {_learn_txt} {_variety_txt} Romanian checked on dexonline only where a doubt came up.</div>
     <div class="note"><strong>Left to do.</strong> {todo} Then: Doru reviews the 40 launch packs in the review list below (about 1.5 h per pack).</div>
     <div class="note"><strong>Reviews.</strong> A pack Doru has checked shows <b>✓ Review</b> with the date; if its words change later, the changed topics are marked <span class="lb chg" style="margin:0">changed since review</span>, so a second look only needs those. Reviewed so far: Sea &amp; Rivers › Sea Life (24 Nov), partly outdated.</div>
     <div class="note"><strong>How the two languages are shown.</strong> Under the <b>EN</b> line, the <b>RO</b> line shows each Romanian word with its English partner in small letters; each is the proper translation, the same kind of word. <span style="color:var(--accent)">+blue</span> = Romanian word with no English partner (local names); <span style="text-decoration:line-through;opacity:.6">struck</span> = English word with no Romanian partner. <b>Learn</b> = the best level a Learn puzzle can reach from the shared words (Relaxed needs 6, Classic 10, Expert 16).</div>
     <div class="note"><strong>How to read it.</strong> Each shelf line shows its different words, words per slot (target 0.70, <span style="color:var(--gold);font-weight:600">gold</span> = under it), the most-used word and core / weak / bad words per topic. Each topic gives 3 puzzles from its 16–18 words: Relaxed 7×9 uses the 6–8 shortest, Classic 9×12 uses 10–12, Expert 11×14 uses all that fit. Two-word names are shown as in the game's list ("GUINEA PIG") and joined only in the grid; never in Relaxed. Topics are listed in <b>play order</b> (what Continue plays next); the first topic of each pack is its headline. No word comes back within the next 4 puzzles. <b>New</b> = share of a pack's words not used by packs above it on the same shelf (information only). Word colours (by letters in the grid): plain = up to 9 letters (fits across from Classic up) · <span style="font-weight:600">dark</span> = 10–11 letters, Classic down-only or Expert · <i style="color:var(--gold)">gold italic</i> = 12+ letters, Expert down-only or the mega puzzle.</div>
   </header>
   {launch_html}
+  {weak_html}
   {dec_html}
   {r2_html}
   {"".join(parts)}
