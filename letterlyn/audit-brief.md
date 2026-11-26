@@ -18,7 +18,7 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 - GRASSHOPPER=LĂCUSTĂ and KATYDID=COSAȘ are the catalogue's standard pairs.
 - PALMURĂ = the webbing between toes (frogs, water birds); it has no palm-leaf meaning.
 - CÂRD for any group of animals of one kind, mammals too (DEX: «grup mare de animale sau de păsări, de pești de același fel»), e.g. HERD=CÂRD for deer.
-- Two-word answers (they are joined in the grid, spaced in the list). Dashes only where the dictionary writes them (T-SHIRT, FLOAREA-SOARELUI, PEȘTE-SPADĂ); flag an invented dashed name or a dash the dictionary doesn't use.
+- Answers of two or three words (they are joined in the grid, spaced in the list; e.g. PASĂRE DE FERMĂ). Dashes only where the dictionary writes them (T-SHIRT, FLOAREA-SOARELUI, PEȘTE-SPADĂ); flag an invented dashed name or a dash the dictionary doesn't use.
 - Pack or topic titles with "and" / "și" (fine when there isn't content for two).
 - A word whose link to the topic needs explaining but is true and interesting (COLONEL in Mustaches): instead of replacing it, you may propose a short "why here" line for its word card (see Format).
 
