@@ -6,6 +6,7 @@ If something isn't here, it isn't decided yet: look it up in the plan, or ask.
 
 ## Grids and difficulty
 - Difficulty levels: ● green **Relaxed**, ■ blue **Classic**, ◆ black **Expert** (ski-style ribbons, colour + shape).
+- **One difficulty setting per player** for packs and Learn: chosen on first run (board 3, default Classic), changed any time in Settings. Every level has the same number of puzzles (one per topic); only the grid size and words per puzzle change. The daily and friend codes are the same for everyone.
 - **Tall grids** (width × height): Relaxed **7×9**, Classic **9×12**, Expert **11×14**. The mega puzzle (later) is **20×30**. The shape is fixed per puzzle, not per screen. (Content page §2; the prototype code still has 7/8/10/12 squares and must change.)
 - Words used per puzzle: Relaxed **6–8** (the shortest), Classic **10–12**, Expert **all that fit, at least 16** (a topic may hold 1–2 mega-only words). Checker needs per topic: 8 fit Relaxed, 12 fit Classic, 16 fit Expert. One written topic gives three puzzles.
 - Daily: Classic size (9×12) every day; Sunday weekend special at Expert size (11×14). Same for everyone. New daily at 00:00 UTC.
