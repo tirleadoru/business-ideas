@@ -8,6 +8,8 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 - The same Romanian word for two different English words in different topics.
 - Proper names and loanwords that Romanians really use (LABRADOR, PET SHOP, GUPPY).
 - Two-word answers (they are joined in the grid, spaced in the list).
+- Pack or topic titles with "and" / "și" (fine when there isn't content for two).
+- A word whose link to the topic needs explaining but is true and interesting (COLONEL in Mustaches): instead of replacing it, you may propose a short "why here" line for its word card (see Format).
 
 **Flag these:**
 1. **Wrong or loose translation**: the Romanian means something else or something wider (NUFERI = water lilies, not lily pads). Check DEX/dexonline for spelling (DOOM forms) and meaning.
@@ -18,9 +20,9 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 6. **One word inside another in the same topic**, forwards or backwards, in either language (APORT inside APORTEAZĂ, BEE inside BUMBLEBEE). Those two can't share a grid.
 7. **Fit with the topic**: a word that doesn't belong to the topic's subject, or is so generic it could be anywhere.
 8. **US English only**: flag UK words and spellings (COLOUR, TRAINERS for sneakers, TAP for faucet).
-9. **Spelling**: ș and ț with the comma below (never ş ţ); correct diacritics.
+9. **Spelling**: ș and ț with the comma below (never ş ţ); correct diacritics. Only Romanian letters in the Romanian word (A–Z, Ă Â Î Ș Ț): foreign letters like É or Ü are a problem (NAZARÉ → NAZARE).
 10. **Consistency**: if you know the same English word is translated differently elsewhere in the pack, say which form is better.
 
-**Fixes:** a fix must be a word that fits the topic. Keep in mind the grid limit: at most 14 letters (spaces don't count), and long words are harder to fit. Don't propose a fix that creates problem 5 or 6. Where people genuinely say it different ways and the current word is correct, don't flag it.
+**Fixes:** a fix must be a word that fits the topic. Keep in mind the grid limit: at most 14 letters (spaces don't count), and long words are harder to fit. Don't propose a fix that creates problem 5 or 6. Prefer single-word fixes: a puzzle holds at most 2 two-word answers in Classic and 4 in Expert, so a new two-word answer often won't fit. Our tools check every other rule (repeats across puzzles, grid fit), so it's fine to propose a few alternatives in order of preference. Where people genuinely say it different ways and the current word is correct, don't flag it.
 
-**Format:** one line per problem: `Topic · EN=RO → proposed EN=RO · reason`. End with the list of topics that have no problems.
+**Format:** one line per problem: `Topic · EN=RO → proposed EN=RO (or alternatives: A=B / C=D) · reason`. For a word to keep with an explanation: `Topic · EN=RO → keep, why here: <one short line in English> / <in Romanian>`. End with the list of topics that have no problems.
