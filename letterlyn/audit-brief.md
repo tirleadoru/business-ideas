@@ -26,4 +26,6 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 
 **Fixes:** a fix must be a word that fits the topic. Keep in mind the grid limit: at most 14 letters (spaces don't count), and long words are harder to fit. Don't propose a fix that creates problem 5 or 6. Prefer single-word fixes: a puzzle holds at most 2 two-word answers in Classic and 4 in Expert, so a new two-word answer often won't fit. Our tools check every other rule (repeats across puzzles, grid fit), so it's fine to propose a few alternatives in order of preference. Where people genuinely say it different ways and the current word is correct, don't flag it.
 
+Any "why here" line you propose is our own explanation: never mention DEX, DOOM or a dictionary in it.
+
 **Format:** one line per problem: `Topic · EN=RO → proposed EN=RO (or alternatives: A=B / C=D) · reason`. For a word to keep with an explanation: `Topic · EN=RO → keep, why here: <one short line in English> / <in Romanian>`. End with the list of topics that have no problems.
