@@ -25,6 +25,8 @@ You are checking one pack of a word-search game. Each topic has 16–18 English�
 - A word whose link to the topic needs explaining but is true and interesting (COLONEL in Mustaches): instead of replacing it, you may propose a short "why here" line for its word card (see Format).
 
 **Flag these:**
+- A word shown with "+" after a topic's list is a Romanian-only extra (no English partner by design). Do not flag it as missing English.
+
 1. **Wrong or loose translation**: the Romanian means something else or something wider (NUFERI = water lilies, not lily pads). Check DEX/dexonline for spelling (DOOM forms) and meaning.
 2. **Different kind of word**: noun must pair with noun, verb with verb, adjective with adjective (JOG = ALERGARE is wrong: verb vs noun).
 3. **Romanian verbs in the "it does" form** (present, 3rd person, no "se"): CLIMB = CAȚĂRĂ, SNIFF = ADULMECĂ. English verbs in the base form (PEEL = COJEȘTE, not PEELS); flag an English -S verb only in packs not yet audited. Dog commands are commands: SIT = ȘEZI, FETCH = APORT, HEEL = LA PICIOR.
